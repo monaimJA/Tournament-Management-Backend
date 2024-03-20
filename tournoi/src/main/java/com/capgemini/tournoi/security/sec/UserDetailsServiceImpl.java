@@ -1,7 +1,7 @@
-package com.capgemini.tournoi.sec;
+package com.capgemini.tournoi.security.sec;
 
-import com.capgemini.tournoi.entities.AppUser;
-import com.capgemini.tournoi.service.AccountService;
+import com.capgemini.tournoi.security.entities.AppUser;
+import com.capgemini.tournoi.security.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

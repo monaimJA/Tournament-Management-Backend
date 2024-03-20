@@ -1,4 +1,4 @@
-package com.capgemini.tournoi.entities;
+package com.capgemini.tournoi.security.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@Data @AllArgsConstructor @NoArgsConstructor @ToString
+@Data @ToString
 public class AppRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

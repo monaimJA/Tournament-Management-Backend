@@ -1,8 +1,8 @@
-package com.capgemini.tournoi.web;
+package com.capgemini.tournoi.security.web;
 
+import com.capgemini.tournoi.security.entities.AppUser;
 import lombok.Data;
-import com.capgemini.tournoi.entities.AppUser;
-import com.capgemini.tournoi.service.AccountService;
+import com.capgemini.tournoi.security.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

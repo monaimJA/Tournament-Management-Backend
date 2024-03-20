@@ -1,4 +1,4 @@
-package com.capgemini.tournoi.sec;
+package com.capgemini.tournoi.security.sec;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

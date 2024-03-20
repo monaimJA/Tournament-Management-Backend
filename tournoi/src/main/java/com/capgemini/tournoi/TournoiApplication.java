@@ -1,7 +1,7 @@
 package com.capgemini.tournoi;
 
-import com.capgemini.tournoi.entities.AppRole;
-import com.capgemini.tournoi.service.AccountService;
+import com.capgemini.tournoi.security.entities.AppRole;
+import com.capgemini.tournoi.security.service.AccountService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

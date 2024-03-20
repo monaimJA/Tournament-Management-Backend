@@ -1,9 +1,9 @@
-package com.capgemini.tournoi.service;
+package com.capgemini.tournoi.security.service;
 
-import com.capgemini.tournoi.dao.AppRoleRepository;
-import com.capgemini.tournoi.dao.AppUserRepository;
-import com.capgemini.tournoi.entities.AppRole;
-import com.capgemini.tournoi.entities.AppUser;
+import com.capgemini.tournoi.security.dao.AppRoleRepository;
+import com.capgemini.tournoi.security.dao.AppUserRepository;
+import com.capgemini.tournoi.security.entities.AppRole;
+import com.capgemini.tournoi.security.entities.AppUser;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

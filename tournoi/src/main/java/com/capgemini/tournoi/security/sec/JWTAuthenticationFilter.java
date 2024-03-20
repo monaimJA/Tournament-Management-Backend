@@ -1,8 +1,8 @@
-package com.capgemini.tournoi.sec;
+package com.capgemini.tournoi.security.sec;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.capgemini.tournoi.entities.AppUser;
+import com.capgemini.tournoi.security.entities.AppUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

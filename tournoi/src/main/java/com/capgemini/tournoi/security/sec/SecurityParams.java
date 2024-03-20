@@ -1,4 +1,4 @@
-package com.capgemini.tournoi.sec;
+package com.capgemini.tournoi.security.sec;
 
 public interface SecurityParams {
     public static final String JWT_HEADER_NAME="Authorization";

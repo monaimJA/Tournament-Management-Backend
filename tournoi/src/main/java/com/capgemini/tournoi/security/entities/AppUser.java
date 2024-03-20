@@ -1,4 +1,4 @@
-package com.capgemini.tournoi.entities;
+package com.capgemini.tournoi.security.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

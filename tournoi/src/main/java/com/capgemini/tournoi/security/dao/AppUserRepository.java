@@ -1,7 +1,7 @@
-package com.capgemini.tournoi.dao;
+package com.capgemini.tournoi.security.dao;
 
 
-import com.capgemini.tournoi.entities.AppUser;
+import com.capgemini.tournoi.security.entities.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
