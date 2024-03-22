@@ -2,6 +2,7 @@ package com.capgemini.tournoi.entity;
 
 import com.capgemini.tournoi.enums.StatusTournoi;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Tournoi {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +22,7 @@ public class Tournoi {
     private String label;
     private Date startDate;
     private Date endDate;
+    @Enumerated(value = EnumType.STRING)
     private StatusTournoi statusTournoi;
 
     @OneToMany
