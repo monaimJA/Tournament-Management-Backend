@@ -1,9 +1,11 @@
 package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
+import com.capgemini.tournoi.dtos.TournamentResponseDto;
 import com.capgemini.tournoi.entity.Team;
-import com.capgemini.tournoi.entity.Tournoi;
+import com.capgemini.tournoi.entity.Tournament;
 import com.capgemini.tournoi.enums.StatusTournoi;
+import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentDateException;
 import com.capgemini.tournoi.services.TournamentService;
@@ -21,24 +23,33 @@ public class TournamentController {
     private TournamentService tournamentService;
 
     @PostMapping("/create")
-    public Tournoi createTournament(@RequestBody CreateTournamentRequestDto tournamentDto) throws TournamentDateException {
+    public Tournament createTournament(@RequestBody CreateTournamentRequestDto tournamentDto) throws TournamentDateException {
         return tournamentService.createTournament(tournamentDto);
     }
     @GetMapping("/all")
-    public List<Tournoi> getAllTournaments() {
+    public List<TournamentResponseDto> getAllTournaments() {
         return tournamentService.getAllTournaments();
     }
     @GetMapping("/{id}")
-    public Tournoi getTournamentById(@PathVariable Long id) throws TournamentNotFoundException {
+    public TournamentResponseDto getTournamentById(@PathVariable Long id) throws TournamentNotFoundException {
         return tournamentService.getTournamentById(id);
     }
     @GetMapping("/{id}/scorers")
     public HashMap<String, Integer> tournamentScorers(@PathVariable(name = "id") Long tournamentId) throws TournamentNotFoundException {
         return tournamentService.tournamentScorers(tournamentId);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/{id}/teams")
     public List<Team> getTeamsByTournamentStatus(@PathVariable(name = "id") Long tournamentId,@RequestBody StatusTournoi status) throws TournamentNotFoundException {
         return tournamentService.getTeamsByTournamentStatus(tournamentId, status);
+    }
+
+    @PostMapping("/{id}/teams/{teamId}/add")
+    public TournamentResponseDto addTeamToTournament(@PathVariable(name = "id") Long tournamentId,@PathVariable Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
+        return tournamentService.addTeamToTournament(tournamentId, teamId);
+    }
+    @PostMapping("/{id}/teams/{teamId}/delete")
+    public TournamentResponseDto deleteTeamFromTournament(@PathVariable(name = "id") Long tournamentId,@PathVariable Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
+        return tournamentService.deleteTeamFromTournament(tournamentId, teamId);
     }
 
 }

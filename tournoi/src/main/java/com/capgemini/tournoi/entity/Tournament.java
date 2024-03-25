@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Tournoi {
+public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
