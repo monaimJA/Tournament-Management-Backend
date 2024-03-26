@@ -12,16 +12,18 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Avertissement {
+public class Card {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private Date date;
 
     private CardType cardType;
 
     @ManyToOne
+    @JoinColumn(name = "player_id",referencedColumnName = "id")
     private Player player;
 
 }

@@ -15,23 +15,19 @@ import java.util.List;
 public class Match {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Date startTime;
     private Date overTime;
 
-    @ManyToMany
-    @JoinTable(name = "match_teams",
-            joinColumns = @JoinColumn(name = "match_id",
-                    referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "team_id",
-                    referencedColumnName = "id"))
-    private List<Team> teams;
+    @ManyToOne
+    @JoinColumn(name = "team1_id")
+    private Team team1;
 
-    @OneToMany
-    private List<Avertissement> avertissements;
+    @ManyToOne
+    @JoinColumn(name = "team2_id")
+    private Team team2;
 
-
-    @OneToOne
-    private Score score;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Card> cards;
 }

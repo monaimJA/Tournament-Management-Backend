@@ -13,11 +13,16 @@ import javax.persistence.*;
 public class Goal {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private int value;
     private int time;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "player_id",referencedColumnName = "id")
     private Player player;
+
+    @ManyToOne
+    @JoinColumn(name = "score_id",referencedColumnName = "id")
+    private Score score;
 }

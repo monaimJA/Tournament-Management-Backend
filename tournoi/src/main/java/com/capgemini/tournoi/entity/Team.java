@@ -14,15 +14,16 @@ import java.util.List;
 @AllArgsConstructor
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     @ManyToOne
     private Site site;
     private StatusTeam statusTeam;
-    @OneToMany
+    @OneToMany(mappedBy = "team",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private List<Player> players;
 
     @ManyToOne
-    private Tournoi tournoi;
+    @JoinColumn(name = "tournament_id",referencedColumnName = "id")
+    private Tournament tournament;
 }

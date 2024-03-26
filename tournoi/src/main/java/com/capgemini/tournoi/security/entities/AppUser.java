@@ -10,7 +10,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 @Entity
-@Data @AllArgsConstructor @NoArgsConstructor @ToString
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,35 +25,4 @@ public class AppUser {
     private boolean actived;
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<AppRole> roles=new ArrayList<>();
-
-    public String getUsername() {
-        return username;
-    }
-    public String getPassword() {
-        return password;
-    }
-
-    public boolean isActived() {
-        return actived;
-    }
-
-    public Collection<AppRole> getRoles() {
-        return roles;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setActived(boolean actived) {
-        this.actived = actived;
-    }
-
-    public void setRoles(Collection<AppRole> roles) {
-        this.roles = roles;
-    }
 }
