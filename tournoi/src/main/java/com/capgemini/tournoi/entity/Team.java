@@ -15,7 +15,7 @@ import java.util.List;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String name;
     @ManyToOne
     private Site site;
@@ -24,5 +24,7 @@ public class Team {
     private List<Player> players;
 
     @ManyToOne
-    private Tournoi tournoi;
+    private Tournament tournament ;
+
+
 }
