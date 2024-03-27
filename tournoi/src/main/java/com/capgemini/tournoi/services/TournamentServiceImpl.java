@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,15 +61,17 @@ public class TournamentServiceImpl implements TournamentService{
         HashMap<String, Integer> scorers = new HashMap<>();
         Tournament tournament = tournoiRepository.findById(tournamentId)
                 .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
-        for (Player player : playerRepository.findAll()) {
-            scorers.put(player.getFirstName()+" "+player.getLastName(), goalRepository.findAllByPlayer(player).size());
+        for (Team team : teamsRepository.getTeamsByTournament(tournament)) {
+            for (Player player : playerRepository.findAllByTeam(team)) {
+                scorers.put(player.getFirstName() + " " + player.getLastName(), goalRepository.findAllByPlayer(player).size());
+            }
         }
         return scorers;
     }
     public List<Team> getTeamsByTournamentStatus(Long tournamentId, StatusTournoi status) throws TournamentNotFoundException {
         Tournament tournament = tournoiRepository.findById(tournamentId)
                 .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
-        return teamsRepository.getTeamsByTournoi_StatusTournoi(status);
+        return teamsRepository.getTeamsByTournament_StatusTournoi(status);
     }
     public TournamentResponseDto addTeamToTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
         Team team = teamsRepository.findById(teamId)
@@ -86,8 +89,8 @@ public class TournamentServiceImpl implements TournamentService{
                 .orElseThrow(() -> new TeamNotFoundException("Team with Team id = " + teamId + " does not exist"));
         Tournament tournament = tournoiRepository.findById(tournamentId)
                 .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
-        team.setTournament(tournament);
-        tournament.getTeams().add(team);
+        tournament.getTeams().remove(team);
+        team.setTournament(null);
         teamsRepository.save(team);
         tournoiRepository.save(tournament);
         return tournamentMapper.fromTournament(tournament);
