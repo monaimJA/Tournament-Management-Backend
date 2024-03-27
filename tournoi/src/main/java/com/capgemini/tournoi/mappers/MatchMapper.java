@@ -4,13 +4,11 @@ import com.capgemini.tournoi.dtos.MatchRequestDTO;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Score;
 import com.capgemini.tournoi.entity.Team;
-import com.capgemini.tournoi.repos.ScoreRepository;
 import com.capgemini.tournoi.repos.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 
@@ -18,26 +16,19 @@ public class MatchMapper {
 
     @Autowired
     private TeamRepository teamRepository;
-    @Autowired
-    private ScoreRepository scoreRepository;
     public Match fromMatchDTO(MatchRequestDTO matchRequestDTO){
         Team team1= teamRepository.findById(matchRequestDTO.getTeamId1()).orElse(null);
         Team team2 = teamRepository.findById(matchRequestDTO.getTeamId1()).orElse(null);
-        Score score=new Score();
-        if(team1 == null || team2 == null){
-            throw new IllegalArgumentException("Equipe non trouve avec les ID fournis");
+        System.out.println("le team 1"+team1);
+        if(team1 == null || team2 == null){throw new IllegalArgumentException("Equipe non trouve avec les ID fournis");
         }
-        //List<Team> teams=new ArrayList<>();
-        //teams.add(team1);
-        //teams.add(team2);
         return Match.builder()
                 .team1(team1)
                 .team2(team2)
                 .startTime(matchRequestDTO.getStartTime())
-                .score(score)
-                //.score(Score.builder()
-                        //.goals(new ArrayList<>())
-                        //.build())
+                .score(Score.builder()
+                        .goals(new ArrayList<>())
+                        .build())
                 .scorers(new ArrayList<>())
                 //.teams(new ArrayList<>())
                 .cards(new ArrayList<>())

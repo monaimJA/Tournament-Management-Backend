@@ -6,7 +6,6 @@ import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Score;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.error.MatchNotFoundException;
-import com.capgemini.tournoi.error.ScoreNotFoundException;
 import com.capgemini.tournoi.mappers.MatchMapper;
 import com.capgemini.tournoi.repos.MatchRepository;
 import com.capgemini.tournoi.repos.TeamRepository;
@@ -26,18 +25,20 @@ public class MatchServiceImpl  implements MatchServiceInterface{
     private TeamRepository teamRepository;
     @Autowired
     private MatchMapper matchMapper;
+
     public Match createMatch(MatchRequestDTO matchRequest) {
         Match newMatch = matchMapper.fromMatchDTO(matchRequest);
         newMatch.setStartTime(matchRequest.getStartTime());
-        Team team1= teamRepository.findById(matchRequest.getTeamId1()).get();
-        Team team2 = teamRepository.findById(matchRequest.getTeamId1()).get();
-        //List<Team> teams=new ArrayList<>();
-        //teams.add(team1);
-        //teams.add(team2);
+        newMatch.setId(matchRequest.getId());
+        Team team1= teamRepository.findById(matchRequest.getTeamId1()).orElseThrow(() -> new IllegalArgumentException("Equipe 1 non trouvée avec l'ID fourni"));
+        Team team2 = teamRepository.findById(matchRequest.getTeamId1()).orElseThrow(() -> new IllegalArgumentException("Equipe 2 non trouvée avec l'ID fourni"));
         newMatch.setTeam1(team1);
         newMatch.setTeam2(team2);
+        newMatch.setScore(null);
         return matchRepository.save(newMatch);
     }
+
+
 
     public List<Match> getAllMatches() {
         return matchRepository.findAll();
