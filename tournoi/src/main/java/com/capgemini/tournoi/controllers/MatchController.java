@@ -50,6 +50,7 @@ public class MatchController {
     }
 
 
+
     @GetMapping("/{id}/scorers")
     public ResponseEntity<List<Player>> getMatchScorers(@PathVariable Long id) {
         List<Player> scorers = matchServiceImpl.getMatchScorers(id);

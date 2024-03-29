@@ -25,4 +25,7 @@ public class Team {
 
     @ManyToOne
     private Tournament tournament;
+
+    //@OneToOne
+    //private Match match;
 }

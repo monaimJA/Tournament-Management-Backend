@@ -29,6 +29,7 @@ public class Match {
             inverseJoinColumns = @JoinColumn(name = "team_id",
                     referencedColumnName = "id"))
     private List<Team> teams;*/
+    
     @OneToOne
     private Team team1;
     @OneToOne
@@ -38,7 +39,7 @@ public class Match {
     private List<Card> cards;
 
 
-    @OneToOne
+     @OneToOne
     private Score score;
 
     @ManyToMany
@@ -48,5 +49,13 @@ public class Match {
             inverseJoinColumns = @JoinColumn(name = "player_id",
                     referencedColumnName = "id"))
     private List<Player> scorers;
+
+    @OneToMany
+    private List<Goal> goals;
+
+
+
+
+
 
 }

@@ -64,6 +64,7 @@ public class MatchServiceImpl  implements MatchServiceInterface{
     }
 
 
+
     public List<Player> getMatchScorers(Long matchId) {
         Match match = matchRepository.findById(matchId).orElse(null);
         if (match != null) {
@@ -71,5 +72,14 @@ public class MatchServiceImpl  implements MatchServiceInterface{
         }
         return null;
     }
+
+    public  int getScoreTeam1(){
+        return 1;
+    }
+
+    public int getScoreTeam2(){
+        return 2;
+    }
+
 }
 
