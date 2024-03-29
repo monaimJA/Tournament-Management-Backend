@@ -12,7 +12,6 @@ import com.capgemini.tournoi.repos.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,13 +72,6 @@ public class MatchServiceImpl  implements MatchServiceInterface{
         return null;
     }
 
-    public  int getScoreTeam1(){
-        return 1;
-    }
-
-    public int getScoreTeam2(){
-        return 2;
-    }
 
 }
 

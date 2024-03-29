@@ -38,7 +38,7 @@ public class MatchController {
             Match match = matchServiceImpl.getMatchById(id);
             return ResponseEntity.ok(match);
         } catch (MatchNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Match not found with id " + id);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND," Match not found with id " + id);
         }
 
     }

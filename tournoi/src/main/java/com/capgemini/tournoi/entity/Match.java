@@ -22,14 +22,7 @@ public class Match {
     private Date startTime;
     private Date overTime;
 
-    /*@ManyToMany
-    @JoinTable(name = "match_teams",
-            joinColumns = @JoinColumn(name = "match_id",
-                    referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "team_id",
-                    referencedColumnName = "id"))
-    private List<Team> teams;*/
-    
+
     @OneToOne
     private Team team1;
     @OneToOne

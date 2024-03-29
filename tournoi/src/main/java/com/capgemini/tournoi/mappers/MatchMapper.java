@@ -19,7 +19,7 @@ public class MatchMapper {
     public Match fromMatchDTO(MatchRequestDTO matchRequestDTO){
         Team team1= teamRepository.findById(matchRequestDTO.getTeamId1()).orElse(null);
         Team team2 = teamRepository.findById(matchRequestDTO.getTeamId1()).orElse(null);
-        System.out.println("le team 1"+team1);
+        System.out.println("le team 1" +team1);
         if(team1 == null || team2 == null){throw new IllegalArgumentException("Equipe non trouve avec les ID fournis");
         }
         return Match.builder()
