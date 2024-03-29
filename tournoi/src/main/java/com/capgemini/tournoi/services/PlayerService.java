@@ -13,7 +13,7 @@ import java.util.List;
 public interface PlayerService {
     public List<PlayerDto> getAllPlayersOfATeam(long teamId);
     public PlayerDto getPlayerById(long id) throws PlayerNotFoundException;
-    public TeamDto assignPlayerToTeam(Player player, long teamId);
+    public PlayerDto assignPlayerToTeam(Player player, long teamId);
     public TeamDto deletePlayerByIdFromTeam(long playerId,long teamId) throws PlayerNotFoundException;
     public PlayerDto updatePlayerById(Player player,long id);
     public List<PlayerDto> getPlayersInTournoiByCardType

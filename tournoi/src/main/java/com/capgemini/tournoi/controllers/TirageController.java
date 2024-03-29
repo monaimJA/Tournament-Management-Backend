@@ -3,6 +3,7 @@ package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
+import com.capgemini.tournoi.repos.TeamRepository;
 import com.capgemini.tournoi.repos.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,21 +21,16 @@ import java.util.Optional;
 public class TirageController {
 
     @Autowired
-    private TournamentRepository tournamentRepository;
+    private TeamRepository teamRepository;
 
     @GetMapping("/{tournoiId}")
     public List<List<Long>> lancer(@PathVariable long tournoiId){
-        Optional<Tournament> tournoiOptional=tournamentRepository.findById(tournoiId);
-        if(tournoiOptional.isPresent()){
-            Collections.shuffle(tournoiOptional.get().getTeams());
-            return getLists(tournoiOptional);
-        }else{
-            throw new RuntimeException("tournoi with id="+tournoiId+" doesn't exist");
-        }
+        List<Team> teams=teamRepository.findByTournamentId(tournoiId);
+        Collections.shuffle(teams);
+        return getLists(teams);
     }
 
-    private static List<List<Long>> getLists(Optional<Tournament> tournoiOptional) {
-        List<Team> teams= tournoiOptional.get().getTeams();
+    private static List<List<Long>> getLists(List<Team> teams) {
         List<List<Long>> groupedLists = new ArrayList<>();
         for (int i = 0; i < teams.size(); i += 2) {
             List<Long> sublist = new ArrayList<>();

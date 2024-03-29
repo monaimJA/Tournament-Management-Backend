@@ -18,10 +18,6 @@ public class TeamMapper {
         teamDto.setSiteName(team.getSite().getName());
         teamDto.setTournamentName(team.getTournament().getLabel());
         teamDto.setStatusTeam(team.getStatusTeam());
-        List<String> players=team.getPlayers().stream()
-                .map(player->player.getFirstName()+" "+player.getLastName())
-                .collect(Collectors.toList());
-        teamDto.setPlayers(players);
         teamDto.setStatusTournoi(team.getTournament().getStatusTournament());
         return teamDto;
     }
@@ -32,18 +28,6 @@ public class TeamMapper {
         Site site=new Site();
         site.setName(teamDto.getSiteName());
         team.setSite(site);
-        List<Player> players=teamDto.getPlayers().stream()
-                .map(player->{
-                    String[] firstAndLastname=player.split(" ");
-                    String firstName=firstAndLastname[0];
-                    String lastName=firstAndLastname[1];
-                    Player player1=new Player();
-                    player1.setFirstName(firstName);
-                    player1.setLastName(lastName);
-                    return player1;
-                })
-                .collect(Collectors.toList());
-        team.setPlayers(players);
         return team;
     }
 }

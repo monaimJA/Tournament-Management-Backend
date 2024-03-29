@@ -11,12 +11,24 @@ public class PlayerMapper
     public PlayerDto convertPlayerToPlayerDTO(Player player){
         PlayerDto playerDto=new PlayerDto();
         playerDto.setId(player.getId());
-        playerDto.setFirstName(player.getFirstName());
-        playerDto.setLastName(player.getLastName());
-        playerDto.setEmail(player.getEmail());
-        playerDto.setPhoneNumber(player.getPhoneNumber());
-        playerDto.setPlayerStatus(player.getPlayerStatus());
-        playerDto.setTeamName(player.getTeam().getName());
+        if(player.getFirstName()!=null){
+            playerDto.setFirstName(player.getFirstName());
+        }
+        if (player.getLastName()!=null){
+            playerDto.setLastName(player.getLastName());
+        }
+        if (player.getPhoneNumber()!=null){
+            playerDto.setPhoneNumber(player.getPhoneNumber());
+        }
+        if(player.getPlayerStatus()!=null){
+            playerDto.setPlayerStatus(player.getPlayerStatus());
+        }
+        if(player.getEmail()!=null){
+            playerDto.setEmail(player.getEmail());
+        }
+        if(player.getTeam()!=null){
+            playerDto.setTeamName(player.getTeam().getName());
+        }
         return playerDto;
     }
     public Player convertPlayerDtoToPlayer(PlayerDto playerDto){

@@ -20,14 +20,24 @@ public class Match {
     private Date startTime;
     private Date overTime;
 
-    @ManyToOne
-    @JoinColumn(name = "team1_id")
+    @OneToOne
     private Team team1;
 
-    @ManyToOne
-    @JoinColumn(name = "team2_id")
-    private Team team2;
+    @OneToOne
+    private  Team team2;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
     private List<Card> cards;
+
+    @OneToOne
+    private Score score;
+
+    @ManyToMany
+    @JoinTable(name = "match_scorers",
+            joinColumns = @JoinColumn(name = "match_id",
+                    referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "player_id",
+                    referencedColumnName = "id"))
+    private List<Player> scorers;
+
 }

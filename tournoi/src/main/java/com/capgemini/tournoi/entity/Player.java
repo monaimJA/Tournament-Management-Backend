@@ -22,14 +22,9 @@ public class Player {
     private String email;
     private String phoneNumber;
     private PlayerStatus playerStatus;
-    @OneToMany(mappedBy = "player",cascade = CascadeType.ALL)
-    @JsonIgnore
+    @OneToMany
     private List<Card> cards;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "team_id",referencedColumnName = "id")
-    @JsonIgnore
     private Team team;
-    @OneToMany(mappedBy = "player",cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Goal> goals;
 }

@@ -36,9 +36,9 @@ public class PlayerController {
         return new ResponseEntity<>(playerDto,HttpStatus.OK);
     }
     @PostMapping("/team/{teamId}")
-    public ResponseEntity<TeamDto> assignPlayerToTeam(@RequestBody Player player, @PathVariable("teamId") long teamId){
-        TeamDto teamDto=playerService.assignPlayerToTeam(player,teamId);
-        return new ResponseEntity<>(teamDto,HttpStatus.OK);
+    public ResponseEntity<PlayerDto> assignPlayerToTeam(@RequestBody Player player, @PathVariable("teamId") long teamId){
+        PlayerDto playerDto=playerService.assignPlayerToTeam(player,teamId);
+        return new ResponseEntity<>(playerDto,HttpStatus.OK);
     }
     @DeleteMapping("/{playerId}/team/{teamId}")
     public ResponseEntity<TeamDto> deletePlayerByIdFromTeam(@PathVariable("playerId") long playerId,

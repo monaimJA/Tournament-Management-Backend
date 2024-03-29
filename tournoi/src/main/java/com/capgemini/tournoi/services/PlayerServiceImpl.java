@@ -29,10 +29,6 @@ public class PlayerServiceImpl implements PlayerService{
     private PlayerRepository playerRepository;
     @Autowired
     private TeamRepository teamRepository;
-    @Autowired
-    private TournamentRepository tournamentRepository;
-    @Autowired
-    private MatchRepository matchRepository;
 
     @Autowired
     PlayerMapper playerMapper;
@@ -41,14 +37,8 @@ public class PlayerServiceImpl implements PlayerService{
 
     @Override
     public List<PlayerDto> getAllPlayersOfATeam(long id) {
-        Optional<Team> team=teamRepository.findById(id);
-        if(team.isPresent()){
-            return team.get().getPlayers().stream()
-                    .map(player -> playerMapper.convertPlayerToPlayerDTO(player))
-                    .collect(Collectors.toList());
-        }else {
-            throw new RuntimeException("team with id="+id+" doesn't exist");
-        }
+        List<Player> players=playerRepository.findAllByTeam_Id(id);
+        return players.stream().map(player -> playerMapper.convertPlayerToPlayerDTO(player)).collect(Collectors.toList());
     }
 
     @Override
@@ -62,17 +52,13 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
     @Override
-    public TeamDto assignPlayerToTeam(Player player, long teamId) {
+    public PlayerDto assignPlayerToTeam(Player player, long teamId) {
         Optional<Team> team=teamRepository.findById(teamId);
-        List<Player> players;
         if(team.isPresent())
         {
             player.setPlayerStatus(PlayerStatus.INSCRIT);
             player.setTeam(team.get());
-            players=team.get().getPlayers();
-            players.add(player);
-            team.get().setPlayers(players);
-            return teamMapper.convertTeamToTeamDto(teamRepository.save(team.get()));
+            return playerMapper.convertPlayerToPlayerDTO(playerRepository.save(player));
         }else{
             throw new RuntimeException("team with id="+teamId+"doesn't exist");
         }
@@ -84,7 +70,7 @@ public class PlayerServiceImpl implements PlayerService{
         Optional<Team> team=teamRepository.findById(teamId);
         if(team.isPresent()){
             Team team1=team.get();
-            List<Player> players=team1.getPlayers();
+            List<Player> players=playerRepository.findAllByTeam_Id(teamId);
             Optional<Long> id=players.stream().filter(player -> player.getId()==playerId).findFirst().map(Player::getId);
                 if(id.isPresent()){
                     playerRepository.deletePLayerInTeam(playerId);
@@ -103,13 +89,27 @@ public class PlayerServiceImpl implements PlayerService{
         Optional<Player> optionalPlayer=playerRepository.findById(id);
         if (optionalPlayer.isPresent()){
             Player player1=optionalPlayer.get();
-            player1.setFirstName(player.getFirstName());
-            player1.setLastName(player.getLastName());
-            player1.setPhoneNumber(player.getPhoneNumber());
-            player1.setPlayerStatus(player.getPlayerStatus());
-            player1.setEmail(player.getEmail());
-            player1.setTeam(player.getTeam());
-            player1.setCards(player.getCards());
+            if(player.getFirstName()!=null){
+                player1.setFirstName(player.getFirstName());
+            }
+            if (player.getLastName()!=null){
+                player1.setLastName(player.getLastName());
+            }
+            if (player.getPhoneNumber()!=null){
+                player1.setPhoneNumber(player.getPhoneNumber());
+            }
+            if(player.getPlayerStatus()!=null){
+                player1.setPlayerStatus(player.getPlayerStatus());
+            }
+            if(player.getEmail()!=null){
+                player1.setEmail(player.getEmail());
+            }
+            if(player.getTeam()!=null){
+                player1.setTeam(player.getTeam());
+            }
+            if(player.getCards()!=null){
+                player1.setCards(player.getCards());
+            }
             return playerMapper.convertPlayerToPlayerDTO(playerRepository.save(player1));
         }
         else {
@@ -118,49 +118,14 @@ public class PlayerServiceImpl implements PlayerService{
     }
     @Override
     public List<PlayerDto> getPlayersInTournoiByCardType(CardType cardType, long tournoiId) {
-        Optional<Tournament> tournoi=tournamentRepository.findById(tournoiId);
-        List<Player> players=new ArrayList<>();
-        if(tournoi.isPresent()) {
-            for (Team team : tournoi.get().getTeams()) {
-                for (Player player : team.getPlayers()) {
-                    boolean hasRedCard = player.getCards().stream()
-                            .anyMatch(avertissement ->
-                                    avertissement.getCardType()==cardType);
-                    if (hasRedCard) {
-                        System.out.println("Le joueur " + player.getFirstName() +
-                                " a reçu une carte rouge !");
-                        players.add(player);
-                    }
-                }
-            }
-        }else{
-            throw new RuntimeException("la tournoi avec id="+tournoiId+" n'existe pas");
-        }
-
+        List<Player> players=playerRepository.getAllInTournoiWithCard(cardType.ordinal(), tournoiId);
         return players.stream().map(player->playerMapper.convertPlayerToPlayerDTO(player))
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<PlayerDto> getPlayersInMatchByCardType(long matchId, CardType cardType) {
-        Optional<Match> match=matchRepository.findById(matchId);
-        List<Player> players=new ArrayList<>();
-        if(match.isPresent()){
-            List<Team> teams=new ArrayList<>();
-            teams.add(match.get().getTeam1());
-            teams.add(match.get().getTeam2());
-            for (Team team:teams){
-                for(Player player:team.getPlayers()){
-                    boolean hasCard=player.getCards().stream()
-                            .anyMatch(a->a.getCardType()==cardType);
-                    if(hasCard){
-                        players.add(player);
-                    }
-                }
-            }
-        }else{
-            throw new RuntimeException("match with id="+match+"doesn't exist");
-        }
+        List<Player> players=playerRepository.getAllInMatchWithCard(cardType.ordinal(), matchId);
         return players.stream().map(player->playerMapper.convertPlayerToPlayerDTO(player))
                 .collect(Collectors.toList());
     }

@@ -16,7 +16,7 @@ public class Score {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne
-    @JoinColumn(name = "match_id")
-    private Match match;
+    @OneToMany
+    private List<Goal> goals;
 }
+

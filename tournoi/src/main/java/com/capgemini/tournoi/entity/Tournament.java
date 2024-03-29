@@ -22,6 +22,9 @@ public class Tournament {
     private Date endDate;
     private StatusTournament statusTournament;
 
-    @OneToMany(mappedBy = "tournament",cascade = CascadeType.ALL)
+    @OneToMany
     private List<Team> teams;
+
 }
+
+

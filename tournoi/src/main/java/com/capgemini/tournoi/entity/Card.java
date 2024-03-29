@@ -17,13 +17,11 @@ public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private Date date;
 
     private CardType cardType;
 
     @ManyToOne
-    @JoinColumn(name = "player_id",referencedColumnName = "id")
     private Player player;
 
 }
