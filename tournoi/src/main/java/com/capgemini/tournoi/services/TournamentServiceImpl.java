@@ -72,7 +72,7 @@ public class TournamentServiceImpl implements TournamentService{
     public List<Team> getTeamsByTournamentStatus(Long tournamentId, StatusTournament status) throws TournamentNotFoundException {
         Tournament tournament = tournamentRepository.findById(tournamentId)
                 .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
-        return teamsRepository.getTeamsByTournament_StatusTournoi(status);
+        return teamsRepository.getTeamsByTournament_StatusTournament(status);
     }
     public TournamentResponseDto addTeamToTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
         Team team = teamsRepository.findById(teamId)

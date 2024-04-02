@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface TeamRepository extends JpaRepository<Team, Long> {
-    List<Team> getTeamsByTournament_StatusTournoi(StatusTournament statusTournament);
+    List<Team> getTeamsByTournament_StatusTournament(StatusTournament statusTournament);
     List<Team> getTeamsByTournament(Tournament tournament);
 }
