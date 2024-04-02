@@ -4,7 +4,7 @@ import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
 import com.capgemini.tournoi.dtos.TournamentResponseDto;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
-import com.capgemini.tournoi.enums.StatusTournoi;
+import com.capgemini.tournoi.enums.StatusTournament;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentDateException;
@@ -17,7 +17,7 @@ public interface TournamentService {
     List<TournamentResponseDto> getAllTournaments();
     TournamentResponseDto getTournamentById(Long id) throws TournamentNotFoundException;
     HashMap<String, Integer> tournamentScorers(Long tournamentId) throws TournamentNotFoundException;
-    List<Team> getTeamsByTournamentStatus(Long tournamentId, StatusTournoi status) throws TournamentNotFoundException;
+    List<Team> getTeamsByTournamentStatus(Long tournamentId, StatusTournament status) throws TournamentNotFoundException;
     TournamentResponseDto addTeamToTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException;
     TournamentResponseDto deleteTeamFromTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException;
 }

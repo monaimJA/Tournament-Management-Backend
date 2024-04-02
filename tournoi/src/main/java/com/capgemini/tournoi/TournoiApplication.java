@@ -3,7 +3,7 @@ package com.capgemini.tournoi;
 import com.capgemini.tournoi.entity.*;
 import com.capgemini.tournoi.enums.PlayerStatus;
 import com.capgemini.tournoi.enums.StatusTeam;
-import com.capgemini.tournoi.enums.StatusTournoi;
+import com.capgemini.tournoi.enums.StatusTournament;
 import com.capgemini.tournoi.repos.*;
 import com.capgemini.tournoi.security.entities.AppRole;
 import com.capgemini.tournoi.security.service.AccountService;
@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.stream.Stream;
@@ -29,7 +30,7 @@ public class TournoiApplication {
 							TeamRepository teamsRepository,
 							PlayerRepository playerRepository,
 							SiteRepository siteRepository,
-							TournoiRepository tournoiRepository,
+							TournamentRepository tournamentRepository,
 							MatchRepository matchRepository,
 							ScoreRepository scoreRepository,
 							GoalRepository goalRepository){
@@ -57,15 +58,15 @@ public class TournoiApplication {
 								.build());
 					}
 			);
-			Date startDate = new Date();
+			LocalDate startDate = LocalDate.now();
 			Stream.of("Ramathon", "Tounament22").forEach(
 					label -> {
-						tournoiRepository.save(
+						tournamentRepository.save(
 								Tournament.builder()
 										.label(label)
 										.startDate(startDate)
-										.endDate(new Date((long)(startDate.getTime() * (Math.random() * 10)+21211311212L)))
-										.statusTournoi(StatusTournoi.INSCRIPION)
+										.endDate(startDate.plusDays(30))
+										.statusTournament(StatusTournament.INSCRIPION)
 										.build()
 						);
 					}
@@ -76,7 +77,7 @@ public class TournoiApplication {
 										.name(name)
 										.statusTeam(StatusTeam.INSCRIPTION)
 										.site(siteRepository.findSiteByNameIs("CASABLANCA"))
-										.tournament(tournoiRepository.findAll().get(0))
+										.tournament(tournamentRepository.findAll().get(0))
 								.build());
 					}
 			);

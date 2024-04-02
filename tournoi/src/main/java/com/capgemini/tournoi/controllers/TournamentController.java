@@ -4,7 +4,7 @@ import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
 import com.capgemini.tournoi.dtos.TournamentResponseDto;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
-import com.capgemini.tournoi.enums.StatusTournoi;
+import com.capgemini.tournoi.enums.StatusTournament;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentDateException;
@@ -39,7 +39,7 @@ public class TournamentController {
         return tournamentService.tournamentScorers(tournamentId);
     }
     @GetMapping("/{id}/teams")
-    public List<Team> getTeamsByTournamentStatus(@PathVariable(name = "id") Long tournamentId,@RequestBody StatusTournoi status) throws TournamentNotFoundException {
+    public List<Team> getTeamsByTournamentStatus(@PathVariable(name = "id") Long tournamentId,@RequestBody StatusTournament status) throws TournamentNotFoundException {
         return tournamentService.getTeamsByTournamentStatus(tournamentId, status);
     }
 
