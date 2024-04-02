@@ -30,7 +30,6 @@ public class MatchMapper {
                         .goals(new ArrayList<>())
                         .build())
                 .scorers(new ArrayList<>())
-                //.teams(new ArrayList<>())
                 .cards(new ArrayList<>())
                 .build();
 

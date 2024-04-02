@@ -13,7 +13,7 @@ import java.util.Date;
 
 public class MatchRequestDTO {
     private long id;
-    private Date startTime;
+    private String startTime;
     private Long teamId1;
     private Long teamId2;
 

@@ -1,5 +1,7 @@
 package com.capgemini.tournoi.entity;
 
+import com.capgemini.tournoi.dtos.MatchRequestDTO;
+import com.capgemini.tournoi.enums.StatusMatch;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,8 +21,9 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Date startTime;
-    private Date overTime;
+    private String startTime;
+    private String overTime;
+    private StatusMatch statusMatch;
 
 
     @OneToOne

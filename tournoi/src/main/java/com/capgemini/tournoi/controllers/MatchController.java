@@ -41,6 +41,7 @@ public class MatchController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND," Match not found with id " + id);
         }
 
+
     }
 
     @GetMapping("/{id}/score")

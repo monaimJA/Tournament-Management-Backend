@@ -10,6 +10,7 @@ import java.util.List;
 public interface MatchServiceInterface {
   Match createMatch(MatchRequestDTO matchRequest);
   List<Match> getAllMatches();
+
   Match getMatchById(Long id) throws MatchNotFoundException;
   Score getMatchScore(Long id);
 
