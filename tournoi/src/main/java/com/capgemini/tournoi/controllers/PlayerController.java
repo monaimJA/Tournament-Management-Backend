@@ -3,7 +3,9 @@ package com.capgemini.tournoi.controllers;
 import com.capgemini.tournoi.dtos.PlayerDto;
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.entity.Player;
+import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.enums.CardType;
+import com.capgemini.tournoi.enums.StatusTournament;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.services.PlayerService;
 import com.capgemini.tournoi.utils.EmailService;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.context.Context;
 
 import java.util.List;
 
@@ -24,6 +27,8 @@ public class PlayerController {
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private TirageController tirageController;
 
     @GetMapping("/team/{id}/players")
     public ResponseEntity<List<PlayerDto>> getAllPlayersOfATeam(@PathVariable("id") long id){
@@ -66,14 +71,17 @@ public class PlayerController {
                 getPlayersInMatchByCardType(matchId,cardType);
         return new ResponseEntity<>(players,HttpStatus.OK);
     }
-    @GetMapping("/notify/{team_id}")
-    public ResponseEntity<String> notifyPlayers(@PathVariable long team_id){
-        List<PlayerDto> playerDtos =  playerService.getAllPlayersOfATeam(team_id);
-        String subject = "this is the calendar of your matches";
+    @GetMapping("/changeStatus/{tournament_id}")
+    public ResponseEntity<String> notifyPlayers(@PathVariable long tournament_id,
+                                                @RequestParam("statusTournament") StatusTournament statusTournament){
+        List<PlayerDto> playerDtos =  playerService.getAllPlayersOfTournament(tournament_id);
+        List<List<Team>> lists=tirageController.lancer(tournament_id);
+        Context context = new Context();
+        context.setVariable("matches", lists);
+        String subject="list of matches in the next round";
         for (PlayerDto playerDto : playerDtos) {
-            String content = "Bonjour " + playerDto.getFirstName()+playerDto.getLastName() + ", voici le calendrier de vos matchs.";
-            emailService.sendCustomizedEmail(playerDto, subject, content);
+            emailService.sendEmailWithHtmlTemplate(playerDto.getEmail(), subject,"email-template", context);
         }
-        return new ResponseEntity<>("Players are notified successfully",HttpStatus.OK);
+        return ResponseEntity.ok("HTML email sent successfully!");
     }
 }

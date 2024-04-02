@@ -19,4 +19,6 @@ public interface PlayerService {
     public List<PlayerDto> getPlayersInTournoiByCardType
             (CardType cardType,long tournoiId);
     public List<PlayerDto> getPlayersInMatchByCardType(long matchId,CardType cardType);
+
+    public List<PlayerDto> getAllPlayersOfTournament(long tournament_id);
 }

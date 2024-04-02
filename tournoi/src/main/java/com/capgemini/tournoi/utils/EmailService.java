@@ -1,22 +1,38 @@
 package com.capgemini.tournoi.utils;
 
-import com.capgemini.tournoi.dtos.PlayerDto;
-import com.capgemini.tournoi.entity.Player;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+
 
 @Service
 public class EmailService {
-    @Autowired
-    private JavaMailSender emailSender;
+    private final JavaMailSender mailSender;
+    private final TemplateEngine templateEngine;
 
-    public void sendCustomizedEmail(PlayerDto playerDto, String subject, String content) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(playerDto.getEmail());
-        message.setSubject(subject);
-        message.setText(content);
-        emailSender.send(message);
+    @Autowired
+    public EmailService(JavaMailSender mailSender, TemplateEngine templateEngine) {
+        this.mailSender = mailSender;
+        this.templateEngine = templateEngine;
+    }
+    public void sendEmailWithHtmlTemplate(String to, String subject, String templateName, Context context) {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
+
+        try {
+            helper.setTo(to);
+            helper.setSubject(subject);
+            String htmlContent = templateEngine.process(templateName,context);
+            helper.setText(htmlContent, true);
+            mailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }

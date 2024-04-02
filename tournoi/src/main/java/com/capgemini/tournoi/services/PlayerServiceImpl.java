@@ -129,4 +129,11 @@ public class PlayerServiceImpl implements PlayerService{
         return players.stream().map(player->playerMapper.convertPlayerToPlayerDTO(player))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<PlayerDto> getAllPlayersOfTournament(long tournament_id) {
+        List<Player> players=playerRepository.getAllPlayersOfATournament(tournament_id);
+        return players.stream().map(player->playerMapper.convertPlayerToPlayerDTO(player))
+                .collect(Collectors.toList());
+    }
 }

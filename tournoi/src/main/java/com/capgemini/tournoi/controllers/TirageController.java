@@ -24,19 +24,19 @@ public class TirageController {
     private TeamRepository teamRepository;
 
     @GetMapping("/{tournoiId}")
-    public List<List<Long>> lancer(@PathVariable long tournoiId){
+    public List<List<Team>> lancer(@PathVariable long tournoiId){
         List<Team> teams=teamRepository.findByTournamentId(tournoiId);
         Collections.shuffle(teams);
         return getLists(teams);
     }
 
-    private static List<List<Long>> getLists(List<Team> teams) {
-        List<List<Long>> groupedLists = new ArrayList<>();
+    private static List<List<Team>> getLists(List<Team> teams) {
+        List<List<Team>> groupedLists = new ArrayList<>();
         for (int i = 0; i < teams.size(); i += 2) {
-            List<Long> sublist = new ArrayList<>();
-            sublist.add(teams.get(i).getId());
+            List<Team> sublist = new ArrayList<>();
+            sublist.add(teams.get(i));
             if (i + 1 < teams.size()) {
-                sublist.add(teams.get(i + 1).getId());
+                sublist.add(teams.get(i + 1));
             }
             groupedLists.add(sublist);
         }
