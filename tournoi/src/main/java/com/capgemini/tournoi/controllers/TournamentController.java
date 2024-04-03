@@ -41,11 +41,6 @@ public class TournamentController {
     public HashMap<String, Integer> tournamentScorers(@PathVariable(name = "id") Long tournamentId) throws TournamentNotFoundException {
         return tournamentService.tournamentScorers(tournamentId);
     }
-    @GetMapping("/{id}/teams")
-    public List<TeamDto> getTeamsByTournamentStatus(@PathVariable(name = "id") Long tournamentId, @RequestBody StatusTournament status) throws TournamentNotFoundException {
-        return tournamentService.getTeamsByTournamentStatus(tournamentId, status);
-    }
-
     @PostMapping("/{id}/teams/{teamId}/add")
     public TournamentResponseDto addTeamToTournament(@PathVariable(name = "id") Long tournamentId,@PathVariable Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
         return tournamentService.addTeamToTournament(tournamentId, teamId);
