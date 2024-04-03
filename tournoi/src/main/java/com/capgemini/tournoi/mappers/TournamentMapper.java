@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
+
 public class TournamentMapper {
 
-    public Tournament fromTournamentDtoRequest(CreateTournamentRequestDto tournamentRequestDto){
+    public static Tournament fromTournamentDtoRequest(CreateTournamentRequestDto tournamentRequestDto){
         return Tournament.builder()
                 .label(tournamentRequestDto.getLabel())
                 .startDate(tournamentRequestDto.getStartDate())
@@ -21,7 +21,7 @@ public class TournamentMapper {
                 .build();
     }
 
-    public TournamentResponseDto fromTournament(Tournament tournament) {
+    public static TournamentResponseDto fromTournament(Tournament tournament) {
         return TournamentResponseDto.builder()
                 .id(tournament.getId())
                 .endDate(tournament.getEndDate())

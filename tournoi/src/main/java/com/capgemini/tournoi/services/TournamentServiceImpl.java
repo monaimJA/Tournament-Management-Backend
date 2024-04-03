@@ -6,7 +6,6 @@ import com.capgemini.tournoi.dtos.TournamentResponseDto;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
-import com.capgemini.tournoi.enums.StatusTournament;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentDateException;
 import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
@@ -31,33 +30,31 @@ public class TournamentServiceImpl implements TournamentService{
     private final PlayerRepository playerRepository;
     private final GoalRepository goalRepository;
     private final TeamRepository teamsRepository;
-    private final TournamentMapper tournamentMapper;
 
-    public TournamentServiceImpl(TournamentRepository tournamentRepository, PlayerRepository playerRepository, GoalRepository goalRepository, TeamRepository teamsRepository, TournamentMapper tournamentMapper) {
+    public TournamentServiceImpl(TournamentRepository tournamentRepository, PlayerRepository playerRepository, GoalRepository goalRepository, TeamRepository teamsRepository) {
         this.tournamentRepository = tournamentRepository;
         this.playerRepository = playerRepository;
         this.goalRepository = goalRepository;
         this.teamsRepository = teamsRepository;
-        this.tournamentMapper = tournamentMapper;
     }
 
     public Tournament createTournament(CreateTournamentRequestDto tournamentDto) throws TournamentDateException {
         if (tournamentDto.getStartDate().isAfter(tournamentDto.getEndDate())) {
             throw new TournamentDateException("Tournament start date should not come after the end date");
         }
-        Tournament tournament = tournamentMapper.fromTournamentDtoRequest(tournamentDto);
+        Tournament tournament = TournamentMapper.fromTournamentDtoRequest(tournamentDto);
         return tournamentRepository.save(tournament);
     }
     public List<TournamentResponseDto> getAllTournaments(){
         return tournamentRepository.findAll().stream()
-                .map(tournamentMapper::fromTournament)
+                .map(TournamentMapper::fromTournament)
                 .collect(Collectors.toList());
     }
     public TournamentResponseDto getTournamentById(Long id) throws TournamentNotFoundException {
 
         Tournament tournament = tournamentRepository.findById(id)
                 .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + id + " does not exist"));
-        return tournamentMapper.fromTournament(tournament);
+        return TournamentMapper.fromTournament(tournament);
     }
     public HashMap<String, Integer> tournamentScorers(Long tournamentId) throws TournamentNotFoundException {
         HashMap<String, Integer> scorers = new HashMap<>();
@@ -70,11 +67,6 @@ public class TournamentServiceImpl implements TournamentService{
         }
         return scorers;
     }
-    public List<Team> getTeamsByTournamentStatus(Long tournamentId, StatusTournament status) throws TournamentNotFoundException {
-        Tournament tournament = tournamentRepository.findById(tournamentId)
-                .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
-        return teamsRepository.getTeamsByTournament_StatusTournament(status);
-    }
     public TournamentResponseDto addTeamToTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
         Team team = teamsRepository.findById(teamId)
                 .orElseThrow(() -> new TeamNotFoundException("Team with Team id = " + teamId + " does not exist"));
@@ -84,7 +76,7 @@ public class TournamentServiceImpl implements TournamentService{
         tournament.getTeams().add(team);
         teamsRepository.save(team);
         tournamentRepository.save(tournament);
-        return tournamentMapper.fromTournament(tournament);
+        return TournamentMapper.fromTournament(tournament);
     }
     public TournamentResponseDto deleteTeamFromTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
         Team team = teamsRepository.findById(teamId)
@@ -95,7 +87,7 @@ public class TournamentServiceImpl implements TournamentService{
         team.setTournament(null);
         teamsRepository.save(team);
         tournamentRepository.save(tournament);
-        return tournamentMapper.fromTournament(tournament);
+        return TournamentMapper.fromTournament(tournament);
     }
     @Override
     public TournamentResponseDto modifyTournament(Long tournamentId, ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException {
@@ -105,7 +97,7 @@ public class TournamentServiceImpl implements TournamentService{
         tournament.setStatusTournament(updatedTournament.getStatusTournament() != null? updatedTournament.getStatusTournament() : tournament.getStatusTournament());
         tournament.setStartDate(updatedTournament.getStartDate() != null? updatedTournament.getStartDate() : tournament.getStartDate());
         tournament.setEndDate(updatedTournament.getEndDate() != null? updatedTournament.getEndDate() : tournament.getEndDate());
-        return tournamentMapper.fromTournament(tournament);
+        return TournamentMapper.fromTournament(tournament);
     }
     
 }

@@ -2,6 +2,7 @@ package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
 import com.capgemini.tournoi.dtos.ModifyTournamentRequestDto;
+import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.dtos.TournamentResponseDto;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
@@ -41,7 +42,7 @@ public class TournamentController {
         return tournamentService.tournamentScorers(tournamentId);
     }
     @GetMapping("/{id}/teams")
-    public List<Team> getTeamsByTournamentStatus(@PathVariable(name = "id") Long tournamentId,@RequestBody StatusTournament status) throws TournamentNotFoundException {
+    public List<TeamDto> getTeamsByTournamentStatus(@PathVariable(name = "id") Long tournamentId, @RequestBody StatusTournament status) throws TournamentNotFoundException {
         return tournamentService.getTeamsByTournamentStatus(tournamentId, status);
     }
 
