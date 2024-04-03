@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Avertissement {
+public class Card {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

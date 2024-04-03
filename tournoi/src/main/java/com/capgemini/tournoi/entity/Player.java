@@ -22,7 +22,8 @@ public class Player {
     private String phoneNumber;
     private PlayerStatus playerStatus;
     @OneToMany
-    private List<Avertissement> avertissements;
+    private List<Card> cards;
     @ManyToOne
+    //@JoinColumn(name = "team_id",referencedColumnName = "id")
     private Team team;
 }

@@ -9,9 +9,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,7 +18,7 @@ public class Team {
     @ManyToOne
     private Site site;
     private StatusTeam statusTeam;
-    @OneToMany
+    @OneToMany(mappedBy = "team")
     private List<Player> players;
 
     @ManyToOne

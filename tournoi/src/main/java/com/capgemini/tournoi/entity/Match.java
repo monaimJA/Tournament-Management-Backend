@@ -20,16 +20,16 @@ public class Match {
     private Date startTime;
     private Date overTime;
 
-    @ManyToMany
-    @JoinTable(name = "match_teams",
-            joinColumns = @JoinColumn(name = "match_id",
-                    referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "team_id",
-                    referencedColumnName = "id"))
-    private List<Team> teams;
+    @ManyToOne
+    @JoinColumn(name = "team1_id")
+    private Team team1;
+
+    @ManyToOne
+    @JoinColumn(name = "team2_id")
+    private Team team2;
 
     @OneToMany
-    private List<Avertissement> avertissements;
+    private List<Card> cards;
 
 
     @OneToOne
