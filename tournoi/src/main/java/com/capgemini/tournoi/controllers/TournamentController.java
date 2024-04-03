@@ -1,6 +1,7 @@
 package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
+import com.capgemini.tournoi.dtos.ModifyTournamentRequestDto;
 import com.capgemini.tournoi.dtos.TournamentResponseDto;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
@@ -9,6 +10,7 @@ import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentDateException;
 import com.capgemini.tournoi.services.TournamentService;
+import com.capgemini.tournoi.services.TournamentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,6 +52,10 @@ public class TournamentController {
     @PostMapping("/{id}/teams/{teamId}/delete")
     public TournamentResponseDto deleteTeamFromTournament(@PathVariable(name = "id") Long tournamentId,@PathVariable Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
         return tournamentService.deleteTeamFromTournament(tournamentId, teamId);
+    }
+    @PatchMapping("/{id}")
+    public TournamentResponseDto updateProduct(@PathVariable Long id, @RequestBody ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException {
+        return tournamentService.modifyTournament(id, updatedTournament);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.capgemini.tournoi.services;
 
 import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
+import com.capgemini.tournoi.dtos.ModifyTournamentRequestDto;
 import com.capgemini.tournoi.dtos.TournamentResponseDto;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
@@ -96,5 +97,15 @@ public class TournamentServiceImpl implements TournamentService{
         tournamentRepository.save(tournament);
         return tournamentMapper.fromTournament(tournament);
     }
-
+    @Override
+    public TournamentResponseDto modifyTournament(Long tournamentId, ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException {
+        Tournament tournament = tournamentRepository.findById(tournamentId)
+                .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
+        tournament.setLabel(updatedTournament.getLabel() != null? updatedTournament.getLabel() : tournament.getLabel());
+        tournament.setStatusTournament(updatedTournament.getStatusTournament() != null? updatedTournament.getStatusTournament() : tournament.getStatusTournament());
+        tournament.setStartDate(updatedTournament.getStartDate() != null? updatedTournament.getStartDate() : tournament.getStartDate());
+        tournament.setEndDate(updatedTournament.getEndDate() != null? updatedTournament.getEndDate() : tournament.getEndDate());
+        return tournamentMapper.fromTournament(tournament);
+    }
+    
 }

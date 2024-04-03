@@ -16,7 +16,7 @@ public class TournamentMapper {
                 .label(tournamentRequestDto.getLabel())
                 .startDate(tournamentRequestDto.getStartDate())
                 .endDate(tournamentRequestDto.getEndDate())
-                .statusTournament(StatusTournament.INSCRIPION)
+                .statusTournament(StatusTournament.INSCRIPTION)
                 .teams(new ArrayList<>())
                 .build();
     }

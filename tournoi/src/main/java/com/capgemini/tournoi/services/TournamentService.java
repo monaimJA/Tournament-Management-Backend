@@ -1,6 +1,7 @@
 package com.capgemini.tournoi.services;
 
 import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
+import com.capgemini.tournoi.dtos.ModifyTournamentRequestDto;
 import com.capgemini.tournoi.dtos.TournamentResponseDto;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
@@ -20,4 +21,5 @@ public interface TournamentService {
     List<Team> getTeamsByTournamentStatus(Long tournamentId, StatusTournament status) throws TournamentNotFoundException;
     TournamentResponseDto addTeamToTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException;
     TournamentResponseDto deleteTeamFromTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException;
+    TournamentResponseDto modifyTournament(Long tournamentId, ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException;
 }

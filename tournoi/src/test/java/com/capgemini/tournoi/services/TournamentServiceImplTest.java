@@ -31,7 +31,7 @@ class TournamentServiceImplTest {
         Tournament expected = Tournament.builder().label("rackathon")
                 .startDate(LocalDate.now())
                 .endDate(LocalDate.now().plusDays(30))
-                .statusTournament(StatusTournament.INSCRIPION)
+                .statusTournament(StatusTournament.INSCRIPTION)
                 .build();
         when(mapper.fromTournamentDtoRequest(input)).thenReturn(expected);
         when(tournamentRepository.save(expected)).thenReturn(expected);

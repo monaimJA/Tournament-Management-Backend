@@ -66,7 +66,7 @@ public class TournoiApplication {
 										.label(label)
 										.startDate(startDate)
 										.endDate(startDate.plusDays(30))
-										.statusTournament(StatusTournament.INSCRIPION)
+										.statusTournament(StatusTournament.INSCRIPTION)
 										.build()
 						);
 					}
