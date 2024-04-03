@@ -21,8 +21,8 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String startTime;
-    private String overTime;
+    private Date startTime;
+    private Date overTime;
     private StatusMatch statusMatch;
 
 
