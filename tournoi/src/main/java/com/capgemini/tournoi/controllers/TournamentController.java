@@ -50,7 +50,7 @@ public class TournamentController {
         return tournamentService.deleteTeamFromTournament(tournamentId, teamId);
     }
     @PatchMapping("/{id}")
-    public TournamentResponseDto updateProduct(@PathVariable Long id, @RequestBody ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException {
+    public TournamentResponseDto modifyTournament(@PathVariable Long id, @RequestBody ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException {
         return tournamentService.modifyTournament(id, updatedTournament);
     }
 

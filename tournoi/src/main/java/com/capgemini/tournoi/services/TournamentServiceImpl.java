@@ -93,11 +93,10 @@ public class TournamentServiceImpl implements TournamentService{
     public TournamentResponseDto modifyTournament(Long tournamentId, ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException {
         Tournament tournament = tournamentRepository.findById(tournamentId)
                 .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
-        tournament.setLabel(updatedTournament.getLabel() != null? updatedTournament.getLabel() : tournament.getLabel());
-        tournament.setStatusTournament(updatedTournament.getStatusTournament() != null? updatedTournament.getStatusTournament() : tournament.getStatusTournament());
-        tournament.setStartDate(updatedTournament.getStartDate() != null? updatedTournament.getStartDate() : tournament.getStartDate());
-        tournament.setEndDate(updatedTournament.getEndDate() != null? updatedTournament.getEndDate() : tournament.getEndDate());
+        tournament.setLabel(updatedTournament.getLabel() != null ? updatedTournament.getLabel() : tournament.getLabel());
+        tournament.setStatusTournament(updatedTournament.getStatusTournament() != null ? updatedTournament.getStatusTournament() : tournament.getStatusTournament());
+        tournament.setStartDate(updatedTournament.getStartDate() != null ? updatedTournament.getStartDate() : tournament.getStartDate());
+        tournament.setEndDate(updatedTournament.getEndDate() != null ? updatedTournament.getEndDate() : tournament.getEndDate());
         return TournamentMapper.fromTournament(tournament);
     }
-    
 }
