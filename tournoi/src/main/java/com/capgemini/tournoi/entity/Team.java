@@ -16,7 +16,7 @@ import java.util.List;
 @Builder
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     @ManyToOne
@@ -29,3 +29,4 @@ public class Team {
     @ManyToOne
     private Tournament tournament;
 }
+

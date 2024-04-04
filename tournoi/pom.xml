@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.capgemini</groupId>
-	<artifactId>tournament</artifactId>
+	<artifactId>tournoi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>tournament</name>
+	<name>tournoi</name>
 	<description>Mini project for tournament mangement</description>
 	<properties>
 		<java.version>1.8</java.version>
@@ -44,6 +44,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<!--<dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        -->
 
 		<dependency>
 			<groupId>com.h2database</groupId>

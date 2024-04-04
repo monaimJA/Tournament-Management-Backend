@@ -15,10 +15,10 @@ import java.util.List;
 @Builder
 public class Score {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "score", cascade = CascadeType.ALL)
     private List<Goal> goals;
-
 }
+

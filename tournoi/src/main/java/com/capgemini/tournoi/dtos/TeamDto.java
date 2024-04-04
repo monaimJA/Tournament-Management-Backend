@@ -1,27 +1,24 @@
 package com.capgemini.tournoi.dtos;
 
-import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Site;
-import com.capgemini.tournoi.entity.Tournament;
 import com.capgemini.tournoi.enums.StatusTeam;
+import com.capgemini.tournoi.enums.StatusTournament;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
 public class TeamDto {
-    private Long id;
+    private long id;
     private String name;
-    private Site site;
     private StatusTeam statusTeam;
+    private List<String> players;
+    private Boolean exclusion;
+    private String tournamentName;
+    private StatusTournament statusTournoi;
+    private Site site;
 }
