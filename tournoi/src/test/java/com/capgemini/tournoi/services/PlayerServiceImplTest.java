@@ -19,6 +19,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -67,9 +68,9 @@ class PlayerServiceImplTest {
 
     @Test
     void assignPlayerToTeam() {
-        Team team=new Team(1L,"team1",new Site(1L,"RABAT"), StatusTeam.INSCRIPTION,
-                new Tournament(1L,"tournament1", new Date(), new Date(),
-                        StatusTournament.DEMI_FINAL,null));
+        Team team=new Team(1L,"team1",new Site(1L,"RABAT"), StatusTeam.INSCRIPTION,null,
+                new Tournament(1L,"tournament1",LocalDate.now() , LocalDate.now(),
+                        StatusTournament.DEMI_FINAL, null));
         PlayerDto playerDto=new PlayerDto(1L,"monaim","ennabbali","monaime08@gmail.com",
                 "0656373562", PlayerStatus.INSCRIT,"team1");
         Player player=new Player(1L,"monaim","ennabbali","monaime08@gmail.com",

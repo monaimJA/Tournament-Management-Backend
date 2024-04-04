@@ -1,5 +1,6 @@
 package com.capgemini.tournoi.entity;
 
+import com.capgemini.tournoi.enums.StatusMatch;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,17 +22,19 @@ public class Match {
     private long id;
     private Date startTime;
     private Date overTime;
+    private StatusMatch statusMatch;
+
 
     @OneToOne
     private Team team1;
-
     @OneToOne
     private  Team team2;
 
     @OneToMany
     private List<Card> cards;
 
-    @OneToOne
+
+     @OneToOne
     private Score score;
 
     @ManyToMany
@@ -41,5 +44,13 @@ public class Match {
             inverseJoinColumns = @JoinColumn(name = "player_id",
                     referencedColumnName = "id"))
     private List<Player> scorers;
+
+    @OneToMany
+    private List<Goal> goals;
+
+
+
+
+
 
 }

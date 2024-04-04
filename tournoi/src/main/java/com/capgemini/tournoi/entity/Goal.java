@@ -20,8 +20,15 @@ public class Goal {
     private long id;
     private LocalTime time;
 
+
+    //@OneToOne
     @OneToOne
     private Player player;
+
+
+
+    @ManyToOne
+    private  Match match;
 
 
 }

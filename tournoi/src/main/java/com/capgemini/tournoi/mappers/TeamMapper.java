@@ -15,7 +15,7 @@ public class TeamMapper {
         TeamDto teamDto=new TeamDto();
         teamDto.setId(team.getId());
         teamDto.setName(team.getName());
-        teamDto.setSiteName(team.getSite().getName());
+        teamDto.setSite(team.getSite());
         teamDto.setTournamentName(team.getTournament().getLabel());
         teamDto.setStatusTeam(team.getStatusTeam());
         teamDto.setStatusTournoi(team.getTournament().getStatusTournament());
@@ -26,7 +26,7 @@ public class TeamMapper {
         team.setStatusTeam(teamDto.getStatusTeam());
         team.setId(teamDto.getId());
         Site site=new Site();
-        site.setName(teamDto.getSiteName());
+        site.setName(teamDto.getSite().getName());
         team.setSite(site);
         return team;
     }
