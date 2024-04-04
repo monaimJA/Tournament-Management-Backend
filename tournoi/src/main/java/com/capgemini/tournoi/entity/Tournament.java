@@ -14,6 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Tournament {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
