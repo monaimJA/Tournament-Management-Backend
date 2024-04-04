@@ -1,10 +1,11 @@
 package com.capgemini.tournoi.repos;
 
-import com.capgemini.tournoi.entity.Site;
+import com.capgemini.tournoi.entity.Match;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SiteRepository extends JpaRepository<Site, Long> {
-    Site findSiteByNameIs(String name);
+
+public interface MatchRepository extends JpaRepository<Match, Long> {
+
 }

@@ -1,6 +1,6 @@
 package com.capgemini.tournoi.enums;
 
-public enum Qualification {
+public enum StatusMatch {
     QUART_FINAL,
     DEMI_FINAL,
     FINAL
