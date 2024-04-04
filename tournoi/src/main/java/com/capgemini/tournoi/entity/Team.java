@@ -14,15 +14,14 @@ import java.util.List;
 @AllArgsConstructor
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     @ManyToOne
     private Site site;
     private StatusTeam statusTeam;
-    @OneToMany
-    private List<Player> players;
 
     @ManyToOne
-    private Tournoi tournoi;
+    private Tournament tournament;
+
 }

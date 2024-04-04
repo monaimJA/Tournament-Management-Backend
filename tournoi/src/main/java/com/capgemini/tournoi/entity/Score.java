@@ -13,10 +13,10 @@ import java.util.List;
 @NoArgsConstructor
 public class Score {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @OneToMany
     private List<Goal> goals;
-
 }
+

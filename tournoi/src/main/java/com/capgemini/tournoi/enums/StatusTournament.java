@@ -1,6 +1,6 @@
 package com.capgemini.tournoi.enums;
 
-public enum StatusTournoi {
+public enum StatusTournament {
     INSCRIPION,
     QUART_FINAL,
     DEMI_FINAL,

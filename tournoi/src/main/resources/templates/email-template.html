@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Liste des matches</title>
+    <style>
+        .match {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+        .team {
+            font-weight: bold;
+        }
+        .vs {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Liste des matches</h1>
+<div th:each="match:${matches}" class="match">
+        <span class="team" th:each="team,teamIndex:${match}">
+            <span th:text="${team.name}"></span>
+            <span class="vs" th:unless="${teamIndex.last}"> vs </span>
+        </span>
+</div>
+</body>
+</html>

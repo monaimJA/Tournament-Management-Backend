@@ -18,21 +18,4 @@ public class UserController {
                 userForm.getUsername(),userForm.getPassword(),userForm.getConfirmedPassword());
     }
 }
-@Data
-class UserForm{
-    private String username;
-    private String password;
-    private String confirmedPassword;
 
-    public String getUsername() {
-        return username;
-    }
-    public String getPassword() {
-        return password;
-    }
-
-    public String getConfirmedPassword() {
-        return password;
-    }
-
-}

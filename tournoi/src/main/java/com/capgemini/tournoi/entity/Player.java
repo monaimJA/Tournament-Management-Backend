@@ -1,6 +1,7 @@
 package com.capgemini.tournoi.entity;
 
 import com.capgemini.tournoi.enums.PlayerStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String firstName;
     private String lastName;
@@ -22,7 +23,8 @@ public class Player {
     private String phoneNumber;
     private PlayerStatus playerStatus;
     @OneToMany
-    private List<Avertissement> avertissements;
+    private List<Card> cards;
     @ManyToOne
+    @JoinColumn(name = "team_id",referencedColumnName = "id")
     private Team team;
 }

@@ -13,11 +13,12 @@ import javax.persistence.*;
 public class Goal {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private int value;
     private int time;
 
     @OneToOne
     private Player player;
+
+
 }
