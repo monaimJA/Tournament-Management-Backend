@@ -18,7 +18,7 @@ public class Score {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "score", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Goal> goals;
 }
 

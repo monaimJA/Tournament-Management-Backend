@@ -26,7 +26,7 @@ public class TournoiApplication {
 		SpringApplication.run(TournoiApplication.class, args);
 	}
 
-	@Bean
+	//@Bean
 	CommandLineRunner start(AccountService accountService,
 							TeamRepository teamsRepository,
 							PlayerRepository playerRepository,
