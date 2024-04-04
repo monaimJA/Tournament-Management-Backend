@@ -23,4 +23,5 @@ public class Score {
     private Match match;
     @OneToMany
     private List<Goal> goals;
+
 }

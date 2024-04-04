@@ -1,6 +1,5 @@
 package com.capgemini.tournoi.entity;
 
-import com.capgemini.tournoi.dtos.MatchRequestDTO;
 import com.capgemini.tournoi.enums.StatusMatch;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
