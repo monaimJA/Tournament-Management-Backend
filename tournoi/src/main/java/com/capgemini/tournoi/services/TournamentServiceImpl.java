@@ -60,7 +60,7 @@ public class TournamentServiceImpl implements TournamentService{
         HashMap<String, Integer> scorers = new HashMap<>();
         Tournament tournament = tournamentRepository.findById(tournamentId)
                 .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
-        for (Team team : teamsRepository.getTeamsByTournament(tournament)) {
+        for (Team team : teamsRepository.findByTournamentId(tournamentId)) {
             for (Player player : playerRepository.findAllByTeam(team)) {
                 scorers.put(player.getFirstName() + " " + player.getLastName(), goalRepository.findAllByPlayer(player).size());
             }

@@ -2,6 +2,7 @@ package com.capgemini.tournoi.entity;
 
 import com.capgemini.tournoi.enums.StatusTeam;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +10,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data @AllArgsConstructor @NoArgsConstructor
+@Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -89,7 +89,6 @@ public class TeamServiceImpl implements TeamService{
     public TeamDto getTeam(Long id) throws TeamNotFoundException {
         Team team = teamRepository.findById(id)
                 .orElseThrow(()-> new TeamNotFoundException("Team not found"));
-
         return teamMapper.fromTeam(team);
     }
 
