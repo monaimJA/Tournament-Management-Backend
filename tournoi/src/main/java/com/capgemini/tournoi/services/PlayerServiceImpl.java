@@ -90,7 +90,7 @@ public class PlayerServiceImpl implements PlayerService{
                     throw new PlayerNotFoundException("player with id"+playerId+
                             "doesn't exit");
                 }
-            return teamMapper.convertTeamToTeamDto(team1);
+            return teamMapper.fromTeam(team1);
         }else {
             throw new RuntimeException("team with id doesn't exist");
         }
