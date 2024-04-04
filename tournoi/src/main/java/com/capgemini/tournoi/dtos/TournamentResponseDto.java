@@ -1,4 +1,4 @@
-package com.capgemini.tournoi.entity;
+package com.capgemini.tournoi.dtos;
 
 import com.capgemini.tournoi.enums.StatusTournament;
 import lombok.AllArgsConstructor;
@@ -6,25 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
-@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Tournament {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class TournamentResponseDto {
+    private Long id ;
     private String label;
     private LocalDate startDate;
     private LocalDate endDate;
-    @Enumerated(value = EnumType.STRING)
     private StatusTournament statusTournament;
-
-    @OneToMany
-    private List<Team> teams;
 }
