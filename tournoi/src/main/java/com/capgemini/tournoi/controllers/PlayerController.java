@@ -24,9 +24,6 @@ public class PlayerController {
     @Autowired
     private PlayerService playerService;
 
-    @Autowired
-    private EmailService emailService;
-
     @GetMapping("/team/{id}/players")
     public ResponseEntity<List<PlayerDto>> getAllPlayersOfATeam(@PathVariable("id") long id){
         List<PlayerDto> players=playerService.getAllPlayersOfATeam(id);
