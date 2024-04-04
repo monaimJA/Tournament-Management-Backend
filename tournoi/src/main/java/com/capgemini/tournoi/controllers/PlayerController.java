@@ -27,9 +27,6 @@ public class PlayerController {
     @Autowired
     private EmailService emailService;
 
-    @Autowired
-    private TirageController tirageController;
-
     @GetMapping("/team/{id}/players")
     public ResponseEntity<List<PlayerDto>> getAllPlayersOfATeam(@PathVariable("id") long id){
         List<PlayerDto> players=playerService.getAllPlayersOfATeam(id);
@@ -53,7 +50,7 @@ public class PlayerController {
     }
     @PutMapping("/{playerId}")
     public ResponseEntity<PlayerDto> updatePlayerById(@PathVariable("playerId") long playerId,
-                                                   @RequestBody Player player){
+                                                   @RequestBody PlayerDto player){
         PlayerDto playerDto=playerService.updatePlayerById(player,playerId);
         return new ResponseEntity<>(playerDto,HttpStatus.OK);
     }
@@ -74,14 +71,7 @@ public class PlayerController {
     @GetMapping("/changeStatus/{tournament_id}")
     public ResponseEntity<String> notifyPlayers(@PathVariable long tournament_id,
                                                 @RequestParam("statusTournament") StatusTournament statusTournament){
-        List<PlayerDto> playerDtos =  playerService.getAllPlayersOfTournament(tournament_id);
-        List<List<Team>> lists=tirageController.lancer(tournament_id);
-        Context context = new Context();
-        context.setVariable("matches", lists);
-        String subject="list of matches in the next round";
-        for (PlayerDto playerDto : playerDtos) {
-            emailService.sendEmailWithHtmlTemplate(playerDto.getEmail(), subject,"email-template", context);
-        }
+        playerService.notifyPlayers(tournament_id,statusTournament);
         return ResponseEntity.ok("HTML email sent successfully!");
     }
 }

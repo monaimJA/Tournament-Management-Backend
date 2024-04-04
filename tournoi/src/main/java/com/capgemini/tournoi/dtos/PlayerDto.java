@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,6 +15,7 @@ public class PlayerDto {
     private long id;
     private String firstName;
     private String lastName;
+    @Email
     private String email;
     private String phoneNumber;
     private PlayerStatus playerStatus;

@@ -1,29 +1,21 @@
-package com.capgemini.tournoi.controllers;
-
+package com.capgemini.tournoi.services;
 
 import com.capgemini.tournoi.entity.Team;
-import com.capgemini.tournoi.entity.Tournament;
 import com.capgemini.tournoi.repos.TeamRepository;
-import com.capgemini.tournoi.repos.TournamentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/tirageAuSort")
-public class TirageController {
+@Service
+public class TirageService {
 
     @Autowired
     private TeamRepository teamRepository;
-
-    @GetMapping("/{tournoiId}")
     public List<List<Team>> lancer(@PathVariable long tournoiId){
         List<Team> teams=teamRepository.findByTournamentId(tournoiId);
         Collections.shuffle(teams);

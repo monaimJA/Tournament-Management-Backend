@@ -8,6 +8,7 @@ import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
 import com.capgemini.tournoi.enums.CardType;
 import com.capgemini.tournoi.enums.PlayerStatus;
+import com.capgemini.tournoi.enums.StatusTournament;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.mappers.PlayerMapper;
 import com.capgemini.tournoi.mappers.TeamMapper;
@@ -15,8 +16,10 @@ import com.capgemini.tournoi.repos.MatchRepository;
 import com.capgemini.tournoi.repos.PlayerRepository;
 import com.capgemini.tournoi.repos.TeamRepository;
 import com.capgemini.tournoi.repos.TournamentRepository;
+import com.capgemini.tournoi.utils.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.context.Context;
 
 import javax.transaction.Transactional;
 import java.util.*;
@@ -29,6 +32,15 @@ public class PlayerServiceImpl implements PlayerService{
     private PlayerRepository playerRepository;
     @Autowired
     private TeamRepository teamRepository;
+
+    @Autowired
+    private TournamentRepository tournamentRepository;
+
+    @Autowired
+    private TirageService tirageService;
+
+    @Autowired
+    private EmailService emailService;
 
     @Autowired
     PlayerMapper playerMapper;
@@ -85,7 +97,7 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
     @Override
-    public PlayerDto updatePlayerById(Player player, long id) {
+    public PlayerDto updatePlayerById(PlayerDto player, long id) {
         Optional<Player> optionalPlayer=playerRepository.findById(id);
         if (optionalPlayer.isPresent()){
             Player player1=optionalPlayer.get();
@@ -104,11 +116,8 @@ public class PlayerServiceImpl implements PlayerService{
             if(player.getEmail()!=null){
                 player1.setEmail(player.getEmail());
             }
-            if(player.getTeam()!=null){
-                player1.setTeam(player.getTeam());
-            }
-            if(player.getCards()!=null){
-                player1.setCards(player.getCards());
+            if (!player.getTeamName().isEmpty()){
+                player1.getTeam().setName(player.getTeamName());
             }
             return playerMapper.convertPlayerToPlayerDTO(playerRepository.save(player1));
         }
@@ -135,5 +144,23 @@ public class PlayerServiceImpl implements PlayerService{
         List<Player> players=playerRepository.getAllPlayersOfATournament(tournament_id);
         return players.stream().map(player->playerMapper.convertPlayerToPlayerDTO(player))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void notifyPlayers(long tournament_id,StatusTournament statusTournament) {
+        List<PlayerDto> playerDtos =getAllPlayersOfTournament(tournament_id);
+        List<List<Team>> lists;
+        if (statusTournament == StatusTournament.QUART_FINAL) {
+            lists= tirageService.lancer(tournament_id);
+        }
+        else {
+              lists=null;
+        }
+        Context context = new Context();
+        context.setVariable("matches", lists);
+        String subject = "list of matches in the next round";
+        for (PlayerDto playerDto : playerDtos) {
+            emailService.sendEmailWithHtmlTemplate(playerDto.getEmail(), subject, "email-template", context);
+        }
     }
 }
