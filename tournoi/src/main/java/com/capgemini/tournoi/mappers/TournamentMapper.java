@@ -15,7 +15,7 @@ public class TournamentMapper {
                 .label(tournamentRequestDto.getLabel())
                 .startDate(tournamentRequestDto.getStartDate())
                 .endDate(tournamentRequestDto.getEndDate())
-                .statusTournamentAndMatch(StatusTournamentAndMatch.INSCRIPTION)
+                .statusTournament(StatusTournamentAndMatch.INSCRIPTION)
                 .teams(new ArrayList<>())
                 .build();
     }
@@ -26,7 +26,7 @@ public class TournamentMapper {
                 .endDate(tournament.getEndDate())
                 .label(tournament.getLabel())
                 .startDate(tournament.getStartDate())
-                .statusTournamentAndMatch(tournament.getStatusTournamentAndMatch())
+                .statusTournamentAndMatch(tournament.getStatusTournament())
                 .build();
     }
 }

@@ -69,7 +69,7 @@ class PlayerServiceImplTest {
     void assignPlayerToTeam() {
         Team team=new Team(1L,"team1",new Site(1L,"RABAT"), StatusTeam.INSCRIPTION,null,
                 new Tournament(1L,"tournament1",LocalDate.now() , LocalDate.now(),
-                        StatusTournamentAndMatch.DEMI_FINAL, null));
+                        StatusTournamentAndMatch.DEMI_FINAL,false, null));
         PlayerDto playerDto=new PlayerDto(1L,"monaim","ennabbali","monaime08@gmail.com",
                 "0656373562", PlayerStatus.INSCRIT,"team1");
         Player player=new Player(1L,"monaim","ennabbali","monaime08@gmail.com",

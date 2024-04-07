@@ -29,7 +29,6 @@ public class MatchMapper {
                 .score(Score.builder()
                         .goals(new ArrayList<>())
                         .build())
-                .scorers(new ArrayList<>())
                 .cards(new ArrayList<>())
                 .build();
 
