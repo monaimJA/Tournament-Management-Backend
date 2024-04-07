@@ -1,6 +1,6 @@
 package com.capgemini.tournoi.dtos;
 
-import com.capgemini.tournoi.enums.StatusTournament;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,5 +17,5 @@ public class TournamentResponseDto {
     private String label;
     private LocalDate startDate;
     private LocalDate endDate;
-    private StatusTournament statusTournament;
+    private StatusTournamentAndMatch statusTournamentAndMatch;
 }

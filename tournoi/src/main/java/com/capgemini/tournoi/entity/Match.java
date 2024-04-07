@@ -1,12 +1,13 @@
 package com.capgemini.tournoi.entity;
 
-import com.capgemini.tournoi.enums.StatusMatch;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -20,9 +21,9 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Date startTime;
-    private Date overTime;
-    private StatusMatch statusMatch;
+    private LocalDate startTime;
+    private LocalDate overTime;
+    private StatusTournamentAndMatch statusMatch;
 
 
     @OneToOne
@@ -37,20 +38,20 @@ public class Match {
      @OneToOne
     private Score score;
 
-    @ManyToMany
-    @JoinTable(name = "match_scorers",
-            joinColumns = @JoinColumn(name = "match_id",
-                    referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "player_id",
-                    referencedColumnName = "id"))
-    private List<Player> scorers;
+//    @ManyToMany
+//    @JoinTable(name = "match_scorers",
+//            joinColumns = @JoinColumn(name = "match_id",
+//                    referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "player_id",
+//                    referencedColumnName = "id"))
+//    private List<Player> scorers;
 
     @OneToMany
     private List<Goal> goals;
 
+    @OneToOne
+    private Team winnerTeam;
 
-
-
-
-
+    @OneToOne
+    private  Tournament tournament;
 }

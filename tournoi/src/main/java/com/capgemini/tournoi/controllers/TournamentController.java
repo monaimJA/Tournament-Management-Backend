@@ -2,16 +2,13 @@ package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
 import com.capgemini.tournoi.dtos.ModifyTournamentRequestDto;
-import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.dtos.TournamentResponseDto;
-import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
-import com.capgemini.tournoi.enums.StatusTournament;
+import com.capgemini.tournoi.error.TournamentAlreadyInProgressException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentDateException;
 import com.capgemini.tournoi.services.TournamentService;
-import com.capgemini.tournoi.services.TournamentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +23,7 @@ public class TournamentController {
     private TournamentService tournamentService;
 
     @PostMapping("/create")
-    public Tournament createTournament(@RequestBody CreateTournamentRequestDto tournamentDto) throws TournamentDateException {
+    public Tournament createTournament(@RequestBody CreateTournamentRequestDto tournamentDto) throws TournamentDateException, TournamentAlreadyInProgressException {
         return tournamentService.createTournament(tournamentDto);
     }
     @GetMapping("/all")

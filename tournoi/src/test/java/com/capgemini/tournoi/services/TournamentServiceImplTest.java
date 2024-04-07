@@ -2,7 +2,8 @@ package com.capgemini.tournoi.services;
 
 import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
 import com.capgemini.tournoi.entity.Tournament;
-import com.capgemini.tournoi.enums.StatusTournament;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
+import com.capgemini.tournoi.error.TournamentAlreadyInProgressException;
 import com.capgemini.tournoi.globalExceptions.TournamentDateException;
 import com.capgemini.tournoi.mappers.TournamentMapper;
 import com.capgemini.tournoi.repos.TournamentRepository;
@@ -25,13 +26,13 @@ class TournamentServiceImplTest {
     @InjectMocks
     TournamentServiceImpl tournamentService ;
     @Test
-    void should_create_tournament() throws TournamentDateException {
+    void should_create_tournament() throws TournamentDateException, TournamentAlreadyInProgressException {
         // given
         CreateTournamentRequestDto input = new CreateTournamentRequestDto("rackathon", LocalDate.now(), LocalDate.now().plusDays(30));
         Tournament expected = Tournament.builder().label("rackathon")
                 .startDate(LocalDate.now())
                 .endDate(LocalDate.now().plusDays(30))
-                .statusTournament(StatusTournament.INSCRIPTION)
+                .statusTournament(StatusTournamentAndMatch.INSCRIPTION)
                 .build();
         when(mapper.fromTournamentDtoRequest(input)).thenReturn(expected);
         when(tournamentRepository.save(expected)).thenReturn(expected);

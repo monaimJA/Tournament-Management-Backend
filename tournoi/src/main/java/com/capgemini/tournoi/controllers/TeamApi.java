@@ -1,6 +1,7 @@
 package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.TeamDto;
+import com.capgemini.tournoi.error.PlayerExistInAnotherTeamException;
 import com.capgemini.tournoi.globalExceptions.MaximumPlayersLimitException;
 import com.capgemini.tournoi.globalExceptions.PlayersNotSufficientException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
@@ -16,12 +17,12 @@ public class TeamApi {
     TeamService teamService;
 
     @PostMapping("/team")
-    public TeamDto saveTeam(@RequestBody  TeamDto teamDto) throws PlayersNotSufficientException, MaximumPlayersLimitException {
+    public TeamDto saveTeam(@RequestBody  TeamDto teamDto) throws PlayersNotSufficientException, MaximumPlayersLimitException, PlayerExistInAnotherTeamException {
         return teamService.saveTeam(teamDto);
     }
 
     @PostMapping("/inscription")
-    public TeamDto inscription(@RequestBody  TeamDto teamDto) throws PlayersNotSufficientException, MaximumPlayersLimitException {
+    public TeamDto inscription(@RequestBody  TeamDto teamDto) throws PlayersNotSufficientException, MaximumPlayersLimitException, PlayerExistInAnotherTeamException {
         return teamService.inscription(teamDto);
     }
 

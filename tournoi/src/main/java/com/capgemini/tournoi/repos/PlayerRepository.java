@@ -1,7 +1,9 @@
 package com.capgemini.tournoi.repos;
 
+import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -31,4 +33,8 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
             "inner join tournament tr on tr.id=t.tournament_id where tr.id=?1"
             ,nativeQuery = true)
     public List<Player> getAllPlayersOfATournament(long tournament_id);
+    public Player findPlayerByEmail(String email);
+
+    @Query(value = "select * from match m where m.tournament_id=?1 and statusMatch=?2",nativeQuery = true)
+    public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch);
 }
