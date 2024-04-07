@@ -26,7 +26,7 @@ public class PlayerMapper
         if(player.getEmail()!=null){
             playerDto.setEmail(player.getEmail());
         }
-        if(player.getTeam()!=null){
+        if(player.getTeam().getName()!=null){
             playerDto.setTeamName(player.getTeam().getName());
         }
         return playerDto;

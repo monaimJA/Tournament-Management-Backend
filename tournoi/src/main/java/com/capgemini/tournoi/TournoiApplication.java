@@ -1,23 +1,9 @@
 package com.capgemini.tournoi;
 
-import com.capgemini.tournoi.entity.*;
-import com.capgemini.tournoi.enums.PlayerStatus;
-import com.capgemini.tournoi.enums.StatusTeam;
-import com.capgemini.tournoi.enums.StatusTournament;
-import com.capgemini.tournoi.repos.*;
-import com.capgemini.tournoi.security.entities.AppRole;
-import com.capgemini.tournoi.security.service.AccountService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
-import java.util.stream.Stream;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
 public class TournoiApplication {

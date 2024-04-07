@@ -3,8 +3,7 @@ package com.capgemini.tournoi.mappers;
 import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
 import com.capgemini.tournoi.dtos.TournamentResponseDto;
 import com.capgemini.tournoi.entity.Tournament;
-import com.capgemini.tournoi.enums.StatusTournament;
-import org.springframework.stereotype.Service;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 
 import java.util.ArrayList;
 
@@ -16,7 +15,7 @@ public class TournamentMapper {
                 .label(tournamentRequestDto.getLabel())
                 .startDate(tournamentRequestDto.getStartDate())
                 .endDate(tournamentRequestDto.getEndDate())
-                .statusTournament(StatusTournament.INSCRIPTION)
+                .statusTournamentAndMatch(StatusTournamentAndMatch.INSCRIPTION)
                 .teams(new ArrayList<>())
                 .build();
     }
@@ -27,7 +26,7 @@ public class TournamentMapper {
                 .endDate(tournament.getEndDate())
                 .label(tournament.getLabel())
                 .startDate(tournament.getStartDate())
-                .statusTournament(tournament.getStatusTournament())
+                .statusTournamentAndMatch(tournament.getStatusTournamentAndMatch())
                 .build();
     }
 }
