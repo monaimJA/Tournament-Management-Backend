@@ -1,5 +1,7 @@
 package com.capgemini.tournoi.dtos;
 
+import com.capgemini.tournoi.entity.Tournament;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,5 +19,7 @@ public class MatchRequestDTO {
     private LocalDate startTime;
     private Long teamId1;
     private Long teamId2;
+    private StatusTournamentAndMatch statusTournamentAndMatch;
+    private Tournament tournament;
 
 }

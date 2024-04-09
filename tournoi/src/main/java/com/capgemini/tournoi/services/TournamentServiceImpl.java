@@ -40,7 +40,7 @@ public class TournamentServiceImpl implements TournamentService{
     }
 
     public Tournament createTournament(CreateTournamentRequestDto tournamentDto) throws TournamentDateException, TournamentAlreadyInProgressException {
-        if(tournamentRepository.checkExistTournamentInProgress()!=null){
+        if(tournamentRepository.checkExistTournamentInProgress()==null){
             if (tournamentDto.getStartDate().isAfter(tournamentDto.getEndDate())) {
                 throw new TournamentDateException("Tournament start date should not come after the end date");
             }

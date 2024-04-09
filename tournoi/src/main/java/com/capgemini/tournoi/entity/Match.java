@@ -23,6 +23,7 @@ public class Match {
     private long id;
     private LocalDate startTime;
     private LocalDate overTime;
+    @Enumerated(value = EnumType.STRING)
     private StatusTournamentAndMatch statusMatch;
 
 
@@ -35,7 +36,7 @@ public class Match {
     private List<Card> cards;
 
 
-     @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Score score;
 
 //    @ManyToMany
@@ -45,9 +46,6 @@ public class Match {
 //            inverseJoinColumns = @JoinColumn(name = "player_id",
 //                    referencedColumnName = "id"))
 //    private List<Player> scorers;
-
-    @OneToMany
-    private List<Goal> goals;
 
     @OneToOne
     private Team winnerTeam;

@@ -35,6 +35,4 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
     public List<Player> getAllPlayersOfATournament(long tournament_id);
     public Player findPlayerByEmail(String email);
 
-    @Query(value = "select * from match m where m.tournament_id=?1 and statusMatch=?2",nativeQuery = true)
-    public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch);
 }

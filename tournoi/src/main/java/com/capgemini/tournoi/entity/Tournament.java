@@ -24,6 +24,7 @@ public class Tournament {
     private LocalDate endDate;
     @Enumerated(value = EnumType.STRING)
     private StatusTournamentAndMatch statusTournament;
+    @Column(columnDefinition = "boolean default false")
     private Boolean inProgress;
     @OneToMany
     private List<Team> teams;

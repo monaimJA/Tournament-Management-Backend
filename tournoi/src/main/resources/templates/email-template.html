@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Liste des matches</title>
@@ -18,12 +18,66 @@
     </style>
 </head>
 <body>
-<h1>Liste des matches</h1>
+<h1>Liste des matches </h1>
 <div th:each="match:${matches}" class="match">
         <span class="team" th:each="team,teamIndex:${match}">
             <span th:text="${team.name}"></span>
             <span class="vs" th:unless="${teamIndex.last}"> vs </span>
         </span>
 </div>
+</body>
+</html>-->
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Rapport des matches</title>
+    <style>
+        .match {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+        .team {
+            font-weight: bold;
+        }
+        .vs {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+<h1>Rapport des matches</h1>
+
+<!-- Matches précédents -->
+<h2>Matches précédents</h2>
+<div th:each="match:${matches}" class="match">
+        <span th:text="${match.team1.name}"></span>
+        <span th:text="${match.team2.name}"></span>
+        <span>Winner team is <span th:text="${match.winnerTeam.name}"></span></span>
+<!--        <span class="vs" th:unless="${teamIndex.last}"> vs </span>-->
+<!--    <span th:if="${match.gagnant != null}" th:text="${' - Gagnant: ' + match.gagnant.name}"></span>-->
+<!--    <span th:if="${match.elimine != null}" th:text="${' - Éliminé: ' + match.elimine.name}"></span>-->
+</div>
+<h1>Matches à venir</h1>
+<div th:each="match:${teams}">
+        <span class="team" th:each="team,teamIndex:${match}">
+            <span th:text="${team.name}"></span>
+            <span class="vs" th:unless="${teamIndex.last}"> vs </span>
+        </span>
+</div>
+
+<!--&lt;!&ndash; Matches à venir &ndash;&gt;-->
+<!--<h2>Matches à venir</h2>-->
+<!--<div th:each="match:${matchesAVenir}" class="match">-->
+<!--    <span class="team" th:each="team,teamIndex:${match}">-->
+<!--        <span th:text="${team.name}"></span>-->
+<!--        <span class="vs" th:unless="${teamIndex.last}"> vs </span>-->
+<!--    </span>-->
+<!--</div>-->
+
 </body>
 </html>
