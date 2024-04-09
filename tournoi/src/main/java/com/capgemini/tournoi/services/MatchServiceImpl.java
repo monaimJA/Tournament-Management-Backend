@@ -28,7 +28,7 @@ public class MatchServiceImpl  implements MatchServiceInterface{
         newMatch.setStartTime(matchRequest.getStartTime());
         newMatch.setId(matchRequest.getId());
         Team team1= teamRepository.findById(matchRequest.getTeamId1()).orElseThrow(() -> new TeamNotFoundException("Equipe 1 non trouvée avec l'ID fourni"));
-        Team team2 = teamRepository.findById(matchRequest.getTeamId1()).orElseThrow(() -> new TeamNotFoundException("Equipe 2 non trouvée avec l'ID fourni"));
+        Team team2 = teamRepository.findById(matchRequest.getTeamId2()).orElseThrow(() -> new TeamNotFoundException("Equipe 2 non trouvée avec l'ID fourni"));
         newMatch.setTeam1(team1);
         newMatch.setTeam2(team2);
         newMatch.setScore(null);
@@ -98,7 +98,7 @@ public class MatchServiceImpl  implements MatchServiceInterface{
         Match match = matchRepository.findById(matchId).orElse(null);
         if (match != null) {
             List<Player> players=new ArrayList<>();
-            for (Goal goal:match.getGoals()){
+            for (Goal goal:match.getScore().getGoals()){
                 players.add(goal.getPlayer());
             }
             return players;

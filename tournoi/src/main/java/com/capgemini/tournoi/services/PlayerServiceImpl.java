@@ -11,6 +11,7 @@ import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.mappers.PlayerMapper;
 import com.capgemini.tournoi.mappers.TeamMapper;
+import com.capgemini.tournoi.repos.MatchRepository;
 import com.capgemini.tournoi.repos.PlayerRepository;
 import com.capgemini.tournoi.repos.TeamRepository;
 import com.capgemini.tournoi.repos.TournamentRepository;
@@ -32,6 +33,9 @@ public class PlayerServiceImpl implements PlayerService{
 
     @Autowired
     private TeamRepository teamRepository;
+
+    @Autowired
+    private MatchRepository matchRepository;
 
     @Autowired
     private TournamentRepository tournamentRepository;
@@ -186,6 +190,8 @@ public class PlayerServiceImpl implements PlayerService{
                 matchRequestDTO.setStartTime(date);
                 matchRequestDTO.setTeamId1(list.get(0).getId());
                 matchRequestDTO.setTeamId2(list.get(1).getId());
+                matchRequestDTO.setTournament(tournamentRepository.findById(tournament_id).get());
+                matchRequestDTO.setStatusTournamentAndMatch(statusTournamentAndMatch);
                 matchService.createMatch(matchRequestDTO);
         }
 
@@ -209,6 +215,17 @@ public class PlayerServiceImpl implements PlayerService{
 
     @Override
     public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch) {
+
+        List<Match> matches=new ArrayList<>();
+        StatusTournamentAndMatch previousStatus=getPreviousStatus(statusTournamentAndMatch);
+        if ( previousStatus!= null) {
+            matches=matchRepository.findAllByTournament_IdAndStatusMatch(tournamentId, previousStatus);
+        } else {
+            System.out.println("in that phase "+statusTournamentAndMatch+"there are no previous matches");
+        }
+        return matches;
+    }
+    public StatusTournamentAndMatch getPreviousStatus(StatusTournamentAndMatch statusTournamentAndMatch){
         StatusTournamentAndMatch currentStatus = statusTournamentAndMatch;
 
         int currentStatusOrdinal = currentStatus.ordinal();
@@ -217,12 +234,6 @@ public class PlayerServiceImpl implements PlayerService{
         if (currentStatusOrdinal > 1) {
             previousStatus = StatusTournamentAndMatch.values()[currentStatusOrdinal - 1];
         }
-        List<Match> matches=new ArrayList<>();
-        if (previousStatus != null) {
-            matches=playerRepository.getAllMatchesOfTournamentInThatPhase(tournamentId, previousStatus);
-        } else {
-            System.out.println("in that phase "+statusTournamentAndMatch+"there are no previous matches");
-        }
-        return matches;
+        return previousStatus;
     }
 }

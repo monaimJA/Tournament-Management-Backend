@@ -4,5 +4,4 @@ public enum StatusTeam {
     INSCRIPTION,
     ElIMINE,
     FORFAIT,
-
 }
