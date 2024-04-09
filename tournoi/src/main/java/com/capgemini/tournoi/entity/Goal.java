@@ -1,34 +1,28 @@
 package com.capgemini.tournoi.entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.time.LocalTime;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Goal {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private LocalTime time;
-
-
-    //@OneToOne
-    @OneToOne
-    private Player player;
-
-
+    private Long id;
 
     @ManyToOne
-    private  Match match;
+    @JoinColumn(name = "player_id", nullable = false)
+    private Player player;
 
+    @ManyToOne
+    @JoinColumn(name = "match_id", nullable = false)
+    private Match match;
 
+    private int minute;
 }
