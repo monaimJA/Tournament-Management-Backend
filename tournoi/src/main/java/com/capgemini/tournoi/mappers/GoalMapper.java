@@ -9,6 +9,7 @@ import com.capgemini.tournoi.repos.PlayerRepository;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+
 @Service
 public class GoalMapper {
     private final PlayerRepository playerRepository;
