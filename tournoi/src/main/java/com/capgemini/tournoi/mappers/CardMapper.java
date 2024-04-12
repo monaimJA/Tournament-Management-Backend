@@ -8,9 +8,10 @@ import com.capgemini.tournoi.enums.CardType;
 import com.capgemini.tournoi.repos.MatchRepository;
 import com.capgemini.tournoi.repos.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-
+@Service
 public class CardMapper {
 
     private final PlayerRepository playerRepository;

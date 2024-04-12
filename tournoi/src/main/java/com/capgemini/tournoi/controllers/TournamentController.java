@@ -16,7 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("tournament")
+@RequestMapping("api/tournament")
+@CrossOrigin("*")
 public class TournamentController {
 
     @Autowired
