@@ -32,6 +32,8 @@ public class MatchMapper {
                 .score(Score.builder()
                         .goals(new ArrayList<>())
                         .build())
+                .statusMatch(matchRequestDTO.getStatusTournamentAndMatch())
+                .tournament(matchRequestDTO.getTournament())
                 .cards(new ArrayList<>())
                 .build();
 

@@ -23,6 +23,6 @@ public interface PlayerService {
 
     public List<PlayerDto> getAllPlayersOfTournament(long tournament_id);
 
-    public void notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException;
+    public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException;
     public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch);
 }

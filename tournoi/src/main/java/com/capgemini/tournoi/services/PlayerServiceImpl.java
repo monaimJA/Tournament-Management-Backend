@@ -11,6 +11,7 @@ import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.mappers.PlayerMapper;
 import com.capgemini.tournoi.mappers.TeamMapper;
+import com.capgemini.tournoi.repos.MatchRepository;
 import com.capgemini.tournoi.repos.PlayerRepository;
 import com.capgemini.tournoi.repos.TeamRepository;
 import com.capgemini.tournoi.repos.TournamentRepository;
@@ -32,6 +33,9 @@ public class PlayerServiceImpl implements PlayerService{
 
     @Autowired
     private TeamRepository teamRepository;
+
+    @Autowired
+    private MatchRepository matchRepository;
 
     @Autowired
     private TournamentRepository tournamentRepository;
@@ -152,7 +156,7 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
     @Override
-    public void notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException {
+    public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException {
 
         // notify players by email and planify the matches
 
@@ -180,13 +184,15 @@ public class PlayerServiceImpl implements PlayerService{
 //            }
             date=latestMatch.getStartTime().plusDays(3);
         }
-
+        List<Match> result=new ArrayList<>();
         for (List<Team> list:lists){
                 MatchRequestDTO matchRequestDTO=new MatchRequestDTO();
                 matchRequestDTO.setStartTime(date);
                 matchRequestDTO.setTeamId1(list.get(0).getId());
                 matchRequestDTO.setTeamId2(list.get(1).getId());
-                matchService.createMatch(matchRequestDTO);
+                matchRequestDTO.setTournament(tournamentRepository.findById(tournament_id).get());
+                matchRequestDTO.setStatusTournamentAndMatch(statusTournamentAndMatch);
+                result.add(matchService.createMatch(matchRequestDTO));
         }
 
         Context context = new Context();
@@ -205,10 +211,22 @@ public class PlayerServiceImpl implements PlayerService{
         for (PlayerDto playerDto : players) {
             emailService.sendEmailWithHtmlTemplate(playerDto.getEmail(), subject, "email-template", context);
         }
+        return result;
     }
 
     @Override
     public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch) {
+
+        List<Match> matches=new ArrayList<>();
+        StatusTournamentAndMatch previousStatus=getPreviousStatus(statusTournamentAndMatch);
+        if ( previousStatus!= null) {
+            matches=matchRepository.findAllByTournament_IdAndStatusMatch(tournamentId, previousStatus);
+        } else {
+            System.out.println("in that phase "+statusTournamentAndMatch+"there are no previous matches");
+        }
+        return matches;
+    }
+    public StatusTournamentAndMatch getPreviousStatus(StatusTournamentAndMatch statusTournamentAndMatch){
         StatusTournamentAndMatch currentStatus = statusTournamentAndMatch;
 
         int currentStatusOrdinal = currentStatus.ordinal();
@@ -217,12 +235,6 @@ public class PlayerServiceImpl implements PlayerService{
         if (currentStatusOrdinal > 1) {
             previousStatus = StatusTournamentAndMatch.values()[currentStatusOrdinal - 1];
         }
-        List<Match> matches=new ArrayList<>();
-        if (previousStatus != null) {
-            matches=playerRepository.getAllMatchesOfTournamentInThatPhase(tournamentId, previousStatus);
-        } else {
-            System.out.println("in that phase "+statusTournamentAndMatch+"there are no previous matches");
-        }
-        return matches;
+        return previousStatus;
     }
 }
