@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @RestController
-@RequestMapping("tournament")
+@RequestMapping("api/tournament")
 public class TournamentController {
 
     @Autowired
@@ -50,5 +50,6 @@ public class TournamentController {
     public TournamentResponseDto modifyTournament(@PathVariable Long id, @RequestBody ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException {
         return tournamentService.modifyTournament(id, updatedTournament);
     }
+
 
 }

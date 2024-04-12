@@ -156,7 +156,7 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
     @Override
-    public void notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException {
+    public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException {
 
         // notify players by email and planify the matches
 
@@ -184,7 +184,7 @@ public class PlayerServiceImpl implements PlayerService{
 //            }
             date=latestMatch.getStartTime().plusDays(3);
         }
-
+        List<Match> result=new ArrayList<>();
         for (List<Team> list:lists){
                 MatchRequestDTO matchRequestDTO=new MatchRequestDTO();
                 matchRequestDTO.setStartTime(date);
@@ -192,7 +192,7 @@ public class PlayerServiceImpl implements PlayerService{
                 matchRequestDTO.setTeamId2(list.get(1).getId());
                 matchRequestDTO.setTournament(tournamentRepository.findById(tournament_id).get());
                 matchRequestDTO.setStatusTournamentAndMatch(statusTournamentAndMatch);
-                matchService.createMatch(matchRequestDTO);
+                result.add(matchService.createMatch(matchRequestDTO));
         }
 
         Context context = new Context();
@@ -211,6 +211,7 @@ public class PlayerServiceImpl implements PlayerService{
         for (PlayerDto playerDto : players) {
             emailService.sendEmailWithHtmlTemplate(playerDto.getEmail(), subject, "email-template", context);
         }
+        return result;
     }
 
     @Override
