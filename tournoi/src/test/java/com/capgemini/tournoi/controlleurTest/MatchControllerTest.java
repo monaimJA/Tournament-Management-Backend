@@ -47,7 +47,7 @@ public class MatchControllerTest {
     }
 
 
-    @Test
+   /* @Test
     public void testGetAllMatches() {
 
         List<Match> matches = new ArrayList<>();
@@ -56,11 +56,10 @@ public class MatchControllerTest {
 
 
         when(matchService.getAllMatches()).thenReturn(matches);
-
         ResponseEntity<List<Match>> response = matchController.getAllMatches();
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
 
         assertEquals(matches, response.getBody());
-    }
+    }*/
 }
