@@ -34,7 +34,7 @@ class TournamentServiceImplTest {
                 .endDate(LocalDate.now().plusDays(30))
                 .statusTournament(StatusTournamentAndMatch.INSCRIPTION)
                 .build();
-        when(mapper.fromTournamentDtoRequest(input)).thenReturn(expected);
+        when(TournamentMapper.fromTournamentDtoRequest(input)).thenReturn(expected);
         when(tournamentRepository.save(expected)).thenReturn(expected);
         // when
         Tournament result = tournamentService.createTournament(input);
