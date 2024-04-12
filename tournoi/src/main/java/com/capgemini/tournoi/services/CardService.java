@@ -19,6 +19,7 @@ public class CardService {
     private final PlayerRepository playerRepository;
     private final MatchRepository matchRepository;
     private final CardRepository cardRepository;
+
     private final CardMapper cardMapper;
 
     @Autowired

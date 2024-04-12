@@ -2,6 +2,7 @@ package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.PlayerDto;
 import com.capgemini.tournoi.dtos.TeamDto;
+import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.enums.CardType;
 import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
@@ -64,9 +65,9 @@ public class PlayerController {
         return new ResponseEntity<>(players,HttpStatus.OK);
     }
     @GetMapping("/changeStatus/{tournament_id}")
-    public ResponseEntity<String> notifyPlayers(@PathVariable long tournament_id,
+    public ResponseEntity<List<Match>> notifyPlayers(@PathVariable long tournament_id,
                                                 @RequestParam("statusTournamentAndMatch") StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException {
-        playerService.notifyPlayers(tournament_id, statusTournamentAndMatch);
-        return ResponseEntity.ok("HTML email sent successfully!");
+        List<Match> matches=playerService.notifyPlayers(tournament_id, statusTournamentAndMatch);
+        return new ResponseEntity<>(matches,HttpStatus.OK);
     }
 }
