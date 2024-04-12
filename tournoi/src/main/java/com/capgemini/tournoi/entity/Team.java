@@ -18,6 +18,7 @@ public class Team {
     private String name;
     @ManyToOne
     private Site site;
+    @Enumerated(value = EnumType.STRING)
     private StatusTeam statusTeam;
     @OneToMany(mappedBy = "team")
     private List<Player> players;
