@@ -2,24 +2,22 @@ package com.capgemini.tournoi.mappers;
 
 import com.capgemini.tournoi.dtos.MatchRequestDTO;
 import com.capgemini.tournoi.dtos.MatchResponseDto;
+import com.capgemini.tournoi.dtos.MatchResponseDtoFront;
 import com.capgemini.tournoi.dtos.TournamentResponseDto;
-import com.capgemini.tournoi.entity.Match;
-import com.capgemini.tournoi.entity.Score;
-import com.capgemini.tournoi.entity.Team;
-import com.capgemini.tournoi.entity.Tournament;
+import com.capgemini.tournoi.entity.*;
 import com.capgemini.tournoi.repos.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
-@Service
 
+@Service
 public class MatchMapper {
 
     @Autowired
-    private TeamRepository teamRepository;
-    public Match fromMatchDTO(MatchRequestDTO matchRequestDTO){
+    private static TeamRepository teamRepository;
+    public static Match fromMatchDTO(MatchRequestDTO matchRequestDTO){
         Team team1= teamRepository.findById(matchRequestDTO.getTeamId1()).orElse(null);
         Team team2 = teamRepository.findById(matchRequestDTO.getTeamId1()).orElse(null);
         if(team1 == null || team2 == null){
@@ -39,10 +37,24 @@ public class MatchMapper {
 
     }
 
+    public static MatchResponseDtoFront fromMatchToFront(Match match){
+        new MatchResponseDtoFront();
+        return MatchResponseDtoFront.builder()
+                .team1Name(match.getTeam1().getName())
+                .team2Name(match.getTeam2().getName())
+                .tournamentLabel(match.getTournament().getLabel())
+                .winnerTeamName(match.getWinnerTeam().getName())
+                .team1Score(match.getScore().getGoals().size())
+                .team2Score(match.getScore().getGoals().size())
+                .build();
+
+    }
+
 
 
     public static MatchResponseDto fromMatch(Match match) {
-        return new MatchResponseDto().builder()
+        new MatchResponseDto();
+        return MatchResponseDto.builder()
                 .id(match.getId())
                 .startTime(match.getStartTime())
                 .teamId1(match.getTeam1().getId())
@@ -51,6 +63,7 @@ public class MatchMapper {
                 .score(match.getScore())
                 .build();
     }
+
 
 
 

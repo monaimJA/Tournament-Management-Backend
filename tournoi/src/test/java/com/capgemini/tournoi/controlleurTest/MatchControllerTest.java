@@ -47,19 +47,5 @@ public class MatchControllerTest {
     }
 
 
-   /* @Test
-    public void testGetAllMatches() {
 
-        List<Match> matches = new ArrayList<>();
-        matches.add(new Match());
-        matches.add(new Match());
-
-
-        when(matchService.getAllMatches()).thenReturn(matches);
-        ResponseEntity<List<Match>> response = matchController.getAllMatches();
-
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-
-        assertEquals(matches, response.getBody());
-    }*/
 }

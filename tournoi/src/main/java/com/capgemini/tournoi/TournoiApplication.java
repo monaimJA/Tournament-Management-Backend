@@ -14,7 +14,7 @@ public class TournoiApplication {
 	}
 
 
-	@Bean
+	/*@Bean
 	CommandLineRunner start(AccountService accountService,
 							TeamRepository teamsRepository,
 							PlayerRepository playerRepository,
@@ -95,7 +95,7 @@ public class TournoiApplication {
 			}
 			matchRepository.save(match);
 		};
-	}
+	}*/
 	@Bean
 	BCryptPasswordEncoder getBCPE(){
 		return new BCryptPasswordEncoder();

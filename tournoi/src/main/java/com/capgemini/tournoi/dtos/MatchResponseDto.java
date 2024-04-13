@@ -1,7 +1,6 @@
 package com.capgemini.tournoi.dtos;
 
 import com.capgemini.tournoi.entity.Score;
-import com.capgemini.tournoi.entity.Team;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

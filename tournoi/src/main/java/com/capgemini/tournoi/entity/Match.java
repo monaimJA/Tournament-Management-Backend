@@ -39,13 +39,7 @@ public class Match {
     @OneToOne(cascade = CascadeType.ALL)
     private Score score;
 
-//    @ManyToMany
-//    @JoinTable(name = "match_scorers",
-//            joinColumns = @JoinColumn(name = "match_id",
-//                    referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "player_id",
-//                    referencedColumnName = "id"))
-//    private List<Player> scorers;
+
 
     @OneToOne
     private Team winnerTeam;

@@ -2,6 +2,7 @@ package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.MatchRequestDTO;
 import com.capgemini.tournoi.dtos.MatchResponseDto;
+import com.capgemini.tournoi.dtos.MatchResponseDtoFront;
 import com.capgemini.tournoi.dtos.TournamentResponseDto;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
@@ -47,6 +48,12 @@ public class MatchController {
     public List<MatchResponseDto> getAllMatches() {
         return matchServiceImpl.getAllMatches();
     }
+
+    @GetMapping("/matches")
+    public List<MatchResponseDtoFront> getAllMatchesFront() {
+        return matchServiceImpl.getAllMatchesFront();
+    }
+
 
 
     @GetMapping("/{id}")
