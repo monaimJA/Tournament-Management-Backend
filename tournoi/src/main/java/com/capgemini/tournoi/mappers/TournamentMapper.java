@@ -16,6 +16,7 @@ public class TournamentMapper {
                 .startDate(tournamentRequestDto.getStartDate())
                 .endDate(tournamentRequestDto.getEndDate())
                 .statusTournament(StatusTournamentAndMatch.INSCRIPTION)
+                .inProgress(true)
                 .teams(new ArrayList<>())
                 .build();
     }
