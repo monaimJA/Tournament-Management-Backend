@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a71e3b9-2383-485d-9773-a47dda762045" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/tournoi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tournoi/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournoi/src/main/java/com/capgemini/tournoi/TournoiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/tournoi/src/main/java/com/capgemini/tournoi/TournoiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournoi/src/main/java/com/capgemini/tournoi/entity/Goal.java" beforeDir="false" afterPath="$PROJECT_DIR$/tournoi/src/main/java/com/capgemini/tournoi/entity/Goal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournoi/src/main/java/com/capgemini/tournoi/repos/CardRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tournoi/src/main/java/com/capgemini/tournoi/repos/CardRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournoi/src/main/java/com/capgemini/tournoi/repos/MatchRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/tournoi/src/main/java/com/capgemini/tournoi/repos/MatchRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournoi/src/main/java/com/capgemini/tournoi/services/CardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/tournoi/src/main/java/com/capgemini/tournoi/services/CardService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
