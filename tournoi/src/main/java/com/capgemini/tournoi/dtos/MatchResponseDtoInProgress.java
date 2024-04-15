@@ -16,11 +16,11 @@ import java.util.List;
 public class MatchResponseDtoInProgress {
     private String team1Name;
     private String team2Name;
-    private List<String> playersTeam1;
-    private List<String> playersTeam2;
     private LocalDate startTime;
     private StatusTournamentAndMatch statusTournamentAndMatch;
     private Integer scoreTeam1;
     private Integer scoreTeam2;
     private  String nameWinnerTeam;
+    private List<String> playersTeam1;
+    private List<String> playersTeam2;
 }

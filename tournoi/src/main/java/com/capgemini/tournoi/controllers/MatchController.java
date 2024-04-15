@@ -82,7 +82,7 @@ public class MatchController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    //get all matches in last Phase
     @GetMapping("/getAllMatchesInLatestPhase")
     public List<MatchResponseDtoInProgress> getAllMatchesInLatestPhase() {
         return matchServiceImpl.getAllMatchesInLatestPhase();

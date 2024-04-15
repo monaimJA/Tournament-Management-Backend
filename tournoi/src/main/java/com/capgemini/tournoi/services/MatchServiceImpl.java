@@ -141,8 +141,6 @@ public class MatchServiceImpl  implements MatchServiceInterface {
     public List<MatchResponseDtoInProgress> getAllMatchesInLatestPhase() {
         return matchRepository.getLatestMatchesInCurrentTournament(true).stream()
                 .map(match -> {
-                    // System.out.println(match.getTeam1().getPlayers());
-                    // System.out.println(match);
                     return matchMapper.convertToDto(match);
                 })
                 .collect(Collectors.toList());

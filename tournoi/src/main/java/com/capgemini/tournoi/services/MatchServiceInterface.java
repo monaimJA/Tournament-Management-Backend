@@ -17,11 +17,11 @@ public interface MatchServiceInterface {
   MatchResponseDto getMatchById(Long id) throws MatchNotFoundException;
   Score getMatchScore(Long id);
 
-  public Match setScoreOfMatch(Score score,Long matchId) throws MatchNotFoundException;
+  Match setScoreOfMatch(Score score,Long matchId) throws MatchNotFoundException;
 
-  public Match setTeamForfaitInMatch(Long teamId,Long matchId) throws MatchNotFoundException;
+ Match setTeamForfaitInMatch(Long teamId,Long matchId) throws MatchNotFoundException;
 
   List<MatchResponseDtoInProgress> getAllMatchesInLatestPhase();
 
-  public List<MatchResponseDtoInProgress> getMatchesInProgress();
+ List<MatchResponseDtoInProgress> getMatchesInProgress();
 }

@@ -11,7 +11,6 @@ import java.util.List;
 @Repository
 
 public interface MatchRepository extends JpaRepository<Match, Long> {
-    public List<Match> findAllByTournament_IdAndStatusMatch(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch);
     @Query(value = "select * from match m inner join tournament tr on tr.id=m.tournament_id where tr.in_progress=?1",nativeQuery = true)
     List<Match> getMatchesInCurrentTournament(boolean inProgress);
 

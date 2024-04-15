@@ -16,9 +16,10 @@ public class MatchResponseDtoFront {
         private String tournamentLabel;
         private String team1Name;
         private String team2Name;
-        private int team1Score;
         private int team2Score;
         private String winnerTeamName;
+        private int team1Score;
+
     }
 
 

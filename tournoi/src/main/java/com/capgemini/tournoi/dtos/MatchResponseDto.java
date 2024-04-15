@@ -21,10 +21,11 @@ public class MatchResponseDto {
     private TeamDto nameTeam1;
     private TeamDto nameTeam2;
     private List<Goal> goals;
-    private String nameWinnerTeam;
     private String labelTournament;
     private StatusTournamentAndMatch statusTournamentAndMatch;
     private List<String> namePlayersTeam1;
     private List<String> namePlayersTeam2;
+    private String nameWinnerTeam;
+
 
 }
