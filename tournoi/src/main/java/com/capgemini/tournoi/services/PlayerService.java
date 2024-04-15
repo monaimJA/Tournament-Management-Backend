@@ -8,6 +8,7 @@ import com.capgemini.tournoi.enums.CardType;
 import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
 
 import java.util.List;
 
@@ -23,6 +24,6 @@ public interface PlayerService {
 
     public List<PlayerDto> getAllPlayersOfTournament(long tournament_id);
 
-    public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException;
+    public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException, TournamentNotFoundException;
     public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch);
 }
