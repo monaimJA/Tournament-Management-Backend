@@ -123,4 +123,15 @@ public class CardService {
             throw new Exception("Error occurred in the updateCardById : "+ cardDto.getId());
         }
     }
+
+    public List<CardDto> getCardByTournamentId(long tournamentId) throws Exception {
+        try {
+            List<Card> cards = cardRepository.findByTournamentId(tournamentId);
+            return cards.stream()
+                    .map(card -> cardMapper.convertToDto(card))
+                    .collect(Collectors.toList());
+        } catch (Exception ex) {
+            throw new Exception("Error occurred in the getCardByTournamentId : " + tournamentId);
+        }
+    }
 }
