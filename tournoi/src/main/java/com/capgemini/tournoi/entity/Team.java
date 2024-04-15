@@ -13,7 +13,7 @@ import java.util.List;
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
     @ManyToOne

@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,19 +34,13 @@ public class TeamServiceImpl implements TeamService{
     SiteRepository siteRepository;
 
     @Override
-    public TeamDto saveTeam(TeamDto teamDto) throws MaximumPlayersLimitException, PlayersNotSufficientException, PlayerExistInAnotherTeamException {
+    public TeamDto saveTeam(TeamDto teamDto) throws MaximumPlayersLimitException, PlayersNotSufficientException {
         Team team=teamMapper.fromTeamDto(teamDto);
         if (team.getPlayers().size() > 8) {
             throw new MaximumPlayersLimitException("too much players");
         }
         if (team.getPlayers().size() < 8 ) {
             throw new PlayersNotSufficientException("players not sufficient");
-        }
-        for(Player player:team.getPlayers()){
-            if(playerRepository.findPlayerByEmail(player.getEmail())==null){
-                throw new PlayerExistInAnotherTeamException
-                        ("the player with id="+player.getId()+" already exist in another team");
-            }
         }
         Team savedTeam = teamRepository.save(team);
         return teamMapper.fromTeam(savedTeam);
@@ -76,14 +69,14 @@ public class TeamServiceImpl implements TeamService{
 
         Team savedTeam = teamRepository.save(team);
 
-        List<Player> playersInTournament = playerRepository.getAllPlayersOfATournament(teamDto.getTournament().getId());
-        for(Player player : teamDto.getPlayers()){
-            for(Player tournamentPlayer : playersInTournament){
-                if(player.getEmail().equals(tournamentPlayer.getEmail())){
-                    throw new TwoTeamsPlayerException("player already exist in a team");
-                }
-            }
-               }
+//        List<Player> playersInTournament = playerRepository.getAllPlayersOfATournament(teamDto.getTournament().getId());
+//        for(Player player : teamDto.getPlayers()){
+//            for(Player tournamentPlayer : playersInTournament){
+//                if(player.getEmail().equals(tournamentPlayer.getEmail())){
+//                    throw new TwoTeamsPlayerException("player already exist in a team");
+//                }
+//            }
+//               }
 
         for(Player player : teamDto.getPlayers()){
             Player player1 =new Player();

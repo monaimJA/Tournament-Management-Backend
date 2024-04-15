@@ -17,12 +17,11 @@ import java.util.List;
 @RequestMapping("/api")
 @CrossOrigin("*")
 @AllArgsConstructor
-@RequestMapping("/api")
 public class TeamApi {
     TeamService teamService;
 
     @PostMapping("/team")
-    public TeamDto saveTeam(@RequestBody  TeamDto teamDto) throws PlayersNotSufficientException, MaximumPlayersLimitException, PlayerExistInAnotherTeamException {
+    public TeamDto saveTeam(@RequestBody  TeamDto teamDto) throws PlayersNotSufficientException, MaximumPlayersLimitException {
         return teamService.saveTeam(teamDto);
     }
 
