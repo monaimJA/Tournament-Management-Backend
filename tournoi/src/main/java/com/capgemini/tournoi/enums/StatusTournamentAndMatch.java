@@ -5,4 +5,5 @@ public enum StatusTournamentAndMatch {
     QUART_FINAL,
     DEMI_FINAL,
     FINAL
+
 }

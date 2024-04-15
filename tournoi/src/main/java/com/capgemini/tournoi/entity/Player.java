@@ -12,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = "team")
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

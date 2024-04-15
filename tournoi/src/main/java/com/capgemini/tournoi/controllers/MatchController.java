@@ -49,6 +49,11 @@ public class MatchController {
         List<Match> matches = matchServiceImpl.getAllMatches();
         return ResponseEntity.ok(matches);
     }
+    @GetMapping("/in-progress")
+    public List<MatchResponseDtoInProgress> getMatchesInProgress() {
+        return matchServiceImpl.getMatchesInProgress();
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Match> getMatchById(@PathVariable Long id) {
@@ -87,4 +92,12 @@ public class MatchController {
     public ResponseEntity<List<Match>> getLatestMatches(){
         return new ResponseEntity<>(matchRepository.getAllMatchesInCurrentTournament(),HttpStatus.OK);
     }
+    //get all matches in last Phase
+    @GetMapping("/getAllMatchesInLatestPhase")
+    public List<MatchResponseDtoInProgress> getAllMatchesInLatestPhase() {
+        return matchServiceImpl.getAllMatchesInLatestPhase();
+    }
+
+
+
 }

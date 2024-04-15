@@ -1,24 +1,10 @@
 package com.capgemini.tournoi;
 
-import com.capgemini.tournoi.entity.*;
-import com.capgemini.tournoi.enums.PlayerStatus;
-import com.capgemini.tournoi.enums.StatusTeam;
-import com.capgemini.tournoi.repos.*;
-import com.capgemini.tournoi.security.entities.AppRole;
-import com.capgemini.tournoi.security.service.AccountService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Date;
-import java.util.stream.Stream;
 
 @SpringBootApplication
 public class TournoiApplication {
@@ -26,6 +12,63 @@ public class TournoiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TournoiApplication.class, args);
 	}
+
+	/*@Bean
+	CommandLineRunner start(AccountService accountService,
+							TeamRepository teamsRepository,
+							PlayerRepository playerRepository,
+							SiteRepository siteRepository,
+							TournamentRepository tournamentRepository,
+							MatchRepository matchRepository,
+							ScoreRepository scoreRepository,
+							GoalRepository goalRepository){
+		return args->{
+			accountService.save(new AppRole(null,"USER"));
+			accountService.save(new AppRole(null,"ADMIN"));
+			Stream.of("user1","user2","user3","admin").forEach(un->{
+				accountService.saveUser(un,"1234","1234");
+			});
+			accountService.addRoleToUser("admin","ADMIN");
+			Stream.of("amin","kamal","samir","said","khalid","zakaria","rachid","moussa","mohamed","salim"
+					,"rhal","driss","sulaiman","abdelfattah","el mahdi","hamid","salm","aimad","karim","saad").forEach(
+					firstname -> playerRepository.save(Player.builder()
+									.firstName(firstname)
+									.lastName("Doe")
+									.email(firstname+"@gmail.com")
+									.phoneNumber("0661265345")
+									.playerStatus(PlayerStatus.OBLIGATOIRE)
+							.build())
+			);
+			Stream.of("RABAT", "CASABLANCA").forEach(
+					name -> {
+						siteRepository.save(Site.builder()
+										.name(name)
+								.build());
+					}
+			);
+			LocalDate startDate = LocalDate.now();
+			Stream.of("Ramathon", "Tounament22").forEach(
+					label -> {
+						tournamentRepository.save(
+								Tournament.builder()
+										.label(label)
+										.startDate(startDate)
+										.endDate(startDate.plusDays(30))
+										.statusTournament(StatusTournament.INSCRIPTION)
+										.build()
+						);
+					}
+			);
+			Stream.of("Real Madrid","Barcelona").forEach(
+					name -> {
+						teamsRepository.save(Team.builder()
+										.name(name)
+										.statusTeam(StatusTeam.INSCRIPTION)
+										.site(siteRepository.findSiteByNameIs("CASABLANCA"))
+										.tournament(tournamentRepository.findAll().get(0))
+								.build());
+					}
+			);
 
 	/*@Bean
 	CommandLineRunner start(AccountService accountService,

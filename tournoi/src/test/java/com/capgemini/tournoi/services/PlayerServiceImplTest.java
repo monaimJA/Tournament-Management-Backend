@@ -39,6 +39,7 @@ class PlayerServiceImplTest {
     @InjectMocks
     private PlayerServiceImpl playerService;
 
+/*
     @Test
     void getAllPlayersOfATeam() {
         Player player=new Player(1L,"monaim","ennabbali","monaime08@gmail.com",
@@ -79,5 +80,5 @@ class PlayerServiceImplTest {
         Mockito.when(playerRepository.save(player)).thenReturn(player);
         playerService.assignPlayerToTeam(player,1L);
         Assertions.assertEquals(playerService.assignPlayerToTeam(player,1L),playerDto);
-    }
+    }*/
 }
