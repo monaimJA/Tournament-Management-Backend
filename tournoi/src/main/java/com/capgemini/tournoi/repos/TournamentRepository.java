@@ -10,4 +10,6 @@ public interface TournamentRepository extends JpaRepository<Tournament, Long> {
 
     @Query(value = "select * from tournament t where t.in_progress=true",nativeQuery = true)
     public Tournament checkExistTournamentInProgress();
+
+    Tournament findByInProgressTrue();
 }
