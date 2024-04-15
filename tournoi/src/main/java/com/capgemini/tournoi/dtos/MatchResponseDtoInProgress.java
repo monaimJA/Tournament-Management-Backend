@@ -1,7 +1,5 @@
 package com.capgemini.tournoi.dtos;
 
-import com.capgemini.tournoi.entity.Goal;
-import com.capgemini.tournoi.entity.Score;
 import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,16 +13,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class MatchResponseDto {
-    private long id;
+public class MatchResponseDtoInProgress {
+    private String team1Name;
+    private String team2Name;
+    private List<String> playersTeam1;
+    private List<String> playersTeam2;
     private LocalDate startTime;
-    private TeamDto nameTeam1;
-    private TeamDto nameTeam2;
-    private List<Goal> goals;
-    private String nameWinnerTeam;
-    private String labelTournament;
     private StatusTournamentAndMatch statusTournamentAndMatch;
-    private List<String> namePlayersTeam1;
-    private List<String> namePlayersTeam2;
-
+    private Integer scoreTeam1;
+    private Integer scoreTeam2;
+    private  String nameWinnerTeam;
 }

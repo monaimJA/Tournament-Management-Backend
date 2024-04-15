@@ -1,8 +1,10 @@
 package com.capgemini.tournoi.services;
 
 import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
+import com.capgemini.tournoi.dtos.MatchResponseDtoInProgress;
 import com.capgemini.tournoi.dtos.ModifyTournamentRequestDto;
 import com.capgemini.tournoi.dtos.TournamentResponseDto;
+import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
@@ -10,11 +12,10 @@ import com.capgemini.tournoi.error.TournamentAlreadyInProgressException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentDateException;
 import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
+import com.capgemini.tournoi.mappers.MatchMapper;
 import com.capgemini.tournoi.mappers.TournamentMapper;
-import com.capgemini.tournoi.repos.GoalRepository;
-import com.capgemini.tournoi.repos.PlayerRepository;
-import com.capgemini.tournoi.repos.TeamRepository;
-import com.capgemini.tournoi.repos.TournamentRepository;
+import com.capgemini.tournoi.repos.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,11 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class TournamentServiceImpl implements TournamentService{
+    @Autowired
+    private MatchRepository matchRepository;
+
+    @Autowired
+    private MatchMapper matchMapper;
 
 
     private final TournamentRepository tournamentRepository;
@@ -106,4 +112,9 @@ public class TournamentServiceImpl implements TournamentService{
         tournament.setEndDate(updatedTournament.getEndDate() != null ? updatedTournament.getEndDate() : tournament.getEndDate());
         return TournamentMapper.fromTournament(tournament);
     }
+
+
+
+
+
 }

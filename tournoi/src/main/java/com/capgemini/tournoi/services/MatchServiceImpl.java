@@ -3,8 +3,10 @@ package com.capgemini.tournoi.services;
 import com.capgemini.tournoi.dtos.MatchRequestDTO;
 import com.capgemini.tournoi.dtos.MatchResponseDto;
 import com.capgemini.tournoi.dtos.MatchResponseDtoFront;
+import com.capgemini.tournoi.dtos.MatchResponseDtoInProgress;
 import com.capgemini.tournoi.entity.*;
 import com.capgemini.tournoi.enums.StatusTeam;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import com.capgemini.tournoi.error.MatchNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 
@@ -24,10 +26,12 @@ public class MatchServiceImpl  implements MatchServiceInterface {
     private MatchRepository matchRepository;
     @Autowired
     private TeamRepository teamRepository;
+    @Autowired
+    private  MatchMapper matchMapper;
 
 
     public Match createMatch(MatchRequestDTO matchRequest) throws TeamNotFoundException {
-        Match newMatch = MatchMapper.fromMatchDTO(matchRequest);
+        Match newMatch = matchMapper.fromMatchDTO(matchRequest);
         newMatch.setStartTime(matchRequest.getStartTime());
         newMatch.setId(matchRequest.getId());
         Team team1 = teamRepository.findById(matchRequest.getTeamId1()).orElseThrow(() -> new TeamNotFoundException("Equipe 1 non trouvée avec l'ID fourni"));
@@ -39,17 +43,24 @@ public class MatchServiceImpl  implements MatchServiceInterface {
     }
 
 
-    public List<MatchResponseDto> getAllMatches() {
+    public List<MatchResponseDtoInProgress> getAllMatchesF() {
         return matchRepository.findAll().stream()
-                .map(MatchMapper::fromMatch)
+                .map(match -> {
+                   // System.out.println(match.getTeam1().getPlayers());
+                   // System.out.println(match);
+                    return matchMapper.convertToDto(match);
+                })
                 .collect(Collectors.toList());
     }
+
+
+
 
 
     public MatchResponseDto getMatchById(Long id) throws MatchNotFoundException {
         Match match = matchRepository.findById(id)
                 .orElseThrow(() -> new MatchNotFoundException("match with this id " + id + " not exist"));
-        return MatchMapper.fromMatch(match);
+        return matchMapper.fromMatch(match);
 
     }
 
@@ -126,13 +137,32 @@ public class MatchServiceImpl  implements MatchServiceInterface {
 
     }
 
-    public List<MatchResponseDtoFront> getAllMatchesFront() {
-        List<Match> matches = matchRepository.findAll();
-        return matches.stream()
-                .map(MatchMapper::fromMatchToFront)
+    @Override
+    public List<MatchResponseDtoInProgress> getAllMatchesInLatestPhase() {
+        return matchRepository.getLatestMatchesInCurrentTournament(true).stream()
+                .map(match -> {
+                    // System.out.println(match.getTeam1().getPlayers());
+                    // System.out.println(match);
+                    return matchMapper.convertToDto(match);
+                })
                 .collect(Collectors.toList());
-
-
     }
+
+
+    @Override
+    public List<MatchResponseDtoInProgress> getMatchesInProgress() {
+
+        return matchRepository.getMatchesInCurrentTournament(true).stream().map(match ->
+        {
+            return matchMapper.convertToDto(match);
+        })
+                .collect((Collectors.toList()));
+    }
+
+
+
+
+
+
 }
 

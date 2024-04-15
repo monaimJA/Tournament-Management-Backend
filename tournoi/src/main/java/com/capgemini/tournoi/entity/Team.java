@@ -1,6 +1,7 @@
 package com.capgemini.tournoi.entity;
 
 import com.capgemini.tournoi.enums.StatusTeam;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,5 +1,6 @@
 package com.capgemini.tournoi.dtos;
 
+import com.capgemini.tournoi.entity.Player;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,8 +19,6 @@ public class MatchResponseDtoFront {
         private int team1Score;
         private int team2Score;
         private String winnerTeamName;
-        private List<String> team1Players;
-        private List<String> team2Players;
     }
 
 

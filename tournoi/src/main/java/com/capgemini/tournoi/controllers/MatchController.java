@@ -1,9 +1,6 @@
 package com.capgemini.tournoi.controllers;
 
-import com.capgemini.tournoi.dtos.MatchRequestDTO;
-import com.capgemini.tournoi.dtos.MatchResponseDto;
-import com.capgemini.tournoi.dtos.MatchResponseDtoFront;
-import com.capgemini.tournoi.dtos.TournamentResponseDto;
+import com.capgemini.tournoi.dtos.*;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Score;
@@ -18,11 +15,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/api/match")
 public class MatchController {
     @Autowired
     private MatchServiceImpl matchServiceImpl;
+
 
     @PostMapping("/create")
     public ResponseEntity<Match> createMatch(@RequestBody MatchRequestDTO matchDOT) throws TeamNotFoundException {
@@ -45,15 +44,13 @@ public class MatchController {
 
 
     @GetMapping("/all")
-    public List<MatchResponseDto> getAllMatches() {
-        return matchServiceImpl.getAllMatches();
+    public List<MatchResponseDtoInProgress> getAllMatches() {
+        return matchServiceImpl.getAllMatchesF();
     }
-
-    @GetMapping("/matches")
-    public List<MatchResponseDtoFront> getAllMatchesFront() {
-        return matchServiceImpl.getAllMatchesFront();
+    @GetMapping("/in-progress")
+    public List<MatchResponseDtoInProgress> getMatchesInProgress() {
+        return matchServiceImpl.getMatchesInProgress();
     }
-
 
 
     @GetMapping("/{id}")
@@ -85,4 +82,12 @@ public class MatchController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/getAllMatchesInLatestPhase")
+    public List<MatchResponseDtoInProgress> getAllMatchesInLatestPhase() {
+        return matchServiceImpl.getAllMatchesInLatestPhase();
+    }
+
+
+
 }
