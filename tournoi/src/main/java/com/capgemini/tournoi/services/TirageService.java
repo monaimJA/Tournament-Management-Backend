@@ -16,8 +16,7 @@ public class TirageService {
 
     @Autowired
     private TeamRepository teamRepository;
-    public List<List<Team>> lancer(@PathVariable long tournoiId){
-        List<Team> teams=teamRepository.findByTournamentId(tournoiId);
+    public List<List<Team>> lancer(List<Team> teams){
         Collections.shuffle(teams);
         return getLists(teams);
     }

@@ -12,15 +12,11 @@ import java.util.List;
 
 @Data
 public class TeamDto {
-
+    
     private Long id;
     private String name;
     private Site site;
     private StatusTeam statusTeam;
-    private List<Player> players;
-    private Tournament tournament;
-
-
-
-
+    private List<PlayerDto> players;
+    private TournamentResponseDto tournament;
 }

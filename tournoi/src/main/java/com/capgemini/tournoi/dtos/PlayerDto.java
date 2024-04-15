@@ -20,4 +20,6 @@ public class PlayerDto {
     private String phoneNumber;
     private PlayerStatus playerStatus;
     private String teamName;
+    private Integer numberOfRedCards;
+    private Integer numberOfYellowCards;
 }

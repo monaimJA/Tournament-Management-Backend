@@ -1,6 +1,6 @@
 package com.capgemini.tournoi.services;
 
-import com.capgemini.tournoi.dtos.PlayerInscriptionDto;
+import com.capgemini.tournoi.dtos.PlayerDto;
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.dtos.TeamGetDto;
 import com.capgemini.tournoi.entity.Player;
@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,13 +35,19 @@ public class TeamServiceImpl implements TeamService{
     SiteRepository siteRepository;
 
     @Override
-    public TeamDto saveTeam(TeamDto teamDto) throws MaximumPlayersLimitException, PlayersNotSufficientException {
+    public TeamDto saveTeam(TeamDto teamDto) throws MaximumPlayersLimitException, PlayersNotSufficientException, PlayerExistInAnotherTeamException {
         Team team=teamMapper.fromTeamDto(teamDto);
         if (team.getPlayers().size() > 8) {
             throw new MaximumPlayersLimitException("too much players");
         }
         if (team.getPlayers().size() < 8 ) {
             throw new PlayersNotSufficientException("players not sufficient");
+        }
+        for(Player player:team.getPlayers()){
+            if(playerRepository.findPlayerByEmail(player.getEmail())==null){
+                throw new PlayerExistInAnotherTeamException
+                        ("the player with id="+player.getId()+" already exist in another team");
+            }
         }
         Team savedTeam = teamRepository.save(team);
         return teamMapper.fromTeam(savedTeam);

@@ -23,6 +23,7 @@ public class Player {
     private String lastName;
     private String email;
     private String phoneNumber;
+    @Enumerated(value = EnumType.STRING)
     private PlayerStatus playerStatus;
     @OneToMany
     private List<Card> cards;

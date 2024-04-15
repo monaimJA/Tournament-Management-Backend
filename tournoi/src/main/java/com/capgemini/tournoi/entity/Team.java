@@ -13,11 +13,12 @@ import java.util.List;
 @Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @ManyToOne
     private Site site;
+    @Enumerated(value = EnumType.STRING)
     private StatusTeam statusTeam;
     @OneToMany(mappedBy = "team")
     private List<Player> players;

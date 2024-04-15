@@ -2,18 +2,17 @@ package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.PlayerDto;
 import com.capgemini.tournoi.dtos.TeamDto;
+import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
-import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.enums.CardType;
-import com.capgemini.tournoi.enums.StatusTournament;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.services.PlayerService;
-import com.capgemini.tournoi.utils.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.context.Context;
 
 import java.util.List;
 
@@ -23,9 +22,6 @@ public class PlayerController {
 
     @Autowired
     private PlayerService playerService;
-
-    @Autowired
-    private EmailService emailService;
 
     @GetMapping("/team/{id}/players")
     public ResponseEntity<List<PlayerDto>> getAllPlayersOfATeam(@PathVariable("id") long id){
@@ -69,9 +65,9 @@ public class PlayerController {
         return new ResponseEntity<>(players,HttpStatus.OK);
     }
     @GetMapping("/changeStatus/{tournament_id}")
-    public ResponseEntity<String> notifyPlayers(@PathVariable long tournament_id,
-                                                @RequestParam("statusTournament") StatusTournament statusTournament){
-        playerService.notifyPlayers(tournament_id,statusTournament);
-        return ResponseEntity.ok("HTML email sent successfully!");
+    public ResponseEntity<List<Match>> notifyPlayers(@PathVariable long tournament_id,
+                                                @RequestParam("statusTournamentAndMatch") StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException {
+        List<Match> matches=playerService.notifyPlayers(tournament_id, statusTournamentAndMatch);
+        return new ResponseEntity<>(matches,HttpStatus.OK);
     }
 }

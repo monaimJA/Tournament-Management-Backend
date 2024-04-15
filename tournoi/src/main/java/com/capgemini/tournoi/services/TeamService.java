@@ -1,5 +1,6 @@
 package com.capgemini.tournoi.services;
 
+import com.capgemini.tournoi.dtos.PlayerDto;
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.dtos.TeamGetDto;
 import com.capgemini.tournoi.entity.Site;
@@ -18,6 +19,8 @@ public interface TeamService {
     TeamDto getTeam(Long id) throws TeamNotFoundException;
     TeamDto updateStatus(Long id,TeamDto teamDto);
     List<Site> getSites();
+
+    TeamDto changeTeamPlayer(Long playerId,PlayerDto playerDto,Long tournamentId) throws PlayerNotFoundException, TournamentNotFoundException, ChangePlayersOfTeamDuringTournamentException;
 
 
 
