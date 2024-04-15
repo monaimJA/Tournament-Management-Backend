@@ -10,6 +10,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -108,6 +110,18 @@ public class TournoiApplication {
 //			matchRepository.save(match);
 //		};
 //	}
+
+//	@Bean
+//	public JavaMailSender javaMailSender() {
+//		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+//
+//		mailSender.setHost("host");
+//		mailSender.setPort(25);
+//		mailSender.setUsername("name");
+//		mailSender.setPassword("password");
+//		return mailSender;
+//	}
+
 	@Bean
 	BCryptPasswordEncoder getBCPE(){
 		return new BCryptPasswordEncoder();

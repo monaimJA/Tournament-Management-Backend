@@ -20,7 +20,6 @@ public interface TeamService {
     TeamDto updateStatus(Long id,TeamDto teamDto);
     List<Site> getSites();
 
-    TeamDto changeTeamPlayer(Long playerId,PlayerDto playerDto,Long tournamentId) throws PlayerNotFoundException, TournamentNotFoundException, ChangePlayersOfTeamDuringTournamentException;
 
 
 
