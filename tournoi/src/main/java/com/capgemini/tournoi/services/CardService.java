@@ -2,6 +2,7 @@ package com.capgemini.tournoi.services;
 
 import com.capgemini.tournoi.dtos.CardDto;
 import com.capgemini.tournoi.entity.Card;
+import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.mappers.CardMapper;
 import com.capgemini.tournoi.repos.CardRepository;
 import javax.persistence.EntityNotFoundException;
@@ -121,6 +122,18 @@ public class CardService {
         }
         catch (Exception ex){
             throw new Exception("Error occurred in the updateCardById : "+ cardDto.getId());
+        }
+    }
+
+    public List<CardDto> getCardByTournamentId(long tournamentId) throws Exception {
+        try {
+                List<Match> matches = matchRepository.findByTournamentId(tournamentId);
+                List<Card> cards = cardRepository.findByMatchIn(matches);
+            return cards.stream()
+                    .map(card -> cardMapper.convertToDto(card))
+                    .collect(Collectors.toList());
+        } catch (Exception ex) {
+            throw new Exception("Error occurred in the getCardByTournamentId : " + tournamentId);
         }
     }
 }

@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 
 public interface MatchRepository extends JpaRepository<Match, Long> {
+    List<Match> findByTournamentId(Long tournamentId);
     public List<Match> findAllByTournament_IdAndStatusMatch(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch);
 }
