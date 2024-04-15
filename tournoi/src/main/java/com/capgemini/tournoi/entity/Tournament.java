@@ -28,4 +28,6 @@ public class Tournament {
     private Boolean inProgress;
     @OneToMany
     private List<Team> teams;
+    private Boolean inProgress;
+
 }
