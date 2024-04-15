@@ -13,6 +13,62 @@ public class TournoiApplication {
 		SpringApplication.run(TournoiApplication.class, args);
 	}
 
+	/*@Bean
+	CommandLineRunner start(AccountService accountService,
+							TeamRepository teamsRepository,
+							PlayerRepository playerRepository,
+							SiteRepository siteRepository,
+							TournamentRepository tournamentRepository,
+							MatchRepository matchRepository,
+							ScoreRepository scoreRepository,
+							GoalRepository goalRepository){
+		return args->{
+			accountService.save(new AppRole(null,"USER"));
+			accountService.save(new AppRole(null,"ADMIN"));
+			Stream.of("user1","user2","user3","admin").forEach(un->{
+				accountService.saveUser(un,"1234","1234");
+			});
+			accountService.addRoleToUser("admin","ADMIN");
+			Stream.of("amin","kamal","samir","said","khalid","zakaria","rachid","moussa","mohamed","salim"
+					,"rhal","driss","sulaiman","abdelfattah","el mahdi","hamid","salm","aimad","karim","saad").forEach(
+					firstname -> playerRepository.save(Player.builder()
+									.firstName(firstname)
+									.lastName("Doe")
+									.email(firstname+"@gmail.com")
+									.phoneNumber("0661265345")
+									.playerStatus(PlayerStatus.OBLIGATOIRE)
+							.build())
+			);
+			Stream.of("RABAT", "CASABLANCA").forEach(
+					name -> {
+						siteRepository.save(Site.builder()
+										.name(name)
+								.build());
+					}
+			);
+			LocalDate startDate = LocalDate.now();
+			Stream.of("Ramathon", "Tounament22").forEach(
+					label -> {
+						tournamentRepository.save(
+								Tournament.builder()
+										.label(label)
+										.startDate(startDate)
+										.endDate(startDate.plusDays(30))
+										.statusTournament(StatusTournament.INSCRIPTION)
+										.build()
+						);
+					}
+			);
+			Stream.of("Real Madrid","Barcelona").forEach(
+					name -> {
+						teamsRepository.save(Team.builder()
+										.name(name)
+										.statusTeam(StatusTeam.INSCRIPTION)
+										.site(siteRepository.findSiteByNameIs("CASABLANCA"))
+										.tournament(tournamentRepository.findAll().get(0))
+								.build());
+					}
+			);
 
 	/*@Bean
 	CommandLineRunner start(AccountService accountService,
@@ -96,6 +152,7 @@ public class TournoiApplication {
 			matchRepository.save(match);
 		};
 	}
+	 */
 	@Bean
 	BCryptPasswordEncoder getBCPE(){
 		return new BCryptPasswordEncoder();
