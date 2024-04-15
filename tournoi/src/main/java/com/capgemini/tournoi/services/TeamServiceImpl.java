@@ -4,6 +4,7 @@ import com.capgemini.tournoi.dtos.PlayerInscriptionDto;
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.dtos.TeamGetDto;
 import com.capgemini.tournoi.entity.Player;
+import com.capgemini.tournoi.entity.Site;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
 import com.capgemini.tournoi.globalExceptions.MaximumPlayersLimitException;
@@ -12,6 +13,7 @@ import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TwoTeamsPlayerException;
 import com.capgemini.tournoi.mappers.TeamMapper;
 import com.capgemini.tournoi.repos.PlayerRepository;
+import com.capgemini.tournoi.repos.SiteRepository;
 import com.capgemini.tournoi.repos.TeamRepository;
 import com.capgemini.tournoi.repos.TournamentRepository;
 import lombok.AllArgsConstructor;
@@ -29,6 +31,7 @@ public class TeamServiceImpl implements TeamService{
     TeamMapper teamMapper;
     PlayerRepository playerRepository;
     TournamentRepository tournamentRepository;
+    SiteRepository siteRepository;
 
     @Override
     public TeamDto saveTeam(TeamDto teamDto) throws MaximumPlayersLimitException, PlayersNotSufficientException {
@@ -58,7 +61,7 @@ public class TeamServiceImpl implements TeamService{
         }
 
         try {
-            Tournament tournament = tournamentRepository.findByCurrentTrue();
+            Tournament tournament = tournamentRepository.findByInProgressTrue();
             team.setTournament(tournament);
         } catch (Exception e) {
             throw new RuntimeException("0 or more than 1 tournament is current");
@@ -120,6 +123,11 @@ public class TeamServiceImpl implements TeamService{
         teamRepository.save(team);
 
         return teamMapper.fromTeam(team);
+    }
+
+    @Override
+    public List<Site> getSites() {
+        return siteRepository.findAll();
     }
 
 

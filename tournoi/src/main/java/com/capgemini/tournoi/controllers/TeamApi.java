@@ -2,6 +2,7 @@ package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.dtos.TeamGetDto;
+import com.capgemini.tournoi.entity.Site;
 import com.capgemini.tournoi.globalExceptions.MaximumPlayersLimitException;
 import com.capgemini.tournoi.globalExceptions.PlayersNotSufficientException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
@@ -50,6 +51,9 @@ public class TeamApi {
         return teamService.updateStatus(id,teamDto);
     }
 
-
+    @GetMapping("/site/all")
+    public List<Site> site(){
+        return teamService.getSites();
+    }
 
 }
