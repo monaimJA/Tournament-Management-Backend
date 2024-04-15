@@ -26,12 +26,6 @@ public class PlayerController {
     @Autowired
     private PlayerService playerService;
 
-    @Autowired
-    private PlayerRepository playerRepository;
-
-    @Autowired
-    private MatchRepository matchRepository;
-
     @GetMapping("/team/{id}/players")
     public ResponseEntity<List<PlayerDto>> getAllPlayersOfATeam(@PathVariable("id") long id){
         List<PlayerDto> players=playerService.getAllPlayersOfATeam(id);
@@ -78,14 +72,5 @@ public class PlayerController {
                                                 @RequestParam("statusTournamentAndMatch") StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException, TournamentNotFoundException {
         List<Match> matches=playerService.notifyPlayers(tournament_id, statusTournamentAndMatch);
         return new ResponseEntity<>(matches,HttpStatus.OK);
-    }
-
-    @GetMapping("/getAllMatches")
-    public ResponseEntity<List<Match>> getAllMatchesOfCurrentTournament() {
-        return new ResponseEntity<>(matchRepository.getAllMatchesInCurrentTournament(),HttpStatus.OK);
-    }
-    @GetMapping("/getLatestMatches")
-    public ResponseEntity<List<Match>> getLatestMatches(){
-        return new ResponseEntity<>(matchRepository.getAllMatchesInCurrentTournament(),HttpStatus.OK);
     }
 }

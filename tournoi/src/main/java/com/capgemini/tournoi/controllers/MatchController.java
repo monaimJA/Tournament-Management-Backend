@@ -6,6 +6,7 @@ import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Score;
 import com.capgemini.tournoi.error.MatchNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
+import com.capgemini.tournoi.repos.MatchRepository;
 import com.capgemini.tournoi.services.MatchServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,10 +17,13 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/match")
+@RequestMapping("/api/match")
 public class MatchController {
     @Autowired
     private MatchServiceImpl matchServiceImpl;
+
+    @Autowired
+    private MatchRepository matchRepository;
 
     @PostMapping("/create")
     public ResponseEntity<Match> createMatch(@RequestBody MatchRequestDTO matchDOT) throws TeamNotFoundException {
@@ -73,5 +77,14 @@ public class MatchController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/in-progress")
+    public ResponseEntity<List<Match>> getAllMatchesOfCurrentTournament() {
+        return new ResponseEntity<>(matchRepository.getAllMatchesInCurrentTournament(),HttpStatus.OK);
+    }
+    @GetMapping("/in-progress/latest")
+    public ResponseEntity<List<Match>> getLatestMatches(){
+        return new ResponseEntity<>(matchRepository.getAllMatchesInCurrentTournament(),HttpStatus.OK);
     }
 }
