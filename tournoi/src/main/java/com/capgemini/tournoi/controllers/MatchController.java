@@ -1,6 +1,6 @@
 package com.capgemini.tournoi.controllers;
 
-import com.capgemini.tournoi.dtos.MatchRequestDTO;
+import com.capgemini.tournoi.dtos.*;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Score;
@@ -15,11 +15,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+
 @RestController
-@RequestMapping("/match")
+@RequestMapping("/api/match")
 public class MatchController {
     @Autowired
     private MatchServiceImpl matchServiceImpl;
+
 
     @PostMapping("/create")
     public ResponseEntity<Match> createMatch(@RequestBody MatchRequestDTO matchDOT) throws TeamNotFoundException {
@@ -40,20 +42,26 @@ public class MatchController {
         return ResponseEntity.ok(match);
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<List<Match>> getAllMatches() {
-        List<Match> matches = matchServiceImpl.getAllMatches();
-        return ResponseEntity.ok(matches);
+
+    @GetMapping("/all")
+    public List<MatchResponseDtoInProgress> getAllMatches() {
+        return matchServiceImpl.getAllMatchesF();
+    }
+    @GetMapping("/in-progress")
+    public List<MatchResponseDtoInProgress> getMatchesInProgress() {
+        return matchServiceImpl.getMatchesInProgress();
     }
 
+
     @GetMapping("/{id}")
-    public ResponseEntity<Match> getMatchById(@PathVariable Long id) {
+    public ResponseEntity<MatchResponseDto> getMatchById(@PathVariable Long id) {
         try {
-            Match match = matchServiceImpl.getMatchById(id);
-            return ResponseEntity.ok(match);
+            MatchResponseDto matchResponseDto = matchServiceImpl.getMatchById(id);
+            return ResponseEntity.ok(matchResponseDto);
         } catch (MatchNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND," Match not found with id " + id);
         }
+
     }
 
 
@@ -74,4 +82,12 @@ public class MatchController {
             return ResponseEntity.notFound().build();
         }
     }
+    //get all matches in last Phase
+    @GetMapping("/getAllMatchesInLatestPhase")
+    public List<MatchResponseDtoInProgress> getAllMatchesInLatestPhase() {
+        return matchServiceImpl.getAllMatchesInLatestPhase();
+    }
+
+
+
 }

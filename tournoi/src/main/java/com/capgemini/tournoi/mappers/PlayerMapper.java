@@ -6,6 +6,7 @@ import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.enums.CardType;
 import com.capgemini.tournoi.repos.CardRepository;
+import com.capgemini.tournoi.repos.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,8 @@ public class PlayerMapper
 {
     @Autowired
     private CardRepository cardRepository;
+    @Autowired
+    private TeamRepository teamRepository;
     public PlayerDto convertPlayerToPlayerDTO(Player player){
         PlayerDto playerDto=new PlayerDto();
         playerDto.setId(player.getId());
