@@ -1,9 +1,11 @@
 package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.TeamDto;
+import com.capgemini.tournoi.dtos.TeamGetDto;
 import com.capgemini.tournoi.globalExceptions.MaximumPlayersLimitException;
 import com.capgemini.tournoi.globalExceptions.PlayersNotSufficientException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TwoTeamsPlayerException;
 import com.capgemini.tournoi.services.TeamService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/api")
+@CrossOrigin("*")
 @AllArgsConstructor
 public class TeamApi {
     TeamService teamService;
@@ -21,7 +25,7 @@ public class TeamApi {
     }
 
     @PostMapping("/inscription")
-    public TeamDto inscription(@RequestBody  TeamDto teamDto) throws PlayersNotSufficientException, MaximumPlayersLimitException {
+    public TeamDto inscription(@RequestBody  TeamDto teamDto) throws PlayersNotSufficientException, MaximumPlayersLimitException , TwoTeamsPlayerException {
         return teamService.inscription(teamDto);
     }
 
@@ -32,7 +36,7 @@ public class TeamApi {
     }
 
     @GetMapping("/team/tournoi/{id}")
-    public List<TeamDto> teamsInTournament(@PathVariable Long id){
+    public List<TeamGetDto> teamsInTournament(@PathVariable Long id){
         return teamService.teamsListInTournament(id);
     }
 

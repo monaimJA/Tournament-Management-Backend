@@ -31,4 +31,5 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
             "inner join tournament tr on tr.id=t.tournament_id where tr.id=?1"
             ,nativeQuery = true)
     public List<Player> getAllPlayersOfATournament(long tournament_id);
+
 }

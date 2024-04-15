@@ -1,0 +1,2331 @@
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+deleted file mode 100644
+--- a/.idea/.gitignore	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ /dev/null	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
+@@ -1,3 +0,0 @@
+-# Default ignored files
+-/shelf/
+-/workspace.xml
+Index: .idea/encodings.xml
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+deleted file mode 100644
+--- a/.idea/encodings.xml	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ /dev/null	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="Encoding">
+-    <file url="file://$PROJECT_DIR$/tournoi/src/main/java" charset="UTF-8" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/tournoi.iml
+===================================================================
+diff --git a/.idea/tournoi.iml b/.idea/tournoi.iml
+deleted file mode 100644
+--- a/.idea/tournoi.iml	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ /dev/null	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module version="4">
+-  <component name="AdditionalModuleElements">
+-    <content url="file://$MODULE_DIR$" />
+-  </component>
+-</module>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+--- a/.idea/misc.xml	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ /dev/null	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
+@@ -1,14 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ExternalStorageConfigurationManager" enabled="true" />
+-  <component name="MavenProjectsManager">
+-    <option name="originalFiles">
+-      <list>
+-        <option value="$PROJECT_DIR$/tournoi/pom.xml" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+-    <output url="file://$PROJECT_DIR$/out" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/jarRepositories.xml
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+deleted file mode 100644
+--- a/.idea/jarRepositories.xml	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ /dev/null	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
+@@ -1,20 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RemoteRepositoriesConfiguration">
+-    <remote-repository>
+-      <option name="id" value="central" />
+-      <option name="name" value="Central Repository" />
+-      <option name="url" value="https://repo.maven.apache.org/maven2" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="central" />
+-      <option name="name" value="Maven Central repository" />
+-      <option name="url" value="https://repo1.maven.org/maven2" />
+-    </remote-repository>
+-    <remote-repository>
+-      <option name="id" value="jboss.community" />
+-      <option name="name" value="JBoss Community repository" />
+-      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
+-    </remote-repository>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: tournoi/src/test/java/com/capgemini/tournoi/TournoiApplicationTests.java
+===================================================================
+diff --git a/tournoi/src/test/java/com/capgemini/tournoi/TournoiApplicationTests.java b/tournoi/src/test/java/com/capgemini/tournoi/TournoiApplicationTests.java
+deleted file mode 100644
+--- a/tournoi/src/test/java/com/capgemini/tournoi/TournoiApplicationTests.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ /dev/null	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
+@@ -1,13 +0,0 @@
+-package com.capgemini.tournoi;
+-
+-import org.junit.jupiter.api.Test;
+-import org.springframework.boot.test.context.SpringBootTest;
+-
+-@SpringBootTest
+-class TournoiApplicationTests {
+-
+-	@Test
+-	void contextLoads() {
+-	}
+-
+-}
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ /dev/null	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/tournoi.iml" filepath="$PROJECT_DIR$/.idea/tournoi.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: tournoi/src/main/java/com/capgemini/tournoi/services/PlayerServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/services/PlayerServiceImpl.java b/tournoi/src/main/java/com/capgemini/tournoi/services/PlayerServiceImpl.java
+new file mode 100644
+--- /dev/null	(date 1712226954968)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/services/PlayerServiceImpl.java	(date 1712226954968)
+@@ -0,0 +1,166 @@
++package com.capgemini.tournoi.services;
++
++import com.capgemini.tournoi.dtos.PlayerDto;
++import com.capgemini.tournoi.dtos.TeamDto;
++import com.capgemini.tournoi.entity.Match;
++import com.capgemini.tournoi.entity.Player;
++import com.capgemini.tournoi.entity.Team;
++import com.capgemini.tournoi.entity.Tournament;
++import com.capgemini.tournoi.enums.CardType;
++import com.capgemini.tournoi.enums.PlayerStatus;
++import com.capgemini.tournoi.enums.StatusTournament;
++import com.capgemini.tournoi.error.PlayerNotFoundException;
++import com.capgemini.tournoi.mappers.PlayerMapper;
++import com.capgemini.tournoi.mappers.TeamMapper;
++import com.capgemini.tournoi.repos.MatchRepository;
++import com.capgemini.tournoi.repos.PlayerRepository;
++import com.capgemini.tournoi.repos.TeamRepository;
++import com.capgemini.tournoi.repos.TournamentRepository;
++import com.capgemini.tournoi.utils.EmailService;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Service;
++import org.thymeleaf.context.Context;
++
++import javax.transaction.Transactional;
++import java.util.*;
++import java.util.stream.Collectors;
++
++@Service
++public class PlayerServiceImpl implements PlayerService{
++
++    @Autowired
++    private PlayerRepository playerRepository;
++    @Autowired
++    private TeamRepository teamRepository;
++
++    @Autowired
++    private TournamentRepository tournamentRepository;
++
++    @Autowired
++    private TirageService tirageService;
++
++    @Autowired
++    private EmailService emailService;
++
++    @Autowired
++    PlayerMapper playerMapper;
++    @Autowired
++    TeamMapper teamMapper;
++
++    @Override
++    public List<PlayerDto> getAllPlayersOfATeam(long id) {
++        List<Player> players=playerRepository.findAllByTeam_Id(id);
++        return players.stream().map(player -> playerMapper.convertPlayerToPlayerDTO(player)).collect(Collectors.toList());
++    }
++
++    @Override
++    public PlayerDto getPlayerById(long id) throws PlayerNotFoundException {
++        Optional<Player> player=playerRepository.findById(id);
++        if(player.isPresent()){
++            return playerMapper.convertPlayerToPlayerDTO(player.get());
++        }else{
++            throw new PlayerNotFoundException("player with id"+id+"doesn't exit");
++        }
++    }
++
++    @Override
++    public PlayerDto assignPlayerToTeam(Player player, long teamId) {
++        Optional<Team> team=teamRepository.findById(teamId);
++        if(team.isPresent())
++        {
++            player.setPlayerStatus(PlayerStatus.INSCRIT);
++            player.setTeam(team.get());
++            return playerMapper.convertPlayerToPlayerDTO(playerRepository.save(player));
++        }else{
++            throw new RuntimeException("team with id="+teamId+"doesn't exist");
++        }
++    }
++
++    @Transactional
++    @Override
++    public TeamDto deletePlayerByIdFromTeam(long playerId,long teamId) throws PlayerNotFoundException {
++        Optional<Team> team=teamRepository.findById(teamId);
++        if(team.isPresent()){
++            Team team1=team.get();
++            List<Player> players=playerRepository.findAllByTeam_Id(teamId);
++            Optional<Long> id=players.stream().filter(player -> player.getId()==playerId).findFirst().map(Player::getId);
++                if(id.isPresent()){
++                    playerRepository.deletePLayerInTeam(playerId);
++                }else {
++                    throw new PlayerNotFoundException("player with id"+playerId+
++                            "doesn't exit");
++                }
++            return teamMapper.convertTeamToTeamDto(team1);
++        }else {
++            throw new RuntimeException("team with id doesn't exist");
++        }
++    }
++
++    @Override
++    public PlayerDto updatePlayerById(PlayerDto player, long id) {
++        Optional<Player> optionalPlayer=playerRepository.findById(id);
++        if (optionalPlayer.isPresent()){
++            Player player1=optionalPlayer.get();
++            if(player.getFirstName()!=null){
++                player1.setFirstName(player.getFirstName());
++            }
++            if (player.getLastName()!=null){
++                player1.setLastName(player.getLastName());
++            }
++            if (player.getPhoneNumber()!=null){
++                player1.setPhoneNumber(player.getPhoneNumber());
++            }
++            if(player.getPlayerStatus()!=null){
++                player1.setPlayerStatus(player.getPlayerStatus());
++            }
++            if(player.getEmail()!=null){
++                player1.setEmail(player.getEmail());
++            }
++            if (!player.getTeamName().isEmpty()){
++                player1.getTeam().setName(player.getTeamName());
++            }
++            return playerMapper.convertPlayerToPlayerDTO(playerRepository.save(player1));
++        }
++        else {
++            throw new RuntimeException("player with id="+id+"doesn't exist");
++        }
++    }
++    @Override
++    public List<PlayerDto> getPlayersInTournoiByCardType(CardType cardType, long tournoiId) {
++        List<Player> players=playerRepository.getAllInTournoiWithCard(cardType.ordinal(), tournoiId);
++        return players.stream().map(player->playerMapper.convertPlayerToPlayerDTO(player))
++                .collect(Collectors.toList());
++    }
++
++    @Override
++    public List<PlayerDto> getPlayersInMatchByCardType(long matchId, CardType cardType) {
++        List<Player> players=playerRepository.getAllInMatchWithCard(cardType.ordinal(), matchId);
++        return players.stream().map(player->playerMapper.convertPlayerToPlayerDTO(player))
++                .collect(Collectors.toList());
++    }
++
++    @Override
++    public List<PlayerDto> getAllPlayersOfTournament(long tournament_id) {
++        List<Player> players=playerRepository.getAllPlayersOfATournament(tournament_id);
++        return players.stream().map(player->playerMapper.convertPlayerToPlayerDTO(player))
++                .collect(Collectors.toList());
++    }
++
++    @Override
++    public void notifyPlayers(long tournament_id,StatusTournament statusTournament) {
++        List<PlayerDto> playerDtos =getAllPlayersOfTournament(tournament_id);
++        List<List<Team>> lists;
++        if (statusTournament == StatusTournament.QUART_FINAL) {
++            lists= tirageService.lancer(tournament_id);
++        }
++        else {
++              lists=null;
++        }
++        Context context = new Context();
++        context.setVariable("matches", lists);
++        String subject = "list of matches in the next round";
++        for (PlayerDto playerDto : playerDtos) {
++            emailService.sendEmailWithHtmlTemplate(playerDto.getEmail(), subject, "email-template", context);
++        }
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/security/web/UserForm.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/security/web/UserForm.java b/tournoi/src/main/java/com/capgemini/tournoi/security/web/UserForm.java
+new file mode 100644
+--- /dev/null	(date 1712226954958)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/security/web/UserForm.java	(date 1712226954958)
+@@ -0,0 +1,14 @@
++package com.capgemini.tournoi.security.web;
++
++import lombok.AllArgsConstructor;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++
++@Data
++@AllArgsConstructor
++@NoArgsConstructor
++class UserForm{
++    private String username;
++    private String password;
++    private String confirmedPassword;
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/repos/ScoreRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/repos/ScoreRepository.java b/tournoi/src/main/java/com/capgemini/tournoi/repos/ScoreRepository.java
+new file mode 100644
+--- /dev/null	(date 1712226954928)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/repos/ScoreRepository.java	(date 1712226954928)
+@@ -0,0 +1,9 @@
++package com.capgemini.tournoi.repos;
++
++import com.capgemini.tournoi.entity.Score;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++
++@Repository
++public interface ScoreRepository extends JpaRepository<Score, Long> {
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/repos/MatchRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/repos/MatchRepository.java b/tournoi/src/main/java/com/capgemini/tournoi/repos/MatchRepository.java
+new file mode 100644
+--- /dev/null	(date 1712226954924)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/repos/MatchRepository.java	(date 1712226954924)
+@@ -0,0 +1,11 @@
++package com.capgemini.tournoi.repos;
++
++import com.capgemini.tournoi.entity.Match;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++
++@Repository
++
++public interface MatchRepository extends JpaRepository<Match, Long> {
++
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/services/MatchServiceInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/services/MatchServiceInterface.java b/tournoi/src/main/java/com/capgemini/tournoi/services/MatchServiceInterface.java
+new file mode 100644
+--- /dev/null	(date 1712226954963)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/services/MatchServiceInterface.java	(date 1712226954963)
+@@ -0,0 +1,17 @@
++package com.capgemini.tournoi.services;
++
++import com.capgemini.tournoi.dtos.MatchRequestDTO;
++import com.capgemini.tournoi.entity.Match;
++import com.capgemini.tournoi.entity.Score;
++import com.capgemini.tournoi.error.MatchNotFoundException;
++
++import java.util.List;
++
++public interface MatchServiceInterface {
++  Match createMatch(MatchRequestDTO matchRequest);
++  List<Match> getAllMatches();
++
++  Match getMatchById(Long id) throws MatchNotFoundException;
++  Score getMatchScore(Long id);
++
++}
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <annotationProcessing>\r\n      <profile default=\"true\" name=\"Default\" enabled=\"true\" />\r\n      <profile name=\"Maven default annotation processors profile\" enabled=\"true\">\r\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\r\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\r\n        <outputRelativeToContentRoot value=\"true\" />\r\n        <module name=\"tournoi\" />\r\n      </profile>\r\n    </annotationProcessing>\r\n  </component>\r\n  <component name=\"JavacSettings\">\r\n    <option name=\"ADDITIONAL_OPTIONS_OVERRIDE\">\r\n      <module name=\"tournoi\" options=\"-parameters\" />\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/.idea/compiler.xml	(date 1712227265737)
+@@ -7,9 +7,11 @@
+         <sourceOutputDir name="target/generated-sources/annotations" />
+         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+         <outputRelativeToContentRoot value="true" />
+-        <module name="tournoi" />
+       </profile>
+     </annotationProcessing>
++    <bytecodeTargetLevel>
++      <module name="tournoi" target="1.8" />
++    </bytecodeTargetLevel>
+   </component>
+   <component name="JavacSettings">
+     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+Index: tournoi/src/main/java/com/capgemini/tournoi/services/TournamentServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/services/TournamentServiceImpl.java b/tournoi/src/main/java/com/capgemini/tournoi/services/TournamentServiceImpl.java
+new file mode 100644
+--- /dev/null	(date 1712226954976)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/services/TournamentServiceImpl.java	(date 1712226954976)
+@@ -0,0 +1,102 @@
++package com.capgemini.tournoi.services;
++
++import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
++import com.capgemini.tournoi.dtos.ModifyTournamentRequestDto;
++import com.capgemini.tournoi.dtos.TournamentResponseDto;
++import com.capgemini.tournoi.entity.Player;
++import com.capgemini.tournoi.entity.Team;
++import com.capgemini.tournoi.entity.Tournament;
++import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
++import com.capgemini.tournoi.globalExceptions.TournamentDateException;
++import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
++import com.capgemini.tournoi.mappers.TournamentMapper;
++import com.capgemini.tournoi.repos.GoalRepository;
++import com.capgemini.tournoi.repos.PlayerRepository;
++import com.capgemini.tournoi.repos.TeamRepository;
++import com.capgemini.tournoi.repos.TournamentRepository;
++import org.springframework.stereotype.Service;
++import org.springframework.transaction.annotation.Transactional;
++
++import java.util.HashMap;
++import java.util.List;
++import java.util.stream.Collectors;
++
++@Service
++@Transactional
++public class TournamentServiceImpl implements TournamentService{
++
++
++    private final TournamentRepository tournamentRepository;
++    private final PlayerRepository playerRepository;
++    private final GoalRepository goalRepository;
++    private final TeamRepository teamsRepository;
++
++    public TournamentServiceImpl(TournamentRepository tournamentRepository, PlayerRepository playerRepository, GoalRepository goalRepository, TeamRepository teamsRepository) {
++        this.tournamentRepository = tournamentRepository;
++        this.playerRepository = playerRepository;
++        this.goalRepository = goalRepository;
++        this.teamsRepository = teamsRepository;
++    }
++
++    public Tournament createTournament(CreateTournamentRequestDto tournamentDto) throws TournamentDateException {
++        if (tournamentDto.getStartDate().isAfter(tournamentDto.getEndDate())) {
++            throw new TournamentDateException("Tournament start date should not come after the end date");
++        }
++        Tournament tournament = TournamentMapper.fromTournamentDtoRequest(tournamentDto);
++        return tournamentRepository.save(tournament);
++    }
++    public List<TournamentResponseDto> getAllTournaments(){
++        return tournamentRepository.findAll().stream()
++                .map(TournamentMapper::fromTournament)
++                .collect(Collectors.toList());
++    }
++    public TournamentResponseDto getTournamentById(Long id) throws TournamentNotFoundException {
++
++        Tournament tournament = tournamentRepository.findById(id)
++                .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + id + " does not exist"));
++        return TournamentMapper.fromTournament(tournament);
++    }
++    public HashMap<String, Integer> tournamentScorers(Long tournamentId) throws TournamentNotFoundException {
++        HashMap<String, Integer> scorers = new HashMap<>();
++        Tournament tournament = tournamentRepository.findById(tournamentId)
++                .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
++        for (Team team : teamsRepository.getTeamsByTournament(tournament)) {
++            for (Player player : playerRepository.findAllByTeam(team)) {
++                scorers.put(player.getFirstName() + " " + player.getLastName(), goalRepository.findAllByPlayer(player).size());
++            }
++        }
++        return scorers;
++    }
++    public TournamentResponseDto addTeamToTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
++        Team team = teamsRepository.findById(teamId)
++                .orElseThrow(() -> new TeamNotFoundException("Team with Team id = " + teamId + " does not exist"));
++        Tournament tournament = tournamentRepository.findById(tournamentId)
++                .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
++        team.setTournament(tournament);
++        tournament.getTeams().add(team);
++        teamsRepository.save(team);
++        tournamentRepository.save(tournament);
++        return TournamentMapper.fromTournament(tournament);
++    }
++    public TournamentResponseDto deleteTeamFromTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
++        Team team = teamsRepository.findById(teamId)
++                .orElseThrow(() -> new TeamNotFoundException("Team with Team id = " + teamId + " does not exist"));
++        Tournament tournament = tournamentRepository.findById(tournamentId)
++                .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
++        tournament.getTeams().remove(team);
++        team.setTournament(null);
++        teamsRepository.save(team);
++        tournamentRepository.save(tournament);
++        return TournamentMapper.fromTournament(tournament);
++    }
++    @Override
++    public TournamentResponseDto modifyTournament(Long tournamentId, ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException {
++        Tournament tournament = tournamentRepository.findById(tournamentId)
++                .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
++        tournament.setLabel(updatedTournament.getLabel() != null ? updatedTournament.getLabel() : tournament.getLabel());
++        tournament.setStatusTournament(updatedTournament.getStatusTournament() != null ? updatedTournament.getStatusTournament() : tournament.getStatusTournament());
++        tournament.setStartDate(updatedTournament.getStartDate() != null ? updatedTournament.getStartDate() : tournament.getStartDate());
++        tournament.setEndDate(updatedTournament.getEndDate() != null ? updatedTournament.getEndDate() : tournament.getEndDate());
++        return TournamentMapper.fromTournament(tournament);
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/services/MatchServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/services/MatchServiceImpl.java b/tournoi/src/main/java/com/capgemini/tournoi/services/MatchServiceImpl.java
+new file mode 100644
+--- /dev/null	(date 1712226954960)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/services/MatchServiceImpl.java	(date 1712226954960)
+@@ -0,0 +1,77 @@
++package com.capgemini.tournoi.services;
++
++import com.capgemini.tournoi.dtos.MatchRequestDTO;
++import com.capgemini.tournoi.entity.Match;
++import com.capgemini.tournoi.entity.Player;
++import com.capgemini.tournoi.entity.Score;
++import com.capgemini.tournoi.entity.Team;
++import com.capgemini.tournoi.error.MatchNotFoundException;
++import com.capgemini.tournoi.mappers.MatchMapper;
++import com.capgemini.tournoi.repos.MatchRepository;
++import com.capgemini.tournoi.repos.TeamRepository;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Service;
++
++import java.util.List;
++import java.util.Optional;
++
++
++@Service
++public class MatchServiceImpl  implements MatchServiceInterface{
++    @Autowired
++    private MatchRepository matchRepository;
++    @Autowired
++    private TeamRepository teamRepository;
++    @Autowired
++    private MatchMapper matchMapper;
++
++    public Match createMatch(MatchRequestDTO matchRequest) {
++        Match newMatch = matchMapper.fromMatchDTO(matchRequest);
++        newMatch.setStartTime(matchRequest.getStartTime());
++        newMatch.setId(matchRequest.getId());
++        Team team1= teamRepository.findById(matchRequest.getTeamId1()).orElseThrow(() -> new IllegalArgumentException("Equipe 1 non trouvée avec l'ID fourni"));
++        Team team2 = teamRepository.findById(matchRequest.getTeamId1()).orElseThrow(() -> new IllegalArgumentException("Equipe 2 non trouvée avec l'ID fourni"));
++        newMatch.setTeam1(team1);
++        newMatch.setTeam2(team2);
++        newMatch.setScore(null);
++        return matchRepository.save(newMatch);
++    }
++
++
++
++    public List<Match> getAllMatches() {
++        return matchRepository.findAll();
++    }
++
++    public Match getMatchById(Long id) throws MatchNotFoundException {
++        Optional<Match> match = matchRepository.findById(id);
++        if(match.isPresent()){
++            return match.get();
++        }else{
++            throw new MatchNotFoundException("le match avec ce Id" +id+ "n'existe pas");
++        }
++
++    }
++
++
++    public Score getMatchScore(Long id) {
++        Match match = matchRepository.findById(id).get();
++        if (match != null) {
++            return match.getScore();
++        }
++        return null;
++    }
++
++
++
++    public List<Player> getMatchScorers(Long matchId) {
++        Match match = matchRepository.findById(matchId).orElse(null);
++        if (match != null) {
++            return match.getScorers();
++        }
++        return null;
++    }
++
++
++}
++
+Index: tournoi/src/main/java/com/capgemini/tournoi/services/PlayerService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/services/PlayerService.java b/tournoi/src/main/java/com/capgemini/tournoi/services/PlayerService.java
+new file mode 100644
+--- /dev/null	(date 1712226954965)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/services/PlayerService.java	(date 1712226954965)
+@@ -0,0 +1,27 @@
++package com.capgemini.tournoi.services;
++
++import com.capgemini.tournoi.dtos.PlayerDto;
++import com.capgemini.tournoi.dtos.TeamDto;
++import com.capgemini.tournoi.entity.Player;
++import com.capgemini.tournoi.entity.Team;
++import com.capgemini.tournoi.enums.CardType;
++import com.capgemini.tournoi.enums.StatusTournament;
++import com.capgemini.tournoi.error.PlayerNotFoundException;
++
++import javax.transaction.Transactional;
++import java.util.List;
++
++public interface PlayerService {
++    public List<PlayerDto> getAllPlayersOfATeam(long teamId);
++    public PlayerDto getPlayerById(long id) throws PlayerNotFoundException;
++    public PlayerDto assignPlayerToTeam(Player player, long teamId);
++    public TeamDto deletePlayerByIdFromTeam(long playerId,long teamId) throws PlayerNotFoundException;
++    public PlayerDto updatePlayerById(PlayerDto playerDto,long id);
++    public List<PlayerDto> getPlayersInTournoiByCardType
++            (CardType cardType,long tournoiId);
++    public List<PlayerDto> getPlayersInMatchByCardType(long matchId,CardType cardType);
++
++    public List<PlayerDto> getAllPlayersOfTournament(long tournament_id);
++
++    public void notifyPlayers(long tournament_id, StatusTournament statusTournament);
++}
+Index: tournoi/src/main/resources/templates/email-template.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/resources/templates/email-template.html b/tournoi/src/main/resources/templates/email-template.html
+new file mode 100644
+--- /dev/null	(date 1712226954983)
++++ b/tournoi/src/main/resources/templates/email-template.html	(date 1712226954983)
+@@ -0,0 +1,29 @@
++<!DOCTYPE html>
++<html xmlns:th="http://www.w3.org/1999/xhtml">
++<head>
++    <title>Liste des matches</title>
++    <style>
++        .match {
++            border: 1px solid #ccc;
++            margin-bottom: 10px;
++            padding: 10px;
++            text-align: center;
++        }
++        .team {
++            font-weight: bold;
++        }
++        .vs {
++            margin: 0 10px;
++        }
++    </style>
++</head>
++<body>
++<h1>Liste des matches</h1>
++<div th:each="match:${matches}" class="match">
++        <span class="team" th:each="team,teamIndex:${match}">
++            <span th:text="${team.name}"></span>
++            <span class="vs" th:unless="${teamIndex.last}"> vs </span>
++        </span>
++</div>
++</body>
++</html>
+\ No newline at end of file
+Index: tournoi/src/main/java/com/capgemini/tournoi/services/TournamentService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/services/TournamentService.java b/tournoi/src/main/java/com/capgemini/tournoi/services/TournamentService.java
+new file mode 100644
+--- /dev/null	(date 1712226954974)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/services/TournamentService.java	(date 1712226954974)
+@@ -0,0 +1,25 @@
++package com.capgemini.tournoi.services;
++
++import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
++import com.capgemini.tournoi.dtos.ModifyTournamentRequestDto;
++import com.capgemini.tournoi.dtos.TeamDto;
++import com.capgemini.tournoi.dtos.TournamentResponseDto;
++import com.capgemini.tournoi.entity.Team;
++import com.capgemini.tournoi.entity.Tournament;
++import com.capgemini.tournoi.enums.StatusTournament;
++import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
++import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
++import com.capgemini.tournoi.globalExceptions.TournamentDateException;
++
++import java.util.HashMap;
++import java.util.List;
++
++public interface TournamentService {
++    Tournament createTournament(CreateTournamentRequestDto tournamentDto) throws TournamentDateException;
++    List<TournamentResponseDto> getAllTournaments();
++    TournamentResponseDto getTournamentById(Long id) throws TournamentNotFoundException;
++    HashMap<String, Integer> tournamentScorers(Long tournamentId) throws TournamentNotFoundException;
++    TournamentResponseDto addTeamToTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException;
++    TournamentResponseDto deleteTeamFromTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException;
++    TournamentResponseDto modifyTournament(Long tournamentId, ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException;
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/services/TirageService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/services/TirageService.java b/tournoi/src/main/java/com/capgemini/tournoi/services/TirageService.java
+new file mode 100644
+--- /dev/null	(date 1712226954973)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/services/TirageService.java	(date 1712226954973)
+@@ -0,0 +1,37 @@
++package com.capgemini.tournoi.services;
++
++import com.capgemini.tournoi.entity.Team;
++import com.capgemini.tournoi.repos.TeamRepository;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Service;
++import org.springframework.web.bind.annotation.GetMapping;
++import org.springframework.web.bind.annotation.PathVariable;
++
++import java.util.ArrayList;
++import java.util.Collections;
++import java.util.List;
++
++@Service
++public class TirageService {
++
++    @Autowired
++    private TeamRepository teamRepository;
++    public List<List<Team>> lancer(@PathVariable long tournoiId){
++        List<Team> teams=teamRepository.findByTournamentId(tournoiId);
++        Collections.shuffle(teams);
++        return getLists(teams);
++    }
++
++    private static List<List<Team>> getLists(List<Team> teams) {
++        List<List<Team>> groupedLists = new ArrayList<>();
++        for (int i = 0; i < teams.size(); i += 2) {
++            List<Team> sublist = new ArrayList<>();
++            sublist.add(teams.get(i));
++            if (i + 1 < teams.size()) {
++                sublist.add(teams.get(i + 1));
++            }
++            groupedLists.add(sublist);
++        }
++        return groupedLists;
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/entity/Score.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.capgemini.tournoi.entity;\r\n\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Data;\r\nimport lombok.NoArgsConstructor;\r\n\r\nimport javax.persistence.*;\r\nimport java.util.List;\r\n\r\n@Entity\r\n@Data\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\npublic class Score {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.AUTO)\r\n    private long id;\r\n\r\n    @OneToMany\r\n    private List<Goal> goals;\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/entity/Score.java b/tournoi/src/main/java/com/capgemini/tournoi/entity/Score.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/entity/Score.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/entity/Score.java	(date 1712226954878)
+@@ -1,6 +1,7 @@
+ package com.capgemini.tournoi.entity;
+ 
+ import lombok.AllArgsConstructor;
++import lombok.Builder;
+ import lombok.Data;
+ import lombok.NoArgsConstructor;
+ 
+@@ -11,11 +12,15 @@
+ @Data
+ @AllArgsConstructor
+ @NoArgsConstructor
++@Builder
+ public class Score {
+     @Id
+-    @GeneratedValue(strategy = GenerationType.AUTO)
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private long id;
+ 
++    @OneToOne(mappedBy = "score")
++    @JoinColumn
++    private Match match;
+     @OneToMany
+     private List<Goal> goals;
+ 
+Index: tournoi/src/main/java/com/capgemini/tournoi/enums/PlayerStatus.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.capgemini.tournoi.enums;\r\n\r\npublic enum PlayerStatus {\r\n    CAPITAINE,\r\n    REMPLACANT,\r\n    OBLIGATOIRE\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/enums/PlayerStatus.java b/tournoi/src/main/java/com/capgemini/tournoi/enums/PlayerStatus.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/enums/PlayerStatus.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/enums/PlayerStatus.java	(date 1712226954894)
+@@ -3,5 +3,6 @@
+ public enum PlayerStatus {
+     CAPITAINE,
+     REMPLACANT,
+-    OBLIGATOIRE
++    OBLIGATOIRE,
++    INSCRIT
+ }
+Index: tournoi/src/main/java/com/capgemini/tournoi/TournoiApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.capgemini.tournoi;\r\n\r\nimport com.capgemini.tournoi.security.entities.AppRole;\r\nimport com.capgemini.tournoi.security.service.AccountService;\r\nimport org.springframework.boot.CommandLineRunner;\r\nimport org.springframework.boot.SpringApplication;\r\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\r\nimport org.springframework.context.annotation.Bean;\r\nimport org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;\r\n\r\nimport java.util.stream.Stream;\r\n\r\n@SpringBootApplication\r\npublic class TournoiApplication {\r\n\r\n\tpublic static void main(String[] args) {\r\n\t\tSpringApplication.run(TournoiApplication.class, args);\r\n\t}\r\n\r\n\t@Bean\r\n\tCommandLineRunner start(AccountService accountService){\r\n\t\treturn args->{\r\n\t\t\taccountService.save(new AppRole(null,\"USER\"));\r\n\t\t\taccountService.save(new AppRole(null,\"ADMIN\"));\r\n\t\t\tStream.of(\"user1\",\"user2\",\"user3\",\"admin\").forEach(un->{\r\n\t\t\t\taccountService.saveUser(un,\"1234\",\"1234\");\r\n\t\t\t});\r\n\t\t\taccountService.addRoleToUser(\"admin\",\"ADMIN\");\r\n\r\n\t\t};\r\n\t}\r\n\t@Bean\r\n\tBCryptPasswordEncoder getBCPE(){\r\n\t\treturn new BCryptPasswordEncoder();\r\n\t}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/TournoiApplication.java b/tournoi/src/main/java/com/capgemini/tournoi/TournoiApplication.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/TournoiApplication.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/TournoiApplication.java	(date 1712226954835)
+@@ -1,5 +1,10 @@
+ package com.capgemini.tournoi;
+ 
++import com.capgemini.tournoi.entity.*;
++import com.capgemini.tournoi.enums.PlayerStatus;
++import com.capgemini.tournoi.enums.StatusTeam;
++import com.capgemini.tournoi.enums.StatusTournament;
++import com.capgemini.tournoi.repos.*;
+ import com.capgemini.tournoi.security.entities.AppRole;
+ import com.capgemini.tournoi.security.service.AccountService;
+ import org.springframework.boot.CommandLineRunner;
+@@ -8,7 +13,11 @@
+ import org.springframework.context.annotation.Bean;
+ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+ 
++import java.time.LocalDate;
++import java.time.LocalTime;
++import java.util.Date;
+ import java.util.stream.Stream;
++import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+ 
+ @SpringBootApplication
+ public class TournoiApplication {
+@@ -18,7 +27,14 @@
+ 	}
+ 
+ 	@Bean
+-	CommandLineRunner start(AccountService accountService){
++	CommandLineRunner start(AccountService accountService,
++							TeamRepository teamsRepository,
++							PlayerRepository playerRepository,
++							SiteRepository siteRepository,
++							TournamentRepository tournamentRepository,
++							MatchRepository matchRepository,
++							ScoreRepository scoreRepository,
++							GoalRepository goalRepository){
+ 		return args->{
+ 			accountService.save(new AppRole(null,"USER"));
+ 			accountService.save(new AppRole(null,"ADMIN"));
+@@ -26,7 +42,70 @@
+ 				accountService.saveUser(un,"1234","1234");
+ 			});
+ 			accountService.addRoleToUser("admin","ADMIN");
++			Stream.of("amin","kamal","samir","said","khalid","zakaria","rachid","moussa","mohamed","salim"
++					,"rhal","driss","sulaiman","abdelfattah","el mahdi","hamid","salm","aimad","karim","saad").forEach(
++					firstname -> playerRepository.save(Player.builder()
++									.firstName(firstname)
++									.lastName("Doe")
++									.email(firstname+"@gmail.com")
++									.phoneNumber("0661265345")
++									.playerStatus(PlayerStatus.OBLIGATOIRE)
++							.build())
++			);
++			Stream.of("RABAT", "CASABLANCA").forEach(
++					name -> {
++						siteRepository.save(Site.builder()
++										.name(name)
++								.build());
++					}
++			);
++			LocalDate startDate = LocalDate.now();
++			Stream.of("Ramathon", "Tounament22").forEach(
++					label -> {
++						tournamentRepository.save(
++								Tournament.builder()
++										.label(label)
++										.startDate(startDate)
++										.endDate(startDate.plusDays(30))
++										.statusTournament(StatusTournament.INSCRIPTION)
++										.build()
++						);
++					}
++			);
++			Stream.of("Real Madrid","Barcelona").forEach(
++					name -> {
++						teamsRepository.save(Team.builder()
++										.name(name)
++										.statusTeam(StatusTeam.INSCRIPTION)
++										.site(siteRepository.findSiteByNameIs("CASABLANCA"))
++										.tournament(tournamentRepository.findAll().get(0))
++								.build());
++					}
++			);
+ 
++			playerRepository.findAll().forEach(
++					player -> {
++						player.setTeam(Math.random() > 0.5 ? teamsRepository.findAll().get(0) : teamsRepository.findAll().get(1));
++						playerRepository.save(player);
++					}
++			);
++			matchRepository.save(Match.builder()
++							.team1(teamsRepository.findAll().get(0))
++							.team2(teamsRepository.findAll().get(1))
++							.startTime(new Date())
++							.score(scoreRepository.save(Score.builder().build()))
++					.build());
++			Match match = matchRepository.findAll().get(0);
++			for (int i =0 ; i < playerRepository.findAll().size() ; i++) {
++				for (int j = 0; j < i; j++) {
++					match.getScore().getGoals().add(goalRepository.save(Goal.builder()
++							.time(LocalTime.of(1, 23, 35))
++							.player(playerRepository.findAll().get(i))
++							.build()));
++					scoreRepository.save(match.getScore());
++				}
++			}
++			matchRepository.save(match);
+ 		};
+ 	}
+ 	@Bean
+Index: tournoi/src/main/java/com/capgemini/tournoi/entity/Site.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.capgemini.tournoi.entity;\r\n\r\n\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Data;\r\nimport lombok.NoArgsConstructor;\r\n\r\nimport javax.persistence.Entity;\r\nimport javax.persistence.GeneratedValue;\r\nimport javax.persistence.GenerationType;\r\nimport javax.persistence.Id;\r\n\r\n@Entity\r\n@Data\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\npublic class Site {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.AUTO)\r\n    private long id;\r\n    private String name;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/entity/Site.java b/tournoi/src/main/java/com/capgemini/tournoi/entity/Site.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/entity/Site.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/entity/Site.java	(date 1712226954884)
+@@ -2,6 +2,7 @@
+ 
+ 
+ import lombok.AllArgsConstructor;
++import lombok.Builder;
+ import lombok.Data;
+ import lombok.NoArgsConstructor;
+ 
+@@ -14,9 +15,10 @@
+ @Data
+ @AllArgsConstructor
+ @NoArgsConstructor
++@Builder
+ public class Site {
+     @Id
+-    @GeneratedValue(strategy = GenerationType.AUTO)
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private long id;
+     private String name;
+ }
+Index: tournoi/src/main/java/com/capgemini/tournoi/entity/Card.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.capgemini.tournoi.entity;\r\n\r\nimport com.capgemini.tournoi.enums.CardType;\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Data;\r\nimport lombok.NoArgsConstructor;\r\n\r\nimport javax.persistence.*;\r\nimport java.util.Date;\r\n\r\n@Entity\r\n@Data\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\npublic class Card {\r\n\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.AUTO)\r\n    private long id;\r\n    private Date date;\r\n\r\n    private CardType cardType;\r\n\r\n    @ManyToOne\r\n    private Player player;\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/entity/Card.java b/tournoi/src/main/java/com/capgemini/tournoi/entity/Card.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/entity/Card.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/entity/Card.java	(date 1712226954861)
+@@ -15,7 +15,7 @@
+ public class Card {
+ 
+     @Id
+-    @GeneratedValue(strategy = GenerationType.AUTO)
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private long id;
+     private Date date;
+ 
+Index: tournoi/src/main/java/com/capgemini/tournoi/entity/Goal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.capgemini.tournoi.entity;\r\n\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Data;\r\nimport lombok.NoArgsConstructor;\r\n\r\nimport javax.persistence.*;\r\n\r\n@Entity\r\n@Data\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\npublic class Goal {\r\n\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.AUTO)\r\n    private long id;\r\n    private int value;\r\n    private int time;\r\n\r\n    @OneToOne\r\n    private Player player;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/entity/Goal.java b/tournoi/src/main/java/com/capgemini/tournoi/entity/Goal.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/entity/Goal.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/entity/Goal.java	(date 1712226954866)
+@@ -1,23 +1,34 @@
+ package com.capgemini.tournoi.entity;
+ 
+ import lombok.AllArgsConstructor;
++import lombok.Builder;
+ import lombok.Data;
+ import lombok.NoArgsConstructor;
+ 
+ import javax.persistence.*;
++import java.time.LocalTime;
+ 
+ @Entity
+ @Data
+ @AllArgsConstructor
+ @NoArgsConstructor
++@Builder
+ public class Goal {
+ 
+     @Id
+-    @GeneratedValue(strategy = GenerationType.AUTO)
++    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private long id;
+-    private int value;
+-    private int time;
++    private LocalTime time;
+ 
++
++    //@OneToOne
+     @OneToOne
+     private Player player;
++
++
++
++    @ManyToOne
++    private  Match match;
++
++
+ }
+Index: tournoi/src/main/java/com/capgemini/tournoi/security/web/UserController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.capgemini.tournoi.security.web;\r\n\r\nimport com.capgemini.tournoi.security.entities.AppUser;\r\nimport lombok.Data;\r\nimport com.capgemini.tournoi.security.service.AccountService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.web.bind.annotation.PostMapping;\r\nimport org.springframework.web.bind.annotation.RequestBody;\r\nimport org.springframework.web.bind.annotation.RestController;\r\n\r\n@RestController\r\npublic class UserController {\r\n    @Autowired\r\n    private AccountService accountService;\r\n    @PostMapping(\"/register\")\r\n    public AppUser register(@RequestBody  UserForm userForm){\r\n        return  accountService.saveUser(\r\n                userForm.getUsername(),userForm.getPassword(),userForm.getConfirmedPassword());\r\n    }\r\n}\r\n@Data\r\nclass UserForm{\r\n    private String username;\r\n    private String password;\r\n    private String confirmedPassword;\r\n\r\n    public String getUsername() {\r\n        return username;\r\n    }\r\n    public String getPassword() {\r\n        return password;\r\n    }\r\n\r\n    public String getConfirmedPassword() {\r\n        return password;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/security/web/UserController.java b/tournoi/src/main/java/com/capgemini/tournoi/security/web/UserController.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/security/web/UserController.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/security/web/UserController.java	(date 1712226954956)
+@@ -18,21 +18,4 @@
+                 userForm.getUsername(),userForm.getPassword(),userForm.getConfirmedPassword());
+     }
+ }
+-@Data
+-class UserForm{
+-    private String username;
+-    private String password;
+-    private String confirmedPassword;
+-
+-    public String getUsername() {
+-        return username;
+-    }
+-    public String getPassword() {
+-        return password;
+-    }
+ 
+-    public String getConfirmedPassword() {
+-        return password;
+-    }
+-
+-}
+Index: tournoi/src/main/java/com/capgemini/tournoi/security/sec/JWTAuthorizationFiler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.capgemini.tournoi.security.sec;\r\n\r\nimport com.auth0.jwt.JWT;\r\nimport com.auth0.jwt.JWTVerifier;\r\nimport com.auth0.jwt.algorithms.Algorithm;\r\nimport com.auth0.jwt.interfaces.DecodedJWT;\r\nimport org.springframework.security.authentication.UsernamePasswordAuthenticationToken;\r\nimport org.springframework.security.core.GrantedAuthority;\r\nimport org.springframework.security.core.authority.SimpleGrantedAuthority;\r\nimport org.springframework.security.core.context.SecurityContextHolder;\r\nimport org.springframework.web.filter.OncePerRequestFilter;\r\n\r\nimport javax.servlet.FilterChain;\r\nimport javax.servlet.ServletException;\r\nimport javax.servlet.http.HttpServletRequest;\r\nimport javax.servlet.http.HttpServletResponse;\r\nimport java.io.IOException;\r\nimport java.util.ArrayList;\r\nimport java.util.Collection;\r\nimport java.util.List;\r\n\r\npublic class JWTAuthorizationFiler extends OncePerRequestFilter {\r\n    @Override\r\n    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,\r\n                                    FilterChain filterChain) throws ServletException, IOException {\r\n\r\n        response.addHeader(\"Access-Control-Allow-Origin\", \"*\");\r\n        response.addHeader(\"Access-Control-Allow-Headers\", \"Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,authorization\");\r\n        response.addHeader(\"Access-Control-Expose-Headers\", \"Access-Control-Allow-Origin, Access-Control-Allow-Credentials, authorization\");\r\n        if(request.getMethod().equals(\"OPTIONS\")){\r\n            response.setStatus(HttpServletResponse.SC_OK);\r\n        }\r\n        else if(request.getRequestURI().equals(\"/login\")) {\r\n            filterChain.doFilter(request, response);\r\n            return;\r\n        }\r\n        else {\r\n            String jwtToken = request.getHeader(SecurityParams.JWT_HEADER_NAME);\r\n            System.out.println(\"Token=\"+jwtToken);\r\n            if (jwtToken == null || !jwtToken.startsWith(SecurityParams.HEADER_PREFIX)) {\r\n                filterChain.doFilter(request, response);\r\n                return;\r\n            }\r\n            JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SecurityParams.SECRET)).build();\r\n            String jwt = jwtToken.substring(SecurityParams.HEADER_PREFIX.length());\r\n            DecodedJWT decodedJWT = verifier.verify(jwt);\r\n            System.out.println(\"JWT=\"+jwt);\r\n            String username = decodedJWT.getSubject();\r\n            List<String> roles = decodedJWT.getClaims().get(\"roles\").asList(String.class);\r\n            System.out.println(\"username=\"+username);\r\n            System.out.println(\"roles=\"+roles);\r\n            Collection<GrantedAuthority> authorities = new ArrayList<>();\r\n            roles.forEach(rn -> {\r\n                authorities.add(new SimpleGrantedAuthority(rn));\r\n            });\r\n            UsernamePasswordAuthenticationToken user =\r\n                    new UsernamePasswordAuthenticationToken(username, null, authorities);\r\n            SecurityContextHolder.getContext().setAuthentication(user);\r\n            filterChain.doFilter(request, response);\r\n        }\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/security/sec/JWTAuthorizationFiler.java b/tournoi/src/main/java/com/capgemini/tournoi/security/sec/JWTAuthorizationFiler.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/security/sec/JWTAuthorizationFiler.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/security/sec/JWTAuthorizationFiler.java	(date 1712226954946)
+@@ -36,7 +36,6 @@
+         }
+         else {
+             String jwtToken = request.getHeader(SecurityParams.JWT_HEADER_NAME);
+-            System.out.println("Token="+jwtToken);
+             if (jwtToken == null || !jwtToken.startsWith(SecurityParams.HEADER_PREFIX)) {
+                 filterChain.doFilter(request, response);
+                 return;
+Index: tournoi/src/main/java/com/capgemini/tournoi/security/entities/AppUser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.capgemini.tournoi.security.entities;\r\n\r\nimport com.fasterxml.jackson.annotation.JsonProperty;\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Data;\r\nimport lombok.NoArgsConstructor;\r\nimport lombok.ToString;\r\n\r\nimport javax.persistence.*;\r\nimport java.util.ArrayList;\r\nimport java.util.Collection;\r\n@Entity\r\n@Data @AllArgsConstructor @NoArgsConstructor @ToString\r\npublic class AppUser {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Long id;\r\n    @Column(unique = true)\r\n    private String username;\r\n    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)\r\n    private String password;\r\n    private boolean actived;\r\n    @ManyToMany(fetch = FetchType.EAGER)\r\n    private Collection<AppRole> roles=new ArrayList<>();\r\n\r\n    public String getUsername() {\r\n        return username;\r\n    }\r\n    public String getPassword() {\r\n        return password;\r\n    }\r\n\r\n    public boolean isActived() {\r\n        return actived;\r\n    }\r\n\r\n    public Collection<AppRole> getRoles() {\r\n        return roles;\r\n    }\r\n\r\n    public void setUsername(String username) {\r\n        this.username = username;\r\n    }\r\n\r\n    public void setPassword(String password) {\r\n        this.password = password;\r\n    }\r\n\r\n    public void setActived(boolean actived) {\r\n        this.actived = actived;\r\n    }\r\n\r\n    public void setRoles(Collection<AppRole> roles) {\r\n        this.roles = roles;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/security/entities/AppUser.java b/tournoi/src/main/java/com/capgemini/tournoi/security/entities/AppUser.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/security/entities/AppUser.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/security/entities/AppUser.java	(date 1712226954942)
+@@ -10,7 +10,10 @@
+ import java.util.ArrayList;
+ import java.util.Collection;
+ @Entity
+-@Data @AllArgsConstructor @NoArgsConstructor @ToString
++@Data
++@AllArgsConstructor
++@NoArgsConstructor
++@ToString
+ public class AppUser {
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+@@ -22,35 +25,4 @@
+     private boolean actived;
+     @ManyToMany(fetch = FetchType.EAGER)
+     private Collection<AppRole> roles=new ArrayList<>();
+-
+-    public String getUsername() {
+-        return username;
+-    }
+-    public String getPassword() {
+-        return password;
+-    }
+-
+-    public boolean isActived() {
+-        return actived;
+-    }
+-
+-    public Collection<AppRole> getRoles() {
+-        return roles;
+-    }
+-
+-    public void setUsername(String username) {
+-        this.username = username;
+-    }
+-
+-    public void setPassword(String password) {
+-        this.password = password;
+-    }
+-
+-    public void setActived(boolean actived) {
+-        this.actived = actived;
+-    }
+-
+-    public void setRoles(Collection<AppRole> roles) {
+-        this.roles = roles;
+-    }
+ }
+Index: tournoi/src/main/java/com/capgemini/tournoi/security/entities/AppRole.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.capgemini.tournoi.security.entities;\r\n\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Data;\r\nimport lombok.NoArgsConstructor;\r\nimport lombok.ToString;\r\n\r\nimport javax.persistence.Entity;\r\nimport javax.persistence.GeneratedValue;\r\nimport javax.persistence.GenerationType;\r\nimport javax.persistence.Id;\r\n\r\n@Entity\r\n@Data @ToString\r\npublic class AppRole {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private Long id;\r\n    private String roleName;\r\n\r\n    public String getRoleName() {\r\n        return roleName;\r\n    }\r\n\r\n    public AppRole(Long id, String roleName) {\r\n        this.id = id;\r\n        this.roleName = roleName;\r\n    }\r\n    public AppRole() {\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/security/entities/AppRole.java b/tournoi/src/main/java/com/capgemini/tournoi/security/entities/AppRole.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/security/entities/AppRole.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/security/entities/AppRole.java	(date 1712226954938)
+@@ -11,21 +11,13 @@
+ import javax.persistence.Id;
+ 
+ @Entity
+-@Data @ToString
++@Data
++@AllArgsConstructor
++@NoArgsConstructor
++@ToString
+ public class AppRole {
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Long id;
+     private String roleName;
+-
+-    public String getRoleName() {
+-        return roleName;
+-    }
+-
+-    public AppRole(Long id, String roleName) {
+-        this.id = id;
+-        this.roleName = roleName;
+-    }
+-    public AppRole() {
+-    }
+ }
+Index: tournoi/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.application.name=tournoi\r\n\r\nspring.h2.console.enabled=true\r\nspring.datasource.url=jdbc:h2:mem:testdb\r\nspring.datasource.driver-class-name=org.h2.Driver\r\nspring.datasource.username=sa\r\nspring.datasource.password=admin\r\nspring.jpa.database-platform=org.hibernate.dialect.H2Dialect\r\nspring.jpa.hibernate.ddl-auto=update\r\nspring.jpa.show-sql=true\r\n\r\n\r\n\r\n#spring.datasource.url=jdbc:postgresql://localhost:5432/tournoiDB\r\n#spring.datasource.username= postgres\r\n#spring.datasource.password=1234\r\n\r\n# The SQL dialect makes Hibernate generate better SQL for the chosen database\r\nspring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect\r\n\r\n# Hibernate ddl auto (create, create-drop, validate, update)\r\n#spring.jpa.hibernate.ddl-auto = update
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/tournoi/src/main/resources/application.properties b/tournoi/src/main/resources/application.properties
+--- a/tournoi/src/main/resources/application.properties	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/resources/application.properties	(date 1712227009111)
+@@ -1,22 +1,21 @@
+-spring.application.name=tournoi
++#spring.application.name=tournoi
+ 
+-spring.h2.console.enabled=true
+-spring.datasource.url=jdbc:h2:mem:testdb
+-spring.datasource.driver-class-name=org.h2.Driver
+-spring.datasource.username=sa
+-spring.datasource.password=admin
+-spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+-spring.jpa.hibernate.ddl-auto=update
+-spring.jpa.show-sql=true
++#spring.h2.console.enabled=true
++#spring.datasource.url=jdbc:h2:mem:testdb
++#spring.datasource.driver-class-name=org.h2.Driver
++#spring.datasource.username=sa
++#spring.datasource.password=admin
++#spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
++#spring.jpa.hibernate.ddl-auto=update
++#spring.jpa.show-sql=true
+ 
+ 
+-
+-#spring.datasource.url=jdbc:postgresql://localhost:5432/tournoiDB
+-#spring.datasource.username= postgres
+-#spring.datasource.password=1234
++spring.datasource.url=jdbc:postgresql://localhost:5432/postgres_demo
++spring.datasource.username= postgres
++spring.datasource.password=1111
+ 
+ # The SQL dialect makes Hibernate generate better SQL for the chosen database
+ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.PostgreSQLDialect
+ 
+ # Hibernate ddl auto (create, create-drop, validate, update)
+-#spring.jpa.hibernate.ddl-auto = update
+\ No newline at end of file
++spring.jpa.hibernate.ddl-auto = update
+Index: tournoi/src/test/java/com/capgemini/tournoi/TournamentApplicationTests.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/test/java/com/capgemini/tournoi/TournamentApplicationTests.java b/tournoi/src/test/java/com/capgemini/tournoi/TournamentApplicationTests.java
+new file mode 100644
+--- /dev/null	(date 1712226954985)
++++ b/tournoi/src/test/java/com/capgemini/tournoi/TournamentApplicationTests.java	(date 1712226954985)
+@@ -0,0 +1,17 @@
++package com.capgemini.tournoi;
++
++import org.junit.jupiter.api.Test;
++import org.springframework.boot.test.context.SpringBootTest;
++
++@SpringBootTest
++<<<<<<<< HEAD:tournoi/src/test/java/com/capgemini/tournoi/tournamentApplicationTests.java
++class tournamentApplicationTests {
++========
++class TournamentApplicationTests {
++>>>>>>>> origin/aliensDev:tournoi/src/test/java/com/capgemini/tournoi/TournamentApplicationTests.java
++
++	@Test
++	void contextLoads() {
++	}
++
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/enums/Qualification.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/enums/Qualification.java b/tournoi/src/main/java/com/capgemini/tournoi/enums/StatusMatch.java
+rename from tournoi/src/main/java/com/capgemini/tournoi/enums/Qualification.java
+rename to tournoi/src/main/java/com/capgemini/tournoi/enums/StatusMatch.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/enums/Qualification.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/enums/StatusMatch.java	(date 1712226954895)
+@@ -1,6 +1,6 @@
+ package com.capgemini.tournoi.enums;
+ 
+-public enum Qualification {
++public enum StatusMatch {
+     QUART_FINAL,
+     DEMI_FINAL,
+     FINAL
+Index: tournoi/src/main/java/com/capgemini/tournoi/enums/StatusTournoi.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/enums/StatusTournoi.java b/tournoi/src/main/java/com/capgemini/tournoi/enums/StatusTournament.java
+rename from tournoi/src/main/java/com/capgemini/tournoi/enums/StatusTournoi.java
+rename to tournoi/src/main/java/com/capgemini/tournoi/enums/StatusTournament.java
+--- a/tournoi/src/main/java/com/capgemini/tournoi/enums/StatusTournoi.java	(revision aa79d8fbd18b9484fdd7845c67cfe881713da88b)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/enums/StatusTournament.java	(date 1712226954897)
+@@ -1,7 +1,7 @@
+ package com.capgemini.tournoi.enums;
+ 
+-public enum StatusTournoi {
+-    INSCRIPION,
++public enum StatusTournament {
++    INSCRIPTION,
+     QUART_FINAL,
+     DEMI_FINAL,
+     FINAL
+Index: tournoi/src/test/java/com/capgemini/tournoi/services/TournamentServiceImplTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/test/java/com/capgemini/tournoi/services/TournamentServiceImplTest.java b/tournoi/src/test/java/com/capgemini/tournoi/services/TournamentServiceImplTest.java
+new file mode 100644
+--- /dev/null	(date 1712226954990)
++++ b/tournoi/src/test/java/com/capgemini/tournoi/services/TournamentServiceImplTest.java	(date 1712226954990)
+@@ -0,0 +1,52 @@
++package com.capgemini.tournoi.services;
++
++import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
++import com.capgemini.tournoi.entity.Tournament;
++import com.capgemini.tournoi.enums.StatusTournament;
++import com.capgemini.tournoi.globalExceptions.TournamentDateException;
++import com.capgemini.tournoi.mappers.TournamentMapper;
++import com.capgemini.tournoi.repos.TournamentRepository;
++import org.junit.jupiter.api.Test;
++import org.junit.jupiter.api.extension.ExtendWith;
++import org.mockito.InjectMocks;
++import org.mockito.Mock;
++import org.mockito.junit.jupiter.MockitoExtension;
++
++import java.time.LocalDate;
++
++import static org.junit.jupiter.api.Assertions.*;
++import static org.mockito.Mockito.when;
++@ExtendWith(MockitoExtension.class)
++class TournamentServiceImplTest {
++    @Mock
++    TournamentMapper mapper;
++    @Mock
++    TournamentRepository tournamentRepository;
++    @InjectMocks
++    TournamentServiceImpl tournamentService ;
++    @Test
++    void should_create_tournament() throws TournamentDateException {
++        // given
++        CreateTournamentRequestDto input = new CreateTournamentRequestDto("rackathon", LocalDate.now(), LocalDate.now().plusDays(30));
++        Tournament expected = Tournament.builder().label("rackathon")
++                .startDate(LocalDate.now())
++                .endDate(LocalDate.now().plusDays(30))
++                .statusTournament(StatusTournament.INSCRIPTION)
++                .build();
++        when(mapper.fromTournamentDtoRequest(input)).thenReturn(expected);
++        when(tournamentRepository.save(expected)).thenReturn(expected);
++        // when
++        Tournament result = tournamentService.createTournament(input);
++        // then
++        assertEquals(expected, result);
++    }
++    @Test
++    void should_throw_exception_when_startDate_is_after_endDate(){
++        // given
++        CreateTournamentRequestDto input = new CreateTournamentRequestDto("rackathon", LocalDate.now(), LocalDate.now().minusDays(30));
++        // then
++        assertThrows(TournamentDateException.class, () -> {
++            tournamentService.createTournament(input);
++        }) ;
++    }
++}
+\ No newline at end of file
+Index: tournoi/src/test/java/com/capgemini/tournoi/services/PlayerServiceImplTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/test/java/com/capgemini/tournoi/services/PlayerServiceImplTest.java b/tournoi/src/test/java/com/capgemini/tournoi/services/PlayerServiceImplTest.java
+new file mode 100644
+--- /dev/null	(date 1712226954989)
++++ b/tournoi/src/test/java/com/capgemini/tournoi/services/PlayerServiceImplTest.java	(date 1712226954989)
+@@ -0,0 +1,84 @@
++package com.capgemini.tournoi.services;
++
++import com.capgemini.tournoi.dtos.PlayerDto;
++import com.capgemini.tournoi.entity.Player;
++import com.capgemini.tournoi.entity.Site;
++import com.capgemini.tournoi.entity.Team;
++import com.capgemini.tournoi.entity.Tournament;
++import com.capgemini.tournoi.enums.PlayerStatus;
++import com.capgemini.tournoi.enums.StatusTeam;
++import com.capgemini.tournoi.enums.StatusTournament;
++import com.capgemini.tournoi.error.PlayerNotFoundException;
++import com.capgemini.tournoi.mappers.PlayerMapper;
++import com.capgemini.tournoi.repos.PlayerRepository;
++import com.capgemini.tournoi.repos.TeamRepository;
++import org.junit.jupiter.api.Assertions;
++import org.junit.jupiter.api.Test;
++import org.mockito.InjectMocks;
++import org.mockito.Mock;
++import org.mockito.Mockito;
++import org.springframework.boot.test.context.SpringBootTest;
++
++import java.time.LocalDate;
++import java.util.Collections;
++import java.util.Date;
++import java.util.List;
++import java.util.Optional;
++
++@SpringBootTest
++class PlayerServiceImplTest {
++
++    @Mock
++    private PlayerRepository playerRepository;
++
++    @Mock
++    private TeamRepository teamRepository;
++
++    @Mock
++    private PlayerMapper playerMapper;
++
++    @InjectMocks
++    private PlayerServiceImpl playerService;
++
++    @Test
++    void getAllPlayersOfATeam() {
++        Player player=new Player(1L,"monaim","ennabbali","monaime08@gmail.com",
++                "0656373562", PlayerStatus.INSCRIT,null,null);
++        PlayerDto playerDto=new PlayerDto(1L,"monaim","ennabbali","monaime08@gmail.com",
++                "0656373562", PlayerStatus.INSCRIT,"team1");
++        List<Player> players= Collections.singletonList(player);
++        Mockito.when(playerRepository.findAllByTeam_Id(1L)).thenReturn(players);
++        Mockito.when(playerMapper.convertPlayerToPlayerDTO(player)).thenReturn(playerDto);
++        List<PlayerDto> playerDtos=playerService.getAllPlayersOfATeam(1L);
++        Assertions.assertEquals(playerDtos,Collections.singletonList(playerDto));
++
++    }
++
++    @Test
++    void getPlayerById() throws PlayerNotFoundException {
++        Player player=new Player(1L,"monaim","ennabbali","monaime08@gmail.com",
++                "0656373562", PlayerStatus.INSCRIT,null,null);
++        PlayerDto playerDto=new PlayerDto(1L,"monaim","ennabbali","monaime08@gmail.com",
++                "0656373562", PlayerStatus.INSCRIT,"team1");
++        Mockito.when(playerRepository.findById(1L)).thenReturn(Optional.of(player));
++        Mockito.when(playerMapper.convertPlayerToPlayerDTO(player)).thenReturn(playerDto);
++        PlayerDto playerDto1=playerService.getPlayerById(1L);
++        Assertions.assertEquals(playerDto1,playerDto);
++    }
++
++    @Test
++    void assignPlayerToTeam() {
++        Team team=new Team(1L,"team1",new Site(1L,"RABAT"), StatusTeam.INSCRIPTION,null,
++                new Tournament(1L,"tournament1",LocalDate.now() , LocalDate.now(),
++                        StatusTournament.DEMI_FINAL, null));
++        PlayerDto playerDto=new PlayerDto(1L,"monaim","ennabbali","monaime08@gmail.com",
++                "0656373562", PlayerStatus.INSCRIT,"team1");
++        Player player=new Player(1L,"monaim","ennabbali","monaime08@gmail.com",
++                "0656373562", PlayerStatus.INSCRIT,null,null);
++        Mockito.when(teamRepository.findById(1L)).thenReturn(Optional.of(team));
++        Mockito.when(playerMapper.convertPlayerToPlayerDTO(player)).thenReturn(playerDto);
++        Mockito.when(playerRepository.save(player)).thenReturn(player);
++        playerService.assignPlayerToTeam(player,1L);
++        Assertions.assertEquals(playerService.assignPlayerToTeam(player,1L),playerDto);
++    }
++}
+\ No newline at end of file
+Index: tournoi/src/main/java/com/capgemini/tournoi/controllers/MatchController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/controllers/MatchController.java b/tournoi/src/main/java/com/capgemini/tournoi/controllers/MatchController.java
+new file mode 100644
+--- /dev/null	(date 1712226954837)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/controllers/MatchController.java	(date 1712226954837)
+@@ -0,0 +1,64 @@
++package com.capgemini.tournoi.controllers;
++
++import com.capgemini.tournoi.dtos.MatchRequestDTO;
++import com.capgemini.tournoi.entity.Match;
++import com.capgemini.tournoi.entity.Player;
++import com.capgemini.tournoi.entity.Score;
++import com.capgemini.tournoi.error.MatchNotFoundException;
++import com.capgemini.tournoi.services.MatchServiceImpl;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.http.HttpStatus;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.*;
++import org.springframework.web.server.ResponseStatusException;
++
++import java.util.List;
++
++@RestController
++@RequestMapping("/match")
++public class MatchController {
++    @Autowired
++    private MatchServiceImpl matchServiceImpl;
++
++    @PostMapping("/create")
++    public ResponseEntity<Match> createMatch(@RequestBody MatchRequestDTO matchDOT) {
++        Match match = matchServiceImpl.createMatch(matchDOT);
++        return ResponseEntity.ok(match);
++    }
++
++    @GetMapping("/getAll")
++    public ResponseEntity<List<Match>> getAllMatches() {
++        List<Match> matches = matchServiceImpl.getAllMatches();
++        return ResponseEntity.ok(matches);
++    }
++
++    @GetMapping("/{id}")
++    public ResponseEntity<Match> getMatchById(@PathVariable Long id) {
++        try {
++            Match match = matchServiceImpl.getMatchById(id);
++            return ResponseEntity.ok(match);
++        } catch (MatchNotFoundException e) {
++            throw new ResponseStatusException(HttpStatus.NOT_FOUND," Match not found with id " + id);
++        }
++
++
++    }
++
++    @GetMapping("/{id}/score")
++    public ResponseEntity<Score> getMatchScore(@PathVariable Long id) {
++        Score score = matchServiceImpl.getMatchScore(id);
++        return ResponseEntity.ok(score);
++    }
++
++
++
++    @GetMapping("/{id}/scorers")
++    public ResponseEntity<List<Player>> getMatchScorers(@PathVariable Long id) {
++        List<Player> scorers = matchServiceImpl.getMatchScorers(id);
++        if (scorers != null) {
++            return ResponseEntity.ok(scorers);
++        } else {
++            return ResponseEntity.notFound().build();
++        }
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/controllers/TournamentController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/controllers/TournamentController.java b/tournoi/src/main/java/com/capgemini/tournoi/controllers/TournamentController.java
+new file mode 100644
+--- /dev/null	(date 1712226954840)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/controllers/TournamentController.java	(date 1712226954840)
+@@ -0,0 +1,57 @@
++package com.capgemini.tournoi.controllers;
++
++import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
++import com.capgemini.tournoi.dtos.ModifyTournamentRequestDto;
++import com.capgemini.tournoi.dtos.TeamDto;
++import com.capgemini.tournoi.dtos.TournamentResponseDto;
++import com.capgemini.tournoi.entity.Team;
++import com.capgemini.tournoi.entity.Tournament;
++import com.capgemini.tournoi.enums.StatusTournament;
++import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
++import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
++import com.capgemini.tournoi.globalExceptions.TournamentDateException;
++import com.capgemini.tournoi.services.TournamentService;
++import com.capgemini.tournoi.services.TournamentServiceImpl;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.web.bind.annotation.*;
++
++import java.util.HashMap;
++import java.util.List;
++
++@RestController
++@RequestMapping("tournament")
++public class TournamentController {
++
++    @Autowired
++    private TournamentService tournamentService;
++
++    @PostMapping("/create")
++    public Tournament createTournament(@RequestBody CreateTournamentRequestDto tournamentDto) throws TournamentDateException {
++        return tournamentService.createTournament(tournamentDto);
++    }
++    @GetMapping("/all")
++    public List<TournamentResponseDto> getAllTournaments() {
++        return tournamentService.getAllTournaments();
++    }
++    @GetMapping("/{id}")
++    public TournamentResponseDto getTournamentById(@PathVariable Long id) throws TournamentNotFoundException {
++        return tournamentService.getTournamentById(id);
++    }
++    @GetMapping("/{id}/scorers")
++    public HashMap<String, Integer> tournamentScorers(@PathVariable(name = "id") Long tournamentId) throws TournamentNotFoundException {
++        return tournamentService.tournamentScorers(tournamentId);
++    }
++    @PostMapping("/{id}/teams/{teamId}/add")
++    public TournamentResponseDto addTeamToTournament(@PathVariable(name = "id") Long tournamentId,@PathVariable Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
++        return tournamentService.addTeamToTournament(tournamentId, teamId);
++    }
++    @PostMapping("/{id}/teams/{teamId}/delete")
++    public TournamentResponseDto deleteTeamFromTournament(@PathVariable(name = "id") Long tournamentId,@PathVariable Long teamId) throws TeamNotFoundException, TournamentNotFoundException {
++        return tournamentService.deleteTeamFromTournament(tournamentId, teamId);
++    }
++    @PatchMapping("/{id}")
++    public TournamentResponseDto modifyTournament(@PathVariable Long id, @RequestBody ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException {
++        return tournamentService.modifyTournament(id, updatedTournament);
++    }
++
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/controllers/PlayerController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/controllers/PlayerController.java b/tournoi/src/main/java/com/capgemini/tournoi/controllers/PlayerController.java
+new file mode 100644
+--- /dev/null	(date 1712226954838)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/controllers/PlayerController.java	(date 1712226954838)
+@@ -0,0 +1,77 @@
++package com.capgemini.tournoi.controllers;
++
++import com.capgemini.tournoi.dtos.PlayerDto;
++import com.capgemini.tournoi.dtos.TeamDto;
++import com.capgemini.tournoi.entity.Player;
++import com.capgemini.tournoi.entity.Team;
++import com.capgemini.tournoi.enums.CardType;
++import com.capgemini.tournoi.enums.StatusTournament;
++import com.capgemini.tournoi.error.PlayerNotFoundException;
++import com.capgemini.tournoi.services.PlayerService;
++import com.capgemini.tournoi.utils.EmailService;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.http.HttpStatus;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.*;
++import org.thymeleaf.context.Context;
++
++import java.util.List;
++
++@RestController
++@RequestMapping("/api/player")
++public class PlayerController {
++
++    @Autowired
++    private PlayerService playerService;
++
++    @Autowired
++    private EmailService emailService;
++
++    @GetMapping("/team/{id}/players")
++    public ResponseEntity<List<PlayerDto>> getAllPlayersOfATeam(@PathVariable("id") long id){
++        List<PlayerDto> players=playerService.getAllPlayersOfATeam(id);
++        return new ResponseEntity<>(players, HttpStatus.OK);
++    }
++    @GetMapping("/{id}")
++    public ResponseEntity<PlayerDto> getPlayerById(@PathVariable("id") long id) throws PlayerNotFoundException {
++        PlayerDto playerDto=playerService.getPlayerById(id);
++        return new ResponseEntity<>(playerDto,HttpStatus.OK);
++    }
++    @PostMapping("/team/{teamId}")
++    public ResponseEntity<PlayerDto> assignPlayerToTeam(@RequestBody Player player, @PathVariable("teamId") long teamId){
++        PlayerDto playerDto=playerService.assignPlayerToTeam(player,teamId);
++        return new ResponseEntity<>(playerDto,HttpStatus.OK);
++    }
++    @DeleteMapping("/{playerId}/team/{teamId}")
++    public ResponseEntity<TeamDto> deletePlayerByIdFromTeam(@PathVariable("playerId") long playerId,
++                                                         @PathVariable("teamId") long teamId) throws PlayerNotFoundException {
++        TeamDto teamDto=playerService.deletePlayerByIdFromTeam(playerId,teamId);
++        return new ResponseEntity<>(teamDto,HttpStatus.OK);
++    }
++    @PutMapping("/{playerId}")
++    public ResponseEntity<PlayerDto> updatePlayerById(@PathVariable("playerId") long playerId,
++                                                   @RequestBody PlayerDto player){
++        PlayerDto playerDto=playerService.updatePlayerById(player,playerId);
++        return new ResponseEntity<>(playerDto,HttpStatus.OK);
++    }
++    @GetMapping("/tournoi/{tournoiId}")
++    public ResponseEntity<List<PlayerDto>> getPlayersInTournoiByCardType(@RequestParam CardType cardType,
++                                                                      @PathVariable("tournoiId") long tournoiId){
++        List<PlayerDto> players=playerService.
++                getPlayersInTournoiByCardType(cardType,tournoiId);
++        return new ResponseEntity<>(players,HttpStatus.OK);
++    }
++    @GetMapping("/match/{matchId}")
++    public ResponseEntity<List<PlayerDto>> getPlayersInMatchByCardType(@RequestParam("cardType") CardType cardType,
++                                                                      @PathVariable("matchId") long matchId){
++        List<PlayerDto> players=playerService.
++                getPlayersInMatchByCardType(matchId,cardType);
++        return new ResponseEntity<>(players,HttpStatus.OK);
++    }
++    @GetMapping("/changeStatus/{tournament_id}")
++    public ResponseEntity<String> notifyPlayers(@PathVariable long tournament_id,
++                                                @RequestParam("statusTournament") StatusTournament statusTournament){
++        playerService.notifyPlayers(tournament_id,statusTournament);
++        return ResponseEntity.ok("HTML email sent successfully!");
++    }
++}
+Index: tournoi/src/test/java/com/capgemini/tournoi/controlleurTest/MatchControllerTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/test/java/com/capgemini/tournoi/controlleurTest/MatchControllerTest.java b/tournoi/src/test/java/com/capgemini/tournoi/controlleurTest/MatchControllerTest.java
+new file mode 100644
+--- /dev/null	(date 1712226954987)
++++ b/tournoi/src/test/java/com/capgemini/tournoi/controlleurTest/MatchControllerTest.java	(date 1712226954987)
+@@ -0,0 +1,66 @@
++package com.capgemini.tournoi.controlleurTest;
++
++import com.capgemini.tournoi.controllers.MatchController;
++import com.capgemini.tournoi.entity.Match;
++import com.capgemini.tournoi.error.MatchNotFoundException;
++import com.capgemini.tournoi.services.MatchServiceImpl;
++import org.junit.jupiter.api.BeforeEach;
++import org.junit.jupiter.api.Test;
++import org.mockito.InjectMocks;
++import org.mockito.Mock;
++import org.mockito.MockitoAnnotations;
++import org.springframework.http.HttpStatus;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.server.ResponseStatusException;
++
++import java.text.ParseException;
++import java.text.SimpleDateFormat;
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.Date;
++import java.util.List;
++
++import static org.junit.jupiter.api.Assertions.assertEquals;
++import static org.junit.jupiter.api.Assertions.assertThrows;
++import static org.mockito.Mockito.when;
++
++public class MatchControllerTest {
++    @InjectMocks
++    private MatchController matchController;
++
++    @Mock
++    private MatchServiceImpl matchService;
++
++    @BeforeEach
++    public void setUp() {
++        MockitoAnnotations.openMocks(this);
++    }
++    
++    @Test
++    public void testGetMatchById_NonExistingId_ThrowsException() throws Exception {
++        // Arrange
++        Long id = 999L;
++        when(matchService.getMatchById(id)).thenThrow(new MatchNotFoundException("match not found"));
++
++        // Act & Assert
++        assertThrows(ResponseStatusException.class, () -> matchController.getMatchById(id));
++    }
++
++
++    @Test
++    public void testGetAllMatches() {
++
++        List<Match> matches = new ArrayList<>();
++        matches.add(new Match());
++        matches.add(new Match());
++
++
++        when(matchService.getAllMatches()).thenReturn(matches);
++
++        ResponseEntity<List<Match>> response = matchController.getAllMatches();
++
++        assertEquals(HttpStatus.OK, response.getStatusCode());
++
++        assertEquals(matches, response.getBody());
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/dtos/MatchRequestDTO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/dtos/MatchRequestDTO.java b/tournoi/src/main/java/com/capgemini/tournoi/dtos/MatchRequestDTO.java
+new file mode 100644
+--- /dev/null	(date 1712226954844)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/dtos/MatchRequestDTO.java	(date 1712226954844)
+@@ -0,0 +1,20 @@
++package com.capgemini.tournoi.dtos;
++
++import lombok.AllArgsConstructor;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++
++import java.util.Date;
++
++
++@Data
++@NoArgsConstructor
++@AllArgsConstructor
++
++public class MatchRequestDTO {
++    private long id;
++    private Date startTime;
++    private Long teamId1;
++    private Long teamId2;
++
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/dtos/CreateTournamentRequestDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/dtos/CreateTournamentRequestDto.java b/tournoi/src/main/java/com/capgemini/tournoi/dtos/CreateTournamentRequestDto.java
+new file mode 100644
+--- /dev/null	(date 1712226954843)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/dtos/CreateTournamentRequestDto.java	(date 1712226954843)
+@@ -0,0 +1,18 @@
++package com.capgemini.tournoi.dtos;
++
++import lombok.AllArgsConstructor;
++import lombok.Builder;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++
++import java.time.LocalDate;
++
++@Data
++@AllArgsConstructor
++@NoArgsConstructor
++@Builder
++public class CreateTournamentRequestDto {
++    private String label;
++    private LocalDate startDate;
++    private LocalDate endDate;
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/dtos/PlayerDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/dtos/PlayerDto.java b/tournoi/src/main/java/com/capgemini/tournoi/dtos/PlayerDto.java
+new file mode 100644
+--- /dev/null	(date 1712226954848)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/dtos/PlayerDto.java	(date 1712226954848)
+@@ -0,0 +1,23 @@
++package com.capgemini.tournoi.dtos;
++
++
++import com.capgemini.tournoi.enums.PlayerStatus;
++import lombok.AllArgsConstructor;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++
++import javax.validation.constraints.Email;
++
++@Data
++@NoArgsConstructor
++@AllArgsConstructor
++public class PlayerDto {
++    private long id;
++    private String firstName;
++    private String lastName;
++    @Email
++    private String email;
++    private String phoneNumber;
++    private PlayerStatus playerStatus;
++    private String teamName;
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/dtos/TournamentResponseDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/dtos/TournamentResponseDto.java b/tournoi/src/main/java/com/capgemini/tournoi/dtos/TournamentResponseDto.java
+new file mode 100644
+--- /dev/null	(date 1712226954854)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/dtos/TournamentResponseDto.java	(date 1712226954854)
+@@ -0,0 +1,21 @@
++package com.capgemini.tournoi.dtos;
++
++import com.capgemini.tournoi.enums.StatusTournament;
++import lombok.AllArgsConstructor;
++import lombok.Builder;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++
++import java.time.LocalDate;
++
++@Data
++@AllArgsConstructor
++@NoArgsConstructor
++@Builder
++public class TournamentResponseDto {
++    private Long id ;
++    private String label;
++    private LocalDate startDate;
++    private LocalDate endDate;
++    private StatusTournament statusTournament;
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/error/ErrorMessage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/error/ErrorMessage.java b/tournoi/src/main/java/com/capgemini/tournoi/error/ErrorMessage.java
+new file mode 100644
+--- /dev/null	(date 1712226954899)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/error/ErrorMessage.java	(date 1712226954899)
+@@ -0,0 +1,14 @@
++package com.capgemini.tournoi.error;
++
++import lombok.AllArgsConstructor;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++import org.springframework.http.HttpStatus;
++
++@Data
++@AllArgsConstructor
++@NoArgsConstructor
++public class ErrorMessage {
++    private String message;
++    private HttpStatus httpStatus;
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/dtos/ModifyTournamentRequestDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/dtos/ModifyTournamentRequestDto.java b/tournoi/src/main/java/com/capgemini/tournoi/dtos/ModifyTournamentRequestDto.java
+new file mode 100644
+--- /dev/null	(date 1712226954846)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/dtos/ModifyTournamentRequestDto.java	(date 1712226954846)
+@@ -0,0 +1,20 @@
++package com.capgemini.tournoi.dtos;
++
++import com.capgemini.tournoi.enums.StatusTournament;
++import lombok.AllArgsConstructor;
++import lombok.Builder;
++import lombok.Data;
++import lombok.NoArgsConstructor;
++
++import java.time.LocalDate;
++
++@Data
++@AllArgsConstructor
++@NoArgsConstructor
++@Builder
++public class ModifyTournamentRequestDto {
++    private String label;
++    private LocalDate startDate;
++    private LocalDate endDate;
++    private StatusTournament statusTournament;
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/utils/EmailService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/utils/EmailService.java b/tournoi/src/main/java/com/capgemini/tournoi/utils/EmailService.java
+new file mode 100644
+--- /dev/null	(date 1712226954979)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/utils/EmailService.java	(date 1712226954979)
+@@ -0,0 +1,38 @@
++package com.capgemini.tournoi.utils;
++
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.mail.javamail.JavaMailSender;
++import org.springframework.mail.javamail.MimeMessageHelper;
++import org.springframework.stereotype.Service;
++import org.thymeleaf.TemplateEngine;
++import org.thymeleaf.context.Context;
++
++import javax.mail.MessagingException;
++import javax.mail.internet.MimeMessage;
++
++
++@Service
++public class EmailService {
++    private final JavaMailSender mailSender;
++    private final TemplateEngine templateEngine;
++
++    @Autowired
++    public EmailService(JavaMailSender mailSender, TemplateEngine templateEngine) {
++        this.mailSender = mailSender;
++        this.templateEngine = templateEngine;
++    }
++    public void sendEmailWithHtmlTemplate(String to, String subject, String templateName, Context context) {
++        MimeMessage mimeMessage = mailSender.createMimeMessage();
++        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
++
++        try {
++            helper.setTo(to);
++            helper.setSubject(subject);
++            String htmlContent = templateEngine.process(templateName,context);
++            helper.setText(htmlContent, true);
++            mailSender.send(mimeMessage);
++        } catch (MessagingException e) {
++            e.printStackTrace();
++        }
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/error/ScoreNotFoundException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/error/ScoreNotFoundException.java b/tournoi/src/main/java/com/capgemini/tournoi/error/ScoreNotFoundException.java
+new file mode 100644
+--- /dev/null	(date 1712226954904)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/error/ScoreNotFoundException.java	(date 1712226954904)
+@@ -0,0 +1,22 @@
++package com.capgemini.tournoi.error;
++
++public class ScoreNotFoundException extends Exception{
++    public ScoreNotFoundException() {
++    }
++
++    public ScoreNotFoundException(String message) {
++        super(message);
++    }
++
++    public ScoreNotFoundException(String message, Throwable cause) {
++        super(message, cause);
++    }
++
++    public ScoreNotFoundException(Throwable cause) {
++        super(cause);
++    }
++
++    public ScoreNotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
++        super(message, cause, enableSuppression, writableStackTrace);
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/error/PlayerNotFoundException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/error/PlayerNotFoundException.java b/tournoi/src/main/java/com/capgemini/tournoi/error/PlayerNotFoundException.java
+new file mode 100644
+--- /dev/null	(date 1712226954902)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/error/PlayerNotFoundException.java	(date 1712226954902)
+@@ -0,0 +1,22 @@
++package com.capgemini.tournoi.error;
++
++public class PlayerNotFoundException extends Exception{
++    public PlayerNotFoundException() {
++    }
++
++    public PlayerNotFoundException(String message) {
++        super(message);
++    }
++
++    public PlayerNotFoundException(String message, Throwable cause) {
++        super(message, cause);
++    }
++
++    public PlayerNotFoundException(Throwable cause) {
++        super(cause);
++    }
++
++    public PlayerNotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
++        super(message, cause, enableSuppression, writableStackTrace);
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/error/MatchNotFoundException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/error/MatchNotFoundException.java b/tournoi/src/main/java/com/capgemini/tournoi/error/MatchNotFoundException.java
+new file mode 100644
+--- /dev/null	(date 1712226954900)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/error/MatchNotFoundException.java	(date 1712226954900)
+@@ -0,0 +1,13 @@
++package com.capgemini.tournoi.error;
++
++public class MatchNotFoundException extends Exception {
++
++    public MatchNotFoundException(String message) {
++        super(message);
++    }
++
++
++
++
++}
++
+Index: tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/RestResponseEntityException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/RestResponseEntityException.java b/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/RestResponseEntityException.java
+new file mode 100644
+--- /dev/null	(date 1712226954905)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/RestResponseEntityException.java	(date 1712226954905)
+@@ -0,0 +1,10 @@
++package com.capgemini.tournoi.globalExceptions;
++
++import org.springframework.web.bind.annotation.ControllerAdvice;
++import org.springframework.web.bind.annotation.ResponseStatus;
++
++@ControllerAdvice
++@ResponseStatus
++public class RestResponseEntityException {
++
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/TournamentNotFoundException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/TournamentNotFoundException.java b/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/TournamentNotFoundException.java
+new file mode 100644
+--- /dev/null	(date 1712226954913)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/TournamentNotFoundException.java	(date 1712226954913)
+@@ -0,0 +1,7 @@
++package com.capgemini.tournoi.globalExceptions;
++
++public class TournamentNotFoundException extends Exception {
++    public TournamentNotFoundException(String s) {
++        super(s);
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/RestResponseEntityExceptionHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/RestResponseEntityExceptionHandler.java b/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/RestResponseEntityExceptionHandler.java
+new file mode 100644
+--- /dev/null	(date 1712226954906)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/RestResponseEntityExceptionHandler.java	(date 1712226954906)
+@@ -0,0 +1,22 @@
++package com.capgemini.tournoi.globalExceptions;
++
++import com.capgemini.tournoi.error.ErrorMessage;
++import com.capgemini.tournoi.error.PlayerNotFoundException;
++import org.springframework.http.HttpStatus;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.ControllerAdvice;
++import org.springframework.web.bind.annotation.ExceptionHandler;
++import org.springframework.web.bind.annotation.ResponseStatus;
++import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
++
++@ControllerAdvice
++@ResponseStatus
++public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
++    @ExceptionHandler(PlayerNotFoundException.class)
++    public ResponseEntity<ErrorMessage> playerNotFoundException(PlayerNotFoundException playerNotFoundException){
++
++        return new ResponseEntity<>(new ErrorMessage
++                (playerNotFoundException.getMessage(), HttpStatus.NOT_FOUND)
++                ,HttpStatus.NOT_FOUND);
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/TournamentDateException.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/TournamentDateException.java b/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/TournamentDateException.java
+new file mode 100644
+--- /dev/null	(date 1712226954910)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/globalExceptions/TournamentDateException.java	(date 1712226954910)
+@@ -0,0 +1,7 @@
++package com.capgemini.tournoi.globalExceptions;
++
++public class TournamentDateException extends Exception {
++    public TournamentDateException(String s) {
++        super(s);
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/repos/GoalRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/repos/GoalRepository.java b/tournoi/src/main/java/com/capgemini/tournoi/repos/GoalRepository.java
+new file mode 100644
+--- /dev/null	(date 1712226954922)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/repos/GoalRepository.java	(date 1712226954922)
+@@ -0,0 +1,13 @@
++package com.capgemini.tournoi.repos;
++
++import com.capgemini.tournoi.entity.Goal;
++import com.capgemini.tournoi.entity.Player;
++import org.springframework.data.jpa.repository.JpaRepository;
++import org.springframework.stereotype.Repository;
++
++import java.util.List;
++
++@Repository
++public interface GoalRepository extends JpaRepository<Goal, Long> {
++    List<Goal> findAllByPlayer(Player player);
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/mappers/MatchMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/mappers/MatchMapper.java b/tournoi/src/main/java/com/capgemini/tournoi/mappers/MatchMapper.java
+new file mode 100644
+--- /dev/null	(date 1712226954914)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/mappers/MatchMapper.java	(date 1712226954914)
+@@ -0,0 +1,38 @@
++package com.capgemini.tournoi.mappers;
++
++import com.capgemini.tournoi.dtos.MatchRequestDTO;
++import com.capgemini.tournoi.entity.Match;
++import com.capgemini.tournoi.entity.Score;
++import com.capgemini.tournoi.entity.Team;
++import com.capgemini.tournoi.repos.TeamRepository;
++import org.springframework.beans.factory.annotation.Autowired;
++import org.springframework.stereotype.Service;
++
++import java.util.ArrayList;
++
++@Service
++
++public class MatchMapper {
++
++    @Autowired
++    private TeamRepository teamRepository;
++    public Match fromMatchDTO(MatchRequestDTO matchRequestDTO){
++        Team team1= teamRepository.findById(matchRequestDTO.getTeamId1()).orElse(null);
++        Team team2 = teamRepository.findById(matchRequestDTO.getTeamId1()).orElse(null);
++        System.out.println("le team 1" +team1);
++        if(team1 == null || team2 == null){throw new IllegalArgumentException("Equipe non trouve avec les ID fournis");
++        }
++        return Match.builder()
++                .team1(team1)
++                .team2(team2)
++                .startTime(matchRequestDTO.getStartTime())
++                .score(Score.builder()
++                        .goals(new ArrayList<>())
++                        .build())
++                .scorers(new ArrayList<>())
++                .cards(new ArrayList<>())
++                .build();
++
++    }
++
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/mappers/PlayerMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/mappers/PlayerMapper.java b/tournoi/src/main/java/com/capgemini/tournoi/mappers/PlayerMapper.java
+new file mode 100644
+--- /dev/null	(date 1712226954916)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/mappers/PlayerMapper.java	(date 1712226954916)
+@@ -0,0 +1,47 @@
++package com.capgemini.tournoi.mappers;
++
++import com.capgemini.tournoi.dtos.PlayerDto;
++import com.capgemini.tournoi.entity.Player;
++import com.capgemini.tournoi.entity.Team;
++import org.springframework.stereotype.Component;
++
++@Component
++public class PlayerMapper
++{
++    public PlayerDto convertPlayerToPlayerDTO(Player player){
++        PlayerDto playerDto=new PlayerDto();
++        playerDto.setId(player.getId());
++        if(player.getFirstName()!=null){
++            playerDto.setFirstName(player.getFirstName());
++        }
++        if (player.getLastName()!=null){
++            playerDto.setLastName(player.getLastName());
++        }
++        if (player.getPhoneNumber()!=null){
++            playerDto.setPhoneNumber(player.getPhoneNumber());
++        }
++        if(player.getPlayerStatus()!=null){
++            playerDto.setPlayerStatus(player.getPlayerStatus());
++        }
++        if(player.getEmail()!=null){
++            playerDto.setEmail(player.getEmail());
++        }
++        if(player.getTeam()!=null){
++            playerDto.setTeamName(player.getTeam().getName());
++        }
++        return playerDto;
++    }
++    public Player convertPlayerDtoToPlayer(PlayerDto playerDto){
++        Player  player=new Player();
++        player.setPlayerStatus(playerDto.getPlayerStatus());
++        Team team=new Team();
++        team.setName(playerDto.getTeamName());
++        player.setTeam(team);
++        player.setLastName(playerDto.getLastName());
++        player.setFirstName(playerDto.getFirstName());
++        player.setEmail(playerDto.getEmail());
++        player.setPhoneNumber(playerDto.getPhoneNumber());
++        player.setId(playerDto.getId());
++        return player;
++    }
++}
+Index: tournoi/src/main/java/com/capgemini/tournoi/mappers/TournamentMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tournoi/src/main/java/com/capgemini/tournoi/mappers/TournamentMapper.java b/tournoi/src/main/java/com/capgemini/tournoi/mappers/TournamentMapper.java
+new file mode 100644
+--- /dev/null	(date 1712226954920)
++++ b/tournoi/src/main/java/com/capgemini/tournoi/mappers/TournamentMapper.java	(date 1712226954920)
+@@ -0,0 +1,33 @@
++package com.capgemini.tournoi.mappers;
++
++import com.capgemini.tournoi.dtos.CreateTournamentRequestDto;
++import com.capgemini.tournoi.dtos.TournamentResponseDto;
++import com.capgemini.tournoi.entity.Tournament;
++import com.capgemini.tournoi.enums.StatusTournament;
++import org.springframework.stereotype.Service;
++
++import java.util.ArrayList;
++
++
++public class TournamentMapper {
++
++    public static Tournament fromTournamentDtoRequest(CreateTournamentRequestDto tournamentRequestDto){
++        return Tournament.builder()
++                .label(tournamentRequestDto.getLabel())
++                .startDate(tournamentRequestDto.getStartDate())
++                .endDate(tournamentRequestDto.getEndDate())
++                .statusTournament(StatusTournament.INSCRIPTION)
++                .teams(new ArrayList<>())
++                .build();
++    }
++
++    public static TournamentResponseDto fromTournament(Tournament tournament) {
++        return TournamentResponseDto.builder()
++                .id(tournament.getId())
++                .endDate(tournament.getEndDate())
++                .label(tournament.getLabel())
++                .startDate(tournament.getStartDate())
++                .statusTournament(tournament.getStatusTournament())
++                .build();
++    }
++}

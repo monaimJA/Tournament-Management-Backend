@@ -27,4 +27,6 @@ public class Tournament {
 
     @OneToMany
     private List<Team> teams;
+    private boolean current;
+
 }
