@@ -67,5 +67,10 @@ public class CardController {
         return ResponseEntity.ok(cardService.updateCardById(cardDto));
     }
 
+    @GetMapping("/by-tournament/{tournament-id}")
+    public ResponseEntity<List<CardDto>> getCardByTournamentId(@PathVariable long tournament_id) throws Exception {
+        List<CardDto> cards = cardService.getCardByTournamentId(tournament_id);
+        return ResponseEntity.ok(cards);
+    }
 }
 

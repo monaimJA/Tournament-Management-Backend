@@ -95,7 +95,7 @@ public class TournoiApplication {
 			}
 			matchRepository.save(match);
 		};
-	}*/
+	}
 	@Bean
 	BCryptPasswordEncoder getBCPE(){
 		return new BCryptPasswordEncoder();

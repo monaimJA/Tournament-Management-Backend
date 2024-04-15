@@ -8,6 +8,7 @@ import com.capgemini.tournoi.enums.CardType;
 import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
 import com.capgemini.tournoi.services.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -66,7 +67,7 @@ public class PlayerController {
     }
     @GetMapping("/changeStatus/{tournament_id}")
     public ResponseEntity<List<Match>> notifyPlayers(@PathVariable long tournament_id,
-                                                @RequestParam("statusTournamentAndMatch") StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException {
+                                                @RequestParam("statusTournamentAndMatch") StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException, TournamentNotFoundException {
         List<Match> matches=playerService.notifyPlayers(tournament_id, statusTournamentAndMatch);
         return new ResponseEntity<>(matches,HttpStatus.OK);
     }

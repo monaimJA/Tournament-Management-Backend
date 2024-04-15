@@ -2,82 +2,83 @@ package com.capgemini.tournoi.services;
 
 import com.capgemini.tournoi.dtos.PlayerDto;
 import com.capgemini.tournoi.dtos.TeamDto;
+import com.capgemini.tournoi.dtos.TeamGetDto;
 import com.capgemini.tournoi.entity.Player;
+import com.capgemini.tournoi.entity.Site;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
-import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
-import com.capgemini.tournoi.error.ChangePlayersOfTeamDuringTournamentException;
-import com.capgemini.tournoi.error.PlayerExistInAnotherTeamException;
-import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.globalExceptions.MaximumPlayersLimitException;
 import com.capgemini.tournoi.globalExceptions.PlayersNotSufficientException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
-import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
-import com.capgemini.tournoi.mappers.PlayerMapper;
+import com.capgemini.tournoi.globalExceptions.TwoTeamsPlayerException;
 import com.capgemini.tournoi.mappers.TeamMapper;
 import com.capgemini.tournoi.repos.PlayerRepository;
+import com.capgemini.tournoi.repos.SiteRepository;
 import com.capgemini.tournoi.repos.TeamRepository;
 import com.capgemini.tournoi.repos.TournamentRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class TeamServiceImpl implements TeamService{
-
-    @Autowired
-    PlayerRepository playerRepository;
     TeamRepository teamRepository;
-    TournamentRepository tournamentRepository;
     TeamMapper teamMapper;
-    PlayerMapper playerMapper;
+    PlayerRepository playerRepository;
+    TournamentRepository tournamentRepository;
+    SiteRepository siteRepository;
+
     @Override
-    public TeamDto saveTeam(TeamDto teamDto) throws MaximumPlayersLimitException, PlayersNotSufficientException, PlayerExistInAnotherTeamException {
+    public TeamDto saveTeam(TeamDto teamDto) throws MaximumPlayersLimitException, PlayersNotSufficientException {
         Team team=teamMapper.fromTeamDto(teamDto);
         if (team.getPlayers().size() > 8) {
             throw new MaximumPlayersLimitException("too much players");
         }
         if (team.getPlayers().size() < 8 ) {
             throw new PlayersNotSufficientException("players not sufficient");
-        }
-        for(Player player:team.getPlayers()){
-            if(playerRepository.findPlayerByEmail(player.getEmail())==null){
-                throw new PlayerExistInAnotherTeamException
-                        ("the player with id="+player.getId()+" already exist in another team");
-            }
         }
         Team savedTeam = teamRepository.save(team);
         return teamMapper.fromTeam(savedTeam);
 
     }
+
+
     @Transactional
     @Override
-    public TeamDto inscription(TeamDto teamDto) throws MaximumPlayersLimitException, PlayersNotSufficientException, PlayerExistInAnotherTeamException {
+    public TeamDto inscription(TeamDto teamDto) throws MaximumPlayersLimitException, PlayersNotSufficientException, TwoTeamsPlayerException {
         Team team=teamMapper.fromTeamDto(teamDto);
 
         if (team.getPlayers().size() > 8) {
             throw new MaximumPlayersLimitException("too much players");
         }
-        if (team.getPlayers().size() < 8 ) {
+        if (team.getPlayers().size() < 7 ) {
             throw new PlayersNotSufficientException("players not sufficient");
         }
-        for(Player player:team.getPlayers()){
-            if(playerRepository.findPlayerByEmail(player.getEmail())==null){
-                throw new PlayerExistInAnotherTeamException
-                        ("the player with id="+player.getId()+" already exist in another team");
-            }
+
+        try {
+            Tournament tournament = tournamentRepository.findByInProgressTrue();
+            team.setTournament(tournament);
+        } catch (Exception e) {
+            throw new RuntimeException("0 or more than 1 tournament is current");
         }
+
         Team savedTeam = teamRepository.save(team);
 
-        for(PlayerDto player : teamDto.getPlayers()){
+//        List<Player> playersInTournament = playerRepository.getAllPlayersOfATournament(teamDto.getTournament().getId());
+//        for(Player player : teamDto.getPlayers()){
+//            for(Player tournamentPlayer : playersInTournament){
+//                if(player.getEmail().equals(tournamentPlayer.getEmail())){
+//                    throw new TwoTeamsPlayerException("player already exist in a team");
+//                }
+//            }
+//               }
 
+        for(Player player : teamDto.getPlayers()){
             Player player1 =new Player();
             player1.setFirstName(player.getFirstName());
             player1.setLastName(player.getLastName());
@@ -100,10 +101,10 @@ public class TeamServiceImpl implements TeamService{
     }
 
     @Override
-    public List<TeamDto> teamsListInTournament(Long tournamentId) {
+    public List<TeamGetDto> teamsListInTournament(Long tournamentId) {
         List<Team> teams = teamRepository.findByTournamentId(tournamentId);
-        List<TeamDto> teamList= teams.stream()
-                .map(team -> teamMapper.fromTeam(team))
+        List<TeamGetDto> teamList= teams.stream()
+                .map(team -> teamMapper.convertTeamToTeamGet(team))
                 .collect(Collectors.toList());
         return teamList;
     }
@@ -125,26 +126,9 @@ public class TeamServiceImpl implements TeamService{
     }
 
     @Override
-    public TeamDto changeTeamPlayer(Long playerId,PlayerDto playerDto,Long tournamentId) throws PlayerNotFoundException, TournamentNotFoundException, ChangePlayersOfTeamDuringTournamentException {
-        Optional<Player> player=playerRepository.findById(playerId);
-        if(player.isPresent()){
-            Optional<Tournament> tournament=tournamentRepository.findById(tournamentId);
-            if(tournament.isPresent()){
-                if(tournament.get().getStatusTournament()== StatusTournamentAndMatch.INSCRIPTION){
-                    Player returnedPlayer=player.get();
-                    returnedPlayer.setLastName(playerDto.getLastName());
-                    returnedPlayer.setFirstName(playerDto.getFirstName());
-                    returnedPlayer.setPhoneNumber(playerDto.getPhoneNumber());
-                    returnedPlayer.setEmail(playerDto.getEmail());
-                    return teamMapper.fromTeam(playerRepository.save(returnedPlayer).getTeam());
-                }else{
-                    throw new ChangePlayersOfTeamDuringTournamentException("you can't change players during tournament");
-                }
-            }else{
-                throw new TournamentNotFoundException("tournament with id="+tournamentId+" does not exist");
-            }
-        }else{
-            throw new PlayerNotFoundException("player with id="+playerId+" does not exist");
-        }
+    public List<Site> getSites() {
+        return siteRepository.findAll();
     }
+
+
 }

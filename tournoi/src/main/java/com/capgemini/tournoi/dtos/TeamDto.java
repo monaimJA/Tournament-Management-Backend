@@ -17,6 +17,6 @@ public class TeamDto {
     private String name;
     private Site site;
     private StatusTeam statusTeam;
-    private List<PlayerDto> players;
-    private TournamentResponseDto tournament;
+    private List<Player> players;
+    private Tournament tournament;
 }

@@ -43,4 +43,13 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                 (tournamentAlreadyInProgressException.getMessage(), HttpStatus.FORBIDDEN)
                 ,HttpStatus.FORBIDDEN);
     }
+    @ExceptionHandler(TournamentDateException.class)
+    public ResponseEntity<ErrorMessage> tournamentDateException
+            (TournamentDateException
+                     tournamentDateException){
+
+        return new ResponseEntity<>(new ErrorMessage
+                (tournamentDateException.getMessage(), HttpStatus.FORBIDDEN)
+                ,HttpStatus.FORBIDDEN);
+    }
 }
