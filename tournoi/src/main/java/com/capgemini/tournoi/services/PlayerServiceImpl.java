@@ -6,9 +6,11 @@ import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
+import com.capgemini.tournoi.entity.Tournament;
 import com.capgemini.tournoi.enums.*;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
 import com.capgemini.tournoi.mappers.PlayerMapper;
 import com.capgemini.tournoi.mappers.TeamMapper;
 import com.capgemini.tournoi.repos.MatchRepository;
@@ -156,10 +158,12 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
     @Override
-    public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException {
+    public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException, TournamentNotFoundException {
 
         // notify players by email and planify the matches
-
+        Tournament tournament= tournamentRepository.findById(tournament_id).orElseThrow(()-> new TournamentNotFoundException(
+                "Tournament with id " + tournament_id +" does not exist"
+        ));
         List<Match> matches =getAllMatchesOfTournamentInThatPhase(tournament_id, statusTournamentAndMatch);
         List<Team> teams=new ArrayList<>();
         for (Match match:matches){
@@ -211,6 +215,8 @@ public class PlayerServiceImpl implements PlayerService{
         for (PlayerDto playerDto : players) {
             emailService.sendEmailWithHtmlTemplate(playerDto.getEmail(), subject, "email-template", context);
         }
+        tournament.setStatusTournament(statusTournamentAndMatch);
+        tournamentRepository.save(tournament);
         return result;
     }
 
@@ -220,7 +226,7 @@ public class PlayerServiceImpl implements PlayerService{
         List<Match> matches=new ArrayList<>();
         StatusTournamentAndMatch previousStatus=getPreviousStatus(statusTournamentAndMatch);
         if ( previousStatus!= null) {
-            matches=matchRepository.findAllByTournament_IdAndStatusMatch(tournamentId, previousStatus);
+            matches=matchRepository.findMatchesByTournamentAndMatchStatus(tournamentId, previousStatus.toString());
         } else {
             System.out.println("in that phase "+statusTournamentAndMatch+"there are no previous matches");
         }
