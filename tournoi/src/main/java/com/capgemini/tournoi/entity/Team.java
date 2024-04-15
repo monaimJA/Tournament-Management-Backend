@@ -10,23 +10,21 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+@Data @AllArgsConstructor @NoArgsConstructor @Builder
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Long id;
     private String name;
     @ManyToOne
     private Site site;
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private StatusTeam statusTeam;
-    @OneToMany
+    @OneToMany(mappedBy = "team")
     private List<Player> players;
 
     @ManyToOne
-    private Tournament tournament;
-}
+    private Tournament tournament ;
 
+
+}

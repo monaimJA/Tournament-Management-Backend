@@ -1,6 +1,6 @@
 package com.capgemini.tournoi.entity;
 
-import com.capgemini.tournoi.enums.StatusTournament;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,14 +17,17 @@ import java.util.List;
 @Builder
 public class Tournament {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String label;
     private LocalDate startDate;
     private LocalDate endDate;
     @Enumerated(value = EnumType.STRING)
-    private StatusTournament statusTournament;
-
+    private StatusTournamentAndMatch statusTournament;
+    @Column(columnDefinition = "boolean default false")
+    private Boolean inProgress;
     @OneToMany
     private List<Team> teams;
+
+
 }

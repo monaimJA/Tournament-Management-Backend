@@ -5,6 +5,7 @@ import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Score;
 import com.capgemini.tournoi.error.MatchNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.services.MatchServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +22,21 @@ public class MatchController {
     private MatchServiceImpl matchServiceImpl;
 
     @PostMapping("/create")
-    public ResponseEntity<Match> createMatch(@RequestBody MatchRequestDTO matchDOT) {
+    public ResponseEntity<Match> createMatch(@RequestBody MatchRequestDTO matchDOT) throws TeamNotFoundException {
         Match match = matchServiceImpl.createMatch(matchDOT);
+        return ResponseEntity.ok(match);
+    }
+
+    @PostMapping("/score/{matchId}")
+    public ResponseEntity<Match> setScoreOfMatch(@RequestBody Score score,
+                                                 @PathVariable Long matchId) throws MatchNotFoundException {
+        Match match = matchServiceImpl.setScoreOfMatch(score,matchId);
+        return ResponseEntity.ok(match);
+    }
+
+    @GetMapping("/{matchId}/team/{teamId}/forfait")
+    public ResponseEntity<Match> setTeamForfaitInMatch(@PathVariable Long teamId,@PathVariable Long matchId) throws MatchNotFoundException {
+        Match match=matchServiceImpl.setTeamForfaitInMatch(teamId,matchId);
         return ResponseEntity.ok(match);
     }
 
@@ -40,9 +54,8 @@ public class MatchController {
         } catch (MatchNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND," Match not found with id " + id);
         }
-
-
     }
+
 
     @GetMapping("/{id}/score")
     public ResponseEntity<Score> getMatchScore(@PathVariable Long id) {

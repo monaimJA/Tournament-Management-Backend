@@ -7,7 +7,7 @@ import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
 import com.capgemini.tournoi.enums.PlayerStatus;
 import com.capgemini.tournoi.enums.StatusTeam;
-import com.capgemini.tournoi.enums.StatusTournament;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.mappers.PlayerMapper;
 import com.capgemini.tournoi.repos.PlayerRepository;
@@ -21,7 +21,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,7 +44,7 @@ class PlayerServiceImplTest {
         Player player=new Player(1L,"monaim","ennabbali","monaime08@gmail.com",
                 "0656373562", PlayerStatus.INSCRIT,null,null);
         PlayerDto playerDto=new PlayerDto(1L,"monaim","ennabbali","monaime08@gmail.com",
-                "0656373562", PlayerStatus.INSCRIT,"team1");
+                "0656373562", PlayerStatus.INSCRIT,"team1",2,3);
         List<Player> players= Collections.singletonList(player);
         Mockito.when(playerRepository.findAllByTeam_Id(1L)).thenReturn(players);
         Mockito.when(playerMapper.convertPlayerToPlayerDTO(player)).thenReturn(playerDto);
@@ -59,7 +58,7 @@ class PlayerServiceImplTest {
         Player player=new Player(1L,"monaim","ennabbali","monaime08@gmail.com",
                 "0656373562", PlayerStatus.INSCRIT,null,null);
         PlayerDto playerDto=new PlayerDto(1L,"monaim","ennabbali","monaime08@gmail.com",
-                "0656373562", PlayerStatus.INSCRIT,"team1");
+                "0656373562", PlayerStatus.INSCRIT,"team1",3,2);
         Mockito.when(playerRepository.findById(1L)).thenReturn(Optional.of(player));
         Mockito.when(playerMapper.convertPlayerToPlayerDTO(player)).thenReturn(playerDto);
         PlayerDto playerDto1=playerService.getPlayerById(1L);
@@ -70,9 +69,9 @@ class PlayerServiceImplTest {
     void assignPlayerToTeam() {
         Team team=new Team(1L,"team1",new Site(1L,"RABAT"), StatusTeam.INSCRIPTION,null,
                 new Tournament(1L,"tournament1",LocalDate.now() , LocalDate.now(),
-                        StatusTournament.DEMI_FINAL, null));
+                        StatusTournamentAndMatch.DEMI_FINAL,false, null));
         PlayerDto playerDto=new PlayerDto(1L,"monaim","ennabbali","monaime08@gmail.com",
-                "0656373562", PlayerStatus.INSCRIT,"team1");
+                "0656373562", PlayerStatus.INSCRIT,"team1",3,2);
         Player player=new Player(1L,"monaim","ennabbali","monaime08@gmail.com",
                 "0656373562", PlayerStatus.INSCRIT,null,null);
         Mockito.when(teamRepository.findById(1L)).thenReturn(Optional.of(team));

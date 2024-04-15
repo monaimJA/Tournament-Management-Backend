@@ -2,13 +2,14 @@ package com.capgemini.tournoi.services;
 
 import com.capgemini.tournoi.dtos.PlayerDto;
 import com.capgemini.tournoi.dtos.TeamDto;
+import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
-import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.enums.CardType;
-import com.capgemini.tournoi.enums.StatusTournament;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 public interface PlayerService {
@@ -23,5 +24,6 @@ public interface PlayerService {
 
     public List<PlayerDto> getAllPlayersOfTournament(long tournament_id);
 
-    public void notifyPlayers(long tournament_id, StatusTournament statusTournament);
+    public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException, TournamentNotFoundException;
+    public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch);
 }

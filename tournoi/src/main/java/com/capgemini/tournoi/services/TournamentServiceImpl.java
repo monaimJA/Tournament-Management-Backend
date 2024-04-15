@@ -6,6 +6,7 @@ import com.capgemini.tournoi.dtos.TournamentResponseDto;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
+import com.capgemini.tournoi.error.TournamentAlreadyInProgressException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentDateException;
 import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
@@ -38,12 +39,18 @@ public class TournamentServiceImpl implements TournamentService{
         this.teamsRepository = teamsRepository;
     }
 
-    public Tournament createTournament(CreateTournamentRequestDto tournamentDto) throws TournamentDateException {
-        if (tournamentDto.getStartDate().isAfter(tournamentDto.getEndDate())) {
-            throw new TournamentDateException("Tournament start date should not come after the end date");
+    public Tournament createTournament(CreateTournamentRequestDto tournamentDto) throws TournamentDateException, TournamentAlreadyInProgressException {
+        if(tournamentRepository.checkExistTournamentInProgress()==null){
+            if (tournamentDto.getStartDate().isAfter(tournamentDto.getEndDate())) {
+                throw new TournamentDateException("Tournament start date should not come after the end date");
+            }
+            Tournament tournament = TournamentMapper.fromTournamentDtoRequest(tournamentDto);
+            return tournamentRepository.save(tournament);
+        }else {
+            throw new TournamentAlreadyInProgressException("you can't create a tournament " +
+                    "because there is already a tournament in progress");
         }
-        Tournament tournament = TournamentMapper.fromTournamentDtoRequest(tournamentDto);
-        return tournamentRepository.save(tournament);
+
     }
     public List<TournamentResponseDto> getAllTournaments(){
         return tournamentRepository.findAll().stream()
@@ -60,7 +67,7 @@ public class TournamentServiceImpl implements TournamentService{
         HashMap<String, Integer> scorers = new HashMap<>();
         Tournament tournament = tournamentRepository.findById(tournamentId)
                 .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
-        for (Team team : teamsRepository.getTeamsByTournament(tournament)) {
+        for (Team team : teamsRepository.findByTournamentId(tournamentId)) {
             for (Player player : playerRepository.findAllByTeam(team)) {
                 scorers.put(player.getFirstName() + " " + player.getLastName(), goalRepository.findAllByPlayer(player).size());
             }
@@ -94,7 +101,7 @@ public class TournamentServiceImpl implements TournamentService{
         Tournament tournament = tournamentRepository.findById(tournamentId)
                 .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
         tournament.setLabel(updatedTournament.getLabel() != null ? updatedTournament.getLabel() : tournament.getLabel());
-        tournament.setStatusTournament(updatedTournament.getStatusTournament() != null ? updatedTournament.getStatusTournament() : tournament.getStatusTournament());
+        tournament.setStatusTournament(updatedTournament.getStatusTournamentAndMatch() != null ? updatedTournament.getStatusTournamentAndMatch() : tournament.getStatusTournament());
         tournament.setStartDate(updatedTournament.getStartDate() != null ? updatedTournament.getStartDate() : tournament.getStartDate());
         tournament.setEndDate(updatedTournament.getEndDate() != null ? updatedTournament.getEndDate() : tournament.getEndDate());
         return TournamentMapper.fromTournament(tournament);

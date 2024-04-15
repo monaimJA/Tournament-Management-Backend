@@ -1,13 +1,19 @@
 package com.capgemini.tournoi.mappers;
 
 import com.capgemini.tournoi.dtos.PlayerDto;
+import com.capgemini.tournoi.entity.Card;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
+import com.capgemini.tournoi.enums.CardType;
+import com.capgemini.tournoi.repos.CardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PlayerMapper
 {
+    @Autowired
+    private CardRepository cardRepository;
     public PlayerDto convertPlayerToPlayerDTO(Player player){
         PlayerDto playerDto=new PlayerDto();
         playerDto.setId(player.getId());
@@ -26,9 +32,11 @@ public class PlayerMapper
         if(player.getEmail()!=null){
             playerDto.setEmail(player.getEmail());
         }
-        if(player.getTeam()!=null){
+        if(player.getTeam().getName()!=null){
             playerDto.setTeamName(player.getTeam().getName());
         }
+        playerDto.setNumberOfYellowCards(cardRepository.countAllByPlayer_IdAndCardType(player.getId(), CardType.YELLOW_CARD));
+        playerDto.setNumberOfRedCards(cardRepository.countAllByPlayer_IdAndCardType(player.getId(),CardType.RED_CARD));
         return playerDto;
     }
     public Player convertPlayerDtoToPlayer(PlayerDto playerDto){

@@ -1,15 +1,16 @@
 package com.capgemini.tournoi.services;
 
+import com.capgemini.tournoi.dtos.MatchRequestDTO;
 import com.capgemini.tournoi.dtos.PlayerDto;
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
-import com.capgemini.tournoi.enums.CardType;
-import com.capgemini.tournoi.enums.PlayerStatus;
-import com.capgemini.tournoi.enums.StatusTournament;
+import com.capgemini.tournoi.enums.*;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
 import com.capgemini.tournoi.mappers.PlayerMapper;
 import com.capgemini.tournoi.mappers.TeamMapper;
 import com.capgemini.tournoi.repos.MatchRepository;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -30,11 +32,18 @@ public class PlayerServiceImpl implements PlayerService{
 
     @Autowired
     private PlayerRepository playerRepository;
+
     @Autowired
     private TeamRepository teamRepository;
 
     @Autowired
+    private MatchRepository matchRepository;
+
+    @Autowired
     private TournamentRepository tournamentRepository;
+
+    @Autowired
+    private MatchServiceImpl matchService;
 
     @Autowired
     private TirageService tirageService;
@@ -90,7 +99,7 @@ public class PlayerServiceImpl implements PlayerService{
                     throw new PlayerNotFoundException("player with id"+playerId+
                             "doesn't exit");
                 }
-            return teamMapper.convertTeamToTeamDto(team1);
+            return teamMapper.fromTeam(team1);
         }else {
             throw new RuntimeException("team with id doesn't exist");
         }
@@ -116,8 +125,10 @@ public class PlayerServiceImpl implements PlayerService{
             if(player.getEmail()!=null){
                 player1.setEmail(player.getEmail());
             }
-            if (!player.getTeamName().isEmpty()){
-                player1.getTeam().setName(player.getTeamName());
+            if (player.getTeamName()!=null){
+                Team team=new Team();
+                team.setName(player.getTeamName());
+                player1.setTeam(team);
             }
             return playerMapper.convertPlayerToPlayerDTO(playerRepository.save(player1));
         }
@@ -147,20 +158,89 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
     @Override
-    public void notifyPlayers(long tournament_id,StatusTournament statusTournament) {
-        List<PlayerDto> playerDtos =getAllPlayersOfTournament(tournament_id);
+    public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException, TournamentNotFoundException {
+
+        // notify players by email and planify the matches
+        Tournament tournament= tournamentRepository.findById(tournament_id).orElseThrow(()-> new TournamentNotFoundException(
+                "Tournament with id " + tournament_id +" does not exist"
+        ));
+        List<Match> matches =getAllMatchesOfTournamentInThatPhase(tournament_id, statusTournamentAndMatch);
+        List<Team> teams=new ArrayList<>();
+        for (Match match:matches){
+            teams.add(match.getWinnerTeam());
+        }
         List<List<Team>> lists;
-        if (statusTournament == StatusTournament.QUART_FINAL) {
-            lists= tirageService.lancer(tournament_id);
+        lists= tirageService.lancer(teams);
+        LocalDate date;
+
+        if(statusTournamentAndMatch==StatusTournamentAndMatch.QUART_FINAL){
+            date=tournamentRepository.findById(tournament_id).get().getStartDate().plusDays(3);
+        }else {
+            Match latestMatch = matches.get(0);
+//            LocalDate latestDate = latestMatch.getStartTime();
+//
+//            for (Match match : matches) {
+//                LocalDate currentDate = match.getStartTime();
+//                if (currentDate.isAfter(latestDate)) {
+//                    latestDate = currentDate;
+//                    latestMatch = match;
+//                }
+//            }
+            date=latestMatch.getStartTime().plusDays(3);
         }
-        else {
-              lists=null;
+        List<Match> result=new ArrayList<>();
+        for (List<Team> list:lists){
+                MatchRequestDTO matchRequestDTO=new MatchRequestDTO();
+                matchRequestDTO.setStartTime(date);
+                matchRequestDTO.setTeamId1(list.get(0).getId());
+                matchRequestDTO.setTeamId2(list.get(1).getId());
+                matchRequestDTO.setTournament(tournamentRepository.findById(tournament_id).get());
+                matchRequestDTO.setStatusTournamentAndMatch(statusTournamentAndMatch);
+                result.add(matchService.createMatch(matchRequestDTO));
         }
+
         Context context = new Context();
-        context.setVariable("matches", lists);
-        String subject = "list of matches in the next round";
-        for (PlayerDto playerDto : playerDtos) {
+        context.setVariable("matches", matches);
+        context.setVariable("teams",lists);
+        String subject = "list of matches in the next round and the result of previous round";
+        List<PlayerDto> players=new ArrayList<>();
+        for(Match match:matches){
+            for (Player player:match.getTeam1().getPlayers()){
+                players.add(playerMapper.convertPlayerToPlayerDTO(player));
+            }
+            for (Player player:match.getTeam2().getPlayers()){
+                players.add(playerMapper.convertPlayerToPlayerDTO(player));
+            }
+        }
+        for (PlayerDto playerDto : players) {
             emailService.sendEmailWithHtmlTemplate(playerDto.getEmail(), subject, "email-template", context);
         }
+        tournament.setStatusTournament(statusTournamentAndMatch);
+        tournamentRepository.save(tournament);
+        return result;
+    }
+
+    @Override
+    public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch) {
+
+        List<Match> matches=new ArrayList<>();
+        StatusTournamentAndMatch previousStatus=getPreviousStatus(statusTournamentAndMatch);
+        if ( previousStatus!= null) {
+            matches=matchRepository.findMatchesByTournamentAndMatchStatus(tournamentId, previousStatus.toString());
+        } else {
+            System.out.println("in that phase "+statusTournamentAndMatch+"there are no previous matches");
+        }
+        return matches;
+    }
+    public StatusTournamentAndMatch getPreviousStatus(StatusTournamentAndMatch statusTournamentAndMatch){
+        StatusTournamentAndMatch currentStatus = statusTournamentAndMatch;
+
+        int currentStatusOrdinal = currentStatus.ordinal();
+
+        StatusTournamentAndMatch previousStatus = null;
+        if (currentStatusOrdinal > 1) {
+            previousStatus = StatusTournamentAndMatch.values()[currentStatusOrdinal - 1];
+        }
+        return previousStatus;
     }
 }
