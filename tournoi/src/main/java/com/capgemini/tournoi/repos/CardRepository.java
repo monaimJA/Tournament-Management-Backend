@@ -12,4 +12,5 @@ public interface CardRepository extends JpaRepository<Card, Long> {
     List<Card> findByMatchId(long matchId);
     List<Card> findByPlayerId(long playerId);
     int countAllByPlayer_IdAndCardType(Long id, CardType cardType);
+    List<Card> findByTournamentId(long tournamentId);
 }
