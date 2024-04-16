@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -16,7 +17,7 @@ import java.util.Date;
 
 public class MatchRequestDTO {
     private long id;
-    private LocalDate startTime;
+    private LocalDateTime startTime;
     private Long teamId1;
     private Long teamId2;
     private StatusTournamentAndMatch statusTournamentAndMatch;
