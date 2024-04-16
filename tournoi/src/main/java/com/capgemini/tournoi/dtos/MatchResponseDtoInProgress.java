@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -16,7 +17,7 @@ import java.util.List;
 public class MatchResponseDtoInProgress {
     private String team1Name;
     private String team2Name;
-    private LocalDate startTime;
+    private LocalDateTime startTime;
     private StatusTournamentAndMatch statusTournamentAndMatch;
     private Integer scoreTeam1;
     private Integer scoreTeam2;
