@@ -8,6 +8,7 @@ import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.entity.Tournament;
+import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import com.capgemini.tournoi.error.TournamentAlreadyInProgressException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentDateException;
@@ -37,12 +38,16 @@ public class TournamentServiceImpl implements TournamentService{
     private final PlayerRepository playerRepository;
     private final GoalRepository goalRepository;
     private final TeamRepository teamsRepository;
+    private final CardRepository cardRepository;
+    private ScoreRepository scoreRepository;
 
-    public TournamentServiceImpl(TournamentRepository tournamentRepository, PlayerRepository playerRepository, GoalRepository goalRepository, TeamRepository teamsRepository) {
+    public TournamentServiceImpl(TournamentRepository tournamentRepository, PlayerRepository playerRepository, GoalRepository goalRepository, TeamRepository teamsRepository, CardRepository cardRepository, ScoreRepository scoreRepository) {
         this.tournamentRepository = tournamentRepository;
         this.playerRepository = playerRepository;
         this.goalRepository = goalRepository;
         this.teamsRepository = teamsRepository;
+        this.cardRepository = cardRepository;
+        this.scoreRepository = scoreRepository;
     }
 
     public Tournament createTournament(CreateTournamentRequestDto tournamentDto) throws TournamentDateException, TournamentAlreadyInProgressException {
@@ -110,11 +115,18 @@ public class TournamentServiceImpl implements TournamentService{
         tournament.setStatusTournament(updatedTournament.getStatusTournamentAndMatch() != null ? updatedTournament.getStatusTournamentAndMatch() : tournament.getStatusTournament());
         tournament.setStartDate(updatedTournament.getStartDate() != null ? updatedTournament.getStartDate() : tournament.getStartDate());
         tournament.setEndDate(updatedTournament.getEndDate() != null ? updatedTournament.getEndDate() : tournament.getEndDate());
+        if (updatedTournament.getStatusTournamentAndMatch().equals(StatusTournamentAndMatch.FINISHED)) tournament.setInProgress(false);
         return TournamentMapper.fromTournament(tournament);
     }
 
-
-
+    @Override
+    public void deleteTournament(Long tournamentId) throws TournamentNotFoundException {
+        Tournament tournament = tournamentRepository.findById(tournamentId)
+                .orElseThrow(() -> new TournamentNotFoundException("Tournament with id " + tournamentId + " does not exist"));
+        tournament.setInProgress(false);
+        tournament.setStatusTournament(StatusTournamentAndMatch.CANCELLED);
+        tournamentRepository.save(tournament);
+    }
 
 
 }
