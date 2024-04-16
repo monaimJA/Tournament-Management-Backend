@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -17,7 +18,7 @@ import java.util.List;
 @Builder
 public class MatchResponseDto {
     private long id;
-    private LocalDate startTime;
+    private LocalDateTime startTime;
     private TeamDto nameTeam1;
     private TeamDto nameTeam2;
     private List<Goal> goals;

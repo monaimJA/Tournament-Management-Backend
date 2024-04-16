@@ -4,6 +4,8 @@ public enum StatusTournamentAndMatch {
     INSCRIPTION,
     QUART_FINAL,
     DEMI_FINAL,
-    FINAL
+    FINAL,
+    FINISHED,
+    CANCELLED
 
 }

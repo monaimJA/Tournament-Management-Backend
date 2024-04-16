@@ -24,6 +24,7 @@ import org.thymeleaf.context.Context;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -171,10 +172,10 @@ public class PlayerServiceImpl implements PlayerService{
         }
         List<List<Team>> lists;
         lists= tirageService.lancer(teams);
-        LocalDate date;
+        LocalDateTime date;
 
         if(statusTournamentAndMatch==StatusTournamentAndMatch.QUART_FINAL){
-            date=tournamentRepository.findById(tournament_id).get().getStartDate().plusDays(3);
+            date= tournamentRepository.findById(tournament_id).get().getStartDate().plusDays(3).atStartOfDay();
         }else {
             Match latestMatch = matches.get(0);
 //            LocalDate latestDate = latestMatch.getStartTime();
@@ -191,7 +192,7 @@ public class PlayerServiceImpl implements PlayerService{
         List<Match> result=new ArrayList<>();
         for (List<Team> list:lists){
                 MatchRequestDTO matchRequestDTO=new MatchRequestDTO();
-                matchRequestDTO.setStartTime(date);
+                matchRequestDTO.setStartTime(date.plusHours(Math.random() > 0.5? 17 : 20));
                 matchRequestDTO.setTeamId1(list.get(0).getId());
                 matchRequestDTO.setTeamId2(list.get(1).getId());
                 matchRequestDTO.setTournament(tournamentRepository.findById(tournament_id).get());
@@ -202,6 +203,8 @@ public class PlayerServiceImpl implements PlayerService{
         Context context = new Context();
         context.setVariable("matches", matches);
         context.setVariable("teams",lists);
+        context.setVariable("previousStatus", " ("+getPreviousStatus(tournament.getStatusTournament()).toString().replace("_", " de ").toLowerCase()+" )");
+        context.setVariable("status"," ("+tournament.getStatusTournament().toString().replace("_", " de ").toLowerCase()+" )");
         String subject = "list of matches in the next round and the result of previous round";
         List<PlayerDto> players=new ArrayList<>();
         for(Match match:matches){
