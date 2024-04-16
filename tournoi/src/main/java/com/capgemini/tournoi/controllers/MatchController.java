@@ -6,10 +6,12 @@ import com.capgemini.tournoi.dtos.MatchResponseDtoInProgress;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Score;
+import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.error.MatchNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.mappers.MatchMapper;
 import com.capgemini.tournoi.repos.MatchRepository;
+import com.capgemini.tournoi.repos.TeamRepository;
 import com.capgemini.tournoi.services.MatchServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +19,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -28,6 +32,9 @@ public class MatchController {
 
     @Autowired
     private MatchRepository matchRepository;
+
+    @Autowired
+    private TeamRepository teamRepository;
 
     @Autowired
     private MatchMapper matchMapper;
@@ -94,4 +101,19 @@ public class MatchController {
         }).collect(Collectors.toList());
         return new ResponseEntity<>(matches,HttpStatus.OK);
     }
+
+    @PostMapping("/{id}/score")
+    public ResponseEntity<Match> saveMatchWithScore(@PathVariable Long id,
+                                                    @RequestBody MatchResponseDtoInProgress match){
+        Optional<Match> match1=matchRepository.findById(id);
+        Match realMatch=null;
+        if (match1.isPresent()){
+            realMatch=match1.get();
+            realMatch.setScoreTeam1(match.getScoreTeam1());
+            realMatch.setScoreTeam2(match.getScoreTeam2());
+            realMatch.setWinnerTeam(teamRepository.findById(match.getWinnerTeamId()).get());
+        }
+        return new ResponseEntity<>(matchRepository.save(realMatch),HttpStatus.OK);
+    }
+
 }

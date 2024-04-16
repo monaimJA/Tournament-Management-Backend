@@ -6,10 +6,7 @@ import com.capgemini.tournoi.repos.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service
@@ -49,18 +46,21 @@ public class MatchMapper{
         for(Player player:match.getTeam2().getPlayers()){
             namePlayersTeam2.add(player.getFirstName()+" "+player.getLastName());
         }
-        return MatchResponseDto.builder()
+        MatchResponseDto match1=MatchResponseDto.builder()
                 .id(match.getId())
                 .startTime(match.getStartTime())
                 .namePlayersTeam1(namePlayersTeam1)
                 .namePlayersTeam2(namePlayersTeam2)
-                .nameWinnerTeam(match.getWinnerTeam().getName())
                 .labelTournament(match.getTournament().getLabel())
                 .statusTournamentAndMatch(match.getStatusMatch())
                 .nameTeam1(teamMapper.fromTeam(match.getTeam1()))
                 .nameTeam2(teamMapper.fromTeam(match.getTeam2()))
                 .goals(match.getScore().getGoals())
                 .build();
+        if(match.getWinnerTeam()!=null){
+            match1.setNameWinnerTeam(match.getWinnerTeam().getName());
+        }
+        return match1;
     }
 
     public MatchResponseDtoInProgress convertToDto(Match match) {
@@ -72,7 +72,8 @@ public class MatchMapper{
         for(Player player:match.getTeam2().getPlayers()){
             namePlayersTeam2.add(player.getFirstName()+" "+player.getLastName());
         }
-        return MatchResponseDtoInProgress.builder()
+        MatchResponseDtoInProgress matchResponseDtoInProgress=MatchResponseDtoInProgress.builder()
+                .matchId(match.getId())
                 .team1Name(match.getTeam1().getName())
                 .team2Name(match.getTeam2().getName())
                 .startTime(match.getStartTime())
@@ -80,9 +81,34 @@ public class MatchMapper{
                 .playersTeam2(namePlayersTeam2)
                 .scoreTeam1(match.getScoreTeam1())
                 .scoreTeam2(match.getScoreTeam2())
-                .nameWinnerTeam(match.getWinnerTeam().getName())
                 .statusTournamentAndMatch(match.getStatusMatch())
+                .team1Id(match.getTeam1().getId())
+                .team2Id(match.getTeam2().getId())
                 .build();
+        if (match.getWinnerTeam()!=null){
+            matchResponseDtoInProgress.setNameWinnerTeam(match.getWinnerTeam().getName());
+            matchResponseDtoInProgress.setWinnerTeamId(match.getWinnerTeam().getId());
+        }
+        return matchResponseDtoInProgress;
+    }
+
+    public  Match fromMatchDtoToMatch(MatchResponseDtoInProgress match){
+        Optional<Team> team=teamRepository.findById(match.getTeam1Id());
+        Optional<Team> team1=teamRepository.findById(match.getTeam2Id());
+        Optional<Team> winnerTeam=teamRepository.findById(match.getWinnerTeamId());
+        Match match1=Match.builder()
+                .id(match.getMatchId())
+                .team1(team.get())
+                .team2(team1.get())
+                .statusMatch(match.getStatusTournamentAndMatch())
+                .scoreTeam1(match.getScoreTeam1())
+                .scoreTeam2(match.getScoreTeam2())
+                .winnerTeam(winnerTeam.get())
+                .build();
+        if(match.getWinnerTeamId()!=null){
+            match1.setWinnerTeam(winnerTeam.get());
+        }
+        return match1;
     }
 
 
