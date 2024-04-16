@@ -65,7 +65,6 @@ public class MatchMapper{
 
     public MatchResponseDtoInProgress convertToDto(Match match) {
         List<String> namePlayersTeam1 =new ArrayList<>();
-        HashMap<String,Integer> hashMap=new HashMap<>();
         for(Player player:match.getTeam1().getPlayers()){
             namePlayersTeam1.add(player.getFirstName()+" "+player.getLastName());
         }
@@ -73,37 +72,14 @@ public class MatchMapper{
         for(Player player:match.getTeam2().getPlayers()){
             namePlayersTeam2.add(player.getFirstName()+" "+player.getLastName());
         }
-        List<Goal> goals = match.getScore().getGoals();
-        for (Goal goal : goals) {
-            for (Player player : match.getTeam1().getPlayers()) {
-                if (goal.getPlayer().getId() == player.getId()) {
-                    if (hashMap.containsKey("team1")) {
-                        hashMap.replace("team1", hashMap.get("team1") + 1);
-                    } else {
-                        hashMap.put("team1", 1);
-                    }
-                }
-            }
-            for (Player player : match.getTeam2().getPlayers()) {
-                if (goal.getPlayer().getId() == player.getId()) {
-                    if (hashMap.containsKey("team2")) {
-                        hashMap.replace("team2", hashMap.get("team2") + 1);
-                    } else {
-                        hashMap.put("team2", 1);
-                    }
-                }
-            }
-
-        }
-
         return MatchResponseDtoInProgress.builder()
                 .team1Name(match.getTeam1().getName())
                 .team2Name(match.getTeam2().getName())
                 .startTime(match.getStartTime())
                 .playersTeam1(namePlayersTeam1)
                 .playersTeam2(namePlayersTeam2)
-                .scoreTeam1(hashMap.get("team1"))
-                .scoreTeam2(hashMap.get("team2"))
+                .scoreTeam1(match.getScoreTeam1())
+                .scoreTeam2(match.getScoreTeam2())
                 .nameWinnerTeam(match.getWinnerTeam().getName())
                 .statusTournamentAndMatch(match.getStatusMatch())
                 .build();

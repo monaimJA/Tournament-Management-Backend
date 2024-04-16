@@ -73,34 +73,13 @@ public class MatchServiceImpl  implements MatchServiceInterface {
         return null;
     }
 
-    public Match setScoreOfMatch(Score score, Long matchId) throws MatchNotFoundException {
+    public Match setScoreOfMatch(Long matchId,int scoreTeam1,int scoreTeam2) throws MatchNotFoundException {
         Optional<Match> match = matchRepository.findById(matchId);
         if (match.isPresent()) {
             Match match1 = match.get();
-            match1.setScore(score);
-            Map<String, Integer> resultOfMatch = new HashMap<>();
-            List<Goal> goals = score.getGoals();
-            for (Goal goal : goals) {
-                for (Player player : match1.getTeam1().getPlayers()) {
-                    if (goal.getPlayer().getId() == player.getId()) {
-                        if (resultOfMatch.containsKey("team1")) {
-                            resultOfMatch.replace("team1", resultOfMatch.get("team1") + 1);
-                        } else {
-                            resultOfMatch.put("team1", 1);
-                        }
-                    }
-                }
-                for (Player player : match1.getTeam2().getPlayers()) {
-                    if (goal.getPlayer().getId() == player.getId()) {
-                        if (resultOfMatch.containsKey("team2")) {
-                            resultOfMatch.replace("team2", resultOfMatch.get("team2") + 1);
-                        } else {
-                            resultOfMatch.put("team2", 1);
-                        }
-                    }
-                }
-            }
-            Team winnerTeam = resultOfMatch.get("team1") > resultOfMatch.get("team2") ? match1.getTeam1() : match1.getTeam2();
+            match1.setScoreTeam1(scoreTeam1);
+            match1.setScoreTeam2(scoreTeam2);
+            Team winnerTeam = scoreTeam1 > scoreTeam2 ? match1.getTeam1() : match1.getTeam2();
             match1.setWinnerTeam(winnerTeam);
             return matchRepository.save(match1);
         } else {
@@ -136,31 +115,5 @@ public class MatchServiceImpl  implements MatchServiceInterface {
         }
 
     }
-
-    @Override
-    public List<MatchResponseDtoInProgress> getAllMatchesInLatestPhase() {
-        return matchRepository.getLatestMatchesInCurrentTournament(true).stream()
-                .map(match -> {
-                    return matchMapper.convertToDto(match);
-                })
-                .collect(Collectors.toList());
-    }
-
-
-    @Override
-    public List<MatchResponseDtoInProgress> getMatchesInProgress() {
-
-        return matchRepository.getMatchesInCurrentTournament(true).stream().map(match ->
-        {
-            return matchMapper.convertToDto(match);
-        })
-                .collect((Collectors.toList()));
-    }
-
-
-
-
-
-
 }
 

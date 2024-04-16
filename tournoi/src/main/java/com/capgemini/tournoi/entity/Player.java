@@ -27,5 +27,6 @@ public class Player {
     private List<Card> cards;
     @ManyToOne
     @JoinColumn(name = "team_id",referencedColumnName = "id")
+    @JsonIgnore
     private Team team;
 }

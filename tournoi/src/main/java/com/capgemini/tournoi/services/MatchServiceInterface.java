@@ -17,11 +17,7 @@ public interface MatchServiceInterface {
   MatchResponseDto getMatchById(Long id) throws MatchNotFoundException;
   Score getMatchScore(Long id);
 
-  Match setScoreOfMatch(Score score,Long matchId) throws MatchNotFoundException;
+  Match setScoreOfMatch(Long matchId,int scoreTeam1,int scoreTeam2) throws MatchNotFoundException;
 
  Match setTeamForfaitInMatch(Long teamId,Long matchId) throws MatchNotFoundException;
-
-  List<MatchResponseDtoInProgress> getAllMatchesInLatestPhase();
-
- List<MatchResponseDtoInProgress> getMatchesInProgress();
 }

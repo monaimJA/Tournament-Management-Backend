@@ -39,7 +39,9 @@ public class Match {
     @OneToOne(cascade = CascadeType.ALL)
     private Score score;
 
+    private int scoreTeam1;
 
+    private int scoreTeam2;
 
     @OneToOne
     private Team winnerTeam;
