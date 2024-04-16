@@ -73,29 +73,30 @@ public class MatchMapper{
         for(Player player:match.getTeam2().getPlayers()){
             namePlayersTeam2.add(player.getFirstName()+" "+player.getLastName());
         }
-        List<Goal> goals = match.getScore().getGoals();
-        for (Goal goal : goals) {
-            for (Player player : match.getTeam1().getPlayers()) {
-                if (goal.getPlayer().getId() == player.getId()) {
-                    if (hashMap.containsKey("team1")) {
-                        hashMap.replace("team1", hashMap.get("team1") + 1);
-                    } else {
-                        hashMap.put("team1", 1);
+        if(match.getScore()!=null){
+            List<Goal> goals = match.getScore().getGoals();
+            for (Goal goal : goals) {
+                for (Player player : match.getTeam1().getPlayers()) {
+                    if (goal.getPlayer().getId() == player.getId()) {
+                        if (hashMap.containsKey("team1")) {
+                            hashMap.replace("team1", hashMap.get("team1") + 1);
+                        } else {
+                            hashMap.put("team1", 1);
+                        }
                     }
                 }
-            }
-            for (Player player : match.getTeam2().getPlayers()) {
-                if (goal.getPlayer().getId() == player.getId()) {
-                    if (hashMap.containsKey("team2")) {
-                        hashMap.replace("team2", hashMap.get("team2") + 1);
-                    } else {
-                        hashMap.put("team2", 1);
+                for (Player player : match.getTeam2().getPlayers()) {
+                    if (goal.getPlayer().getId() == player.getId()) {
+                        if (hashMap.containsKey("team2")) {
+                            hashMap.replace("team2", hashMap.get("team2") + 1);
+                        } else {
+                            hashMap.put("team2", 1);
+                        }
                     }
                 }
-            }
 
+            }
         }
-
         return MatchResponseDtoInProgress.builder()
                 .team1Name(match.getTeam1().getName())
                 .team2Name(match.getTeam2().getName())
