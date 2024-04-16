@@ -14,6 +14,9 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class MatchResponseDtoInProgress {
+    private Long matchId;
+    private Long team1Id;
+    private Long team2Id;
     private String team1Name;
     private String team2Name;
     private LocalDate startTime;
@@ -21,6 +24,7 @@ public class MatchResponseDtoInProgress {
     private Integer scoreTeam1;
     private Integer scoreTeam2;
     private  String nameWinnerTeam;
+    private Long winnerTeamId;
     private List<String> playersTeam1;
     private List<String> playersTeam2;
 }
