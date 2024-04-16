@@ -174,7 +174,7 @@ public class PlayerServiceImpl implements PlayerService{
         lists= tirageService.lancer(teams);
         LocalDateTime date;
 
-        if(statusTournamentAndMatch==StatusTournamentAndMatch.QUART_FINAL){
+        if(statusTournamentAndMatch==StatusTournamentAndMatch.EIGHT_FINAL){
             date= tournamentRepository.findById(tournament_id).get().getStartDate().plusDays(3).atStartOfDay();
         }else {
             Match latestMatch = matches.get(0);
