@@ -202,6 +202,7 @@ public class PlayerServiceImpl implements PlayerService{
 
         Context context = new Context();
         context.setVariable("matches", matches);
+        context.setVariable("upcomingMatches", result);
         context.setVariable("teams",lists);
         context.setVariable("previousStatus", " ("+getPreviousStatus(tournament.getStatusTournament()).toString().replace("_", " de ").toLowerCase()+" )");
         context.setVariable("status"," ("+tournament.getStatusTournament().toString().replace("_", " de ").toLowerCase()+" )");
