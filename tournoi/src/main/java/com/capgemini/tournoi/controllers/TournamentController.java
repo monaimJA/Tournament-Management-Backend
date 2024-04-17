@@ -56,4 +56,8 @@ public class TournamentController {
         tournamentService.deleteTournament(id);
     }
 
+    @GetMapping("/current")
+    public Tournament getCurrentTournament() {
+        return tournamentService.getCurrentTournament();
+    }
 }
