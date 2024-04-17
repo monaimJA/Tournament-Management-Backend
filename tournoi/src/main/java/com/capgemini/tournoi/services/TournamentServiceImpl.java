@@ -115,7 +115,7 @@ public class TournamentServiceImpl implements TournamentService{
         tournament.setStatusTournament(updatedTournament.getStatusTournamentAndMatch() != null ? updatedTournament.getStatusTournamentAndMatch() : tournament.getStatusTournament());
         tournament.setStartDate(updatedTournament.getStartDate() != null ? updatedTournament.getStartDate() : tournament.getStartDate());
         tournament.setEndDate(updatedTournament.getEndDate() != null ? updatedTournament.getEndDate() : tournament.getEndDate());
-        if (updatedTournament.getStatusTournamentAndMatch().equals(StatusTournamentAndMatch.FINISHED)) tournament.setInProgress(false);
+        if ((updatedTournament.getStatusTournamentAndMatch().equals(StatusTournamentAndMatch.FINISHED) || (updatedTournament.getStatusTournamentAndMatch().equals(StatusTournamentAndMatch.CANCELLED))))tournament.setInProgress(false);
         return TournamentMapper.fromTournament(tournament);
     }
 

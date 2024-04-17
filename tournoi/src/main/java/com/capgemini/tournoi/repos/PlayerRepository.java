@@ -1,5 +1,6 @@
 package com.capgemini.tournoi.repos;
 
+import com.capgemini.tournoi.dtos.ScorersResponseDto;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
@@ -35,4 +36,10 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
     public List<Player> getAllPlayersOfATournament(long tournament_id);
     public Player findPlayerByEmail(String email);
 
+    @Query("SELECT new com.capgemini.tournoi.dtos.ScorersResponseDto(g.player, COUNT(g)) " +
+            "FROM Goal g " +
+            "WHERE g.match.tournament.id = :tournamentId " + // Assuming you want scorers for a specific tournament
+            "GROUP BY g.player " +
+            "ORDER BY COUNT(g) DESC")
+    List<ScorersResponseDto> getTopScorers(long tournamentId);
 }

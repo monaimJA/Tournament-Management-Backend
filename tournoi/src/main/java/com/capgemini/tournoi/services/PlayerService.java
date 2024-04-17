@@ -1,6 +1,7 @@
 package com.capgemini.tournoi.services;
 
 import com.capgemini.tournoi.dtos.PlayerDto;
+import com.capgemini.tournoi.dtos.ScorersResponseDto;
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
@@ -9,6 +10,7 @@ import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -26,4 +28,5 @@ public interface PlayerService {
 
     public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException, TournamentNotFoundException;
     public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch);
+    public List<ScorersResponseDto> getTopScorers();
 }
