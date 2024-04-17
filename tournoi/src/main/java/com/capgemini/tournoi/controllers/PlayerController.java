@@ -1,6 +1,7 @@
 package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.PlayerDto;
+import com.capgemini.tournoi.dtos.PlayersCardsDto;
 import com.capgemini.tournoi.dtos.ScorersResponseDto;
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.entity.Match;
@@ -78,5 +79,10 @@ public class PlayerController {
     public ResponseEntity<List<ScorersResponseDto>> getTopScorers(){
         List<ScorersResponseDto> scorersResponseDtos=playerService.getTopScorers();
        return new ResponseEntity<>(scorersResponseDtos,HttpStatus.OK);
+    }
+    @GetMapping("/scorers")
+    public ResponseEntity<List<PlayersCardsDto>> getPlayersWithCardsNuber(){
+        List<PlayersCardsDto> playersCardsDtos=playerService.getPlayersWithCardsNuber();
+        return new ResponseEntity<>(playersCardsDtos,HttpStatus.OK);
     }
 }
