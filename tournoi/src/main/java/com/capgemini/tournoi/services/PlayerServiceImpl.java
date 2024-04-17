@@ -252,7 +252,8 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
     @Override
-    public List<PlayersCardsDto> getPlayersWithCardsNuber() {
-        return playerRepository.getPlayersCardsInfo();
+    public List<PlayersCardsDto> getPlayersWithCardsNumber() {
+        Tournament tournament=tournamentRepository.findByInProgressTrue();
+        return playerRepository.getPlayersCardsInfo(tournament.getId());
     }
 }

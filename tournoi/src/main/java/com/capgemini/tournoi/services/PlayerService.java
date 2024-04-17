@@ -31,5 +31,5 @@ public interface PlayerService {
     public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch);
     public List<ScorersResponseDto> getTopScorers();
 
-    public List<PlayersCardsDto> getPlayersWithCardsNuber();
+    public List<PlayersCardsDto> getPlayersWithCardsNumber();
 }

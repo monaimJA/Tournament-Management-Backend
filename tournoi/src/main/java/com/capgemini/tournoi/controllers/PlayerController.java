@@ -80,9 +80,9 @@ public class PlayerController {
         List<ScorersResponseDto> scorersResponseDtos=playerService.getTopScorers();
        return new ResponseEntity<>(scorersResponseDtos,HttpStatus.OK);
     }
-    @GetMapping("/scorers")
-    public ResponseEntity<List<PlayersCardsDto>> getPlayersWithCardsNuber(){
-        List<PlayersCardsDto> playersCardsDtos=playerService.getPlayersWithCardsNuber();
+    @GetMapping("/cards")
+    public ResponseEntity<List<PlayersCardsDto>> getPlayersWithCardsNumber(){
+        List<PlayersCardsDto> playersCardsDtos=playerService.getPlayersWithCardsNumber();
         return new ResponseEntity<>(playersCardsDtos,HttpStatus.OK);
     }
 }
