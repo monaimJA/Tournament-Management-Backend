@@ -51,6 +51,10 @@
             transform: translateY(-5px);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+        .start-time {
+            font-style: italic; /* Ajoute un style italique */
+            color: #888; /* Couleur de texte grise */
+        }
 
         .team {
             font-weight: bold;
@@ -84,11 +88,11 @@
 
     <!-- Matches à venir -->
     <h2>Matches à venir<span class="upcoming-matches" th:text="${status}"></span></h2>
-    <div th:each="match:${teams}" class="match">
-        <span class="team" th:each="team,teamIndex:${match}">
-            <span th:text="${team.name}"></span>
-            <span class="vs" th:unless="${teamIndex.last}"> vs </span>
-        </span>
+    <div th:each="match:${upcomingMatches}" class="match">
+        <span class="team" th:text="${match.team1.name}"></span>
+        <span class="vs">vs</span>
+        <span class="team" th:text="${match.team2.name}"></span>
+            <span class="start-time" th:text="${match.startTime}"></span>
     </div>
 </div>
 </body>
