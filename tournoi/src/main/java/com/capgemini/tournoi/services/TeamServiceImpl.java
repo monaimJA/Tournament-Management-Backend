@@ -67,6 +67,8 @@ public class TeamServiceImpl implements TeamService{
             throw new RuntimeException("0 or more than 1 tournament is current");
         }
 
+
+
         Team savedTeam = teamRepository.save(team);
 
 //        List<Player> playersInTournament = playerRepository.getAllPlayersOfATournament(teamDto.getTournament().getId());
