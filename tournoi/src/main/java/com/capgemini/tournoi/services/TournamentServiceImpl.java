@@ -106,4 +106,9 @@ public class TournamentServiceImpl implements TournamentService{
         tournament.setEndDate(updatedTournament.getEndDate() != null ? updatedTournament.getEndDate() : tournament.getEndDate());
         return TournamentMapper.fromTournament(tournament);
     }
+
+    @Override
+    public Tournament getCurrentTournament() {
+        return tournamentRepository.findByInProgressTrue();
+    }
 }

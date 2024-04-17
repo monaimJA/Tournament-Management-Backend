@@ -52,4 +52,8 @@ public class TournamentController {
         return tournamentService.modifyTournament(id, updatedTournament);
     }
 
+    @GetMapping("/current")
+    public Tournament getCurrentTournament() {
+        return tournamentService.getCurrentTournament();
+    }
 }
