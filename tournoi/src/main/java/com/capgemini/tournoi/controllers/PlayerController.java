@@ -11,8 +11,6 @@ import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
-import com.capgemini.tournoi.repos.MatchRepository;
-import com.capgemini.tournoi.repos.PlayerRepository;
 import com.capgemini.tournoi.services.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -80,7 +78,7 @@ public class PlayerController {
         List<ScorersResponseDto> scorersResponseDtos=playerService.getTopScorers();
        return new ResponseEntity<>(scorersResponseDtos,HttpStatus.OK);
     }
-    @GetMapping("/scorers")
+    @GetMapping("/cards")
     public ResponseEntity<List<PlayersCardsDto>> getPlayersWithCardsNuber(){
         List<PlayersCardsDto> playersCardsDtos=playerService.getPlayersWithCardsNuber();
         return new ResponseEntity<>(playersCardsDtos,HttpStatus.OK);
