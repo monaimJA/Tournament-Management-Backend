@@ -1,6 +1,8 @@
 package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.PlayerDto;
+import com.capgemini.tournoi.dtos.PlayersCardsDto;
+import com.capgemini.tournoi.dtos.ScorersResponseDto;
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
@@ -8,6 +10,9 @@ import com.capgemini.tournoi.enums.CardType;
 import com.capgemini.tournoi.enums.StatusTournamentAndMatch;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
+import com.capgemini.tournoi.repos.MatchRepository;
+import com.capgemini.tournoi.repos.PlayerRepository;
 import com.capgemini.tournoi.services.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -66,8 +71,18 @@ public class PlayerController {
     }
     @GetMapping("/changeStatus/{tournament_id}")
     public ResponseEntity<List<Match>> notifyPlayers(@PathVariable long tournament_id,
-                                                @RequestParam("statusTournamentAndMatch") StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException {
+                                                @RequestParam("statusTournamentAndMatch") StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException, TournamentNotFoundException {
         List<Match> matches=playerService.notifyPlayers(tournament_id, statusTournamentAndMatch);
         return new ResponseEntity<>(matches,HttpStatus.OK);
+    }
+    @GetMapping("/scorers")
+    public ResponseEntity<List<ScorersResponseDto>> getTopScorers(){
+        List<ScorersResponseDto> scorersResponseDtos=playerService.getTopScorers();
+       return new ResponseEntity<>(scorersResponseDtos,HttpStatus.OK);
+    }
+    @GetMapping("/scorers")
+    public ResponseEntity<List<PlayersCardsDto>> getPlayersWithCardsNuber(){
+        List<PlayersCardsDto> playersCardsDtos=playerService.getPlayersWithCardsNuber();
+        return new ResponseEntity<>(playersCardsDtos,HttpStatus.OK);
     }
 }

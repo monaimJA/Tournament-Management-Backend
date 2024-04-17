@@ -1,11 +1,17 @@
 package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.MatchRequestDTO;
+import com.capgemini.tournoi.dtos.MatchResponseDto;
+import com.capgemini.tournoi.dtos.MatchResponseDtoInProgress;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Score;
+import com.capgemini.tournoi.entity.Team;
 import com.capgemini.tournoi.error.MatchNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
+import com.capgemini.tournoi.mappers.MatchMapper;
+import com.capgemini.tournoi.repos.MatchRepository;
+import com.capgemini.tournoi.repos.TeamRepository;
 import com.capgemini.tournoi.services.MatchServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,13 +19,25 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/match")
+@RequestMapping("/api/match")
 public class MatchController {
     @Autowired
     private MatchServiceImpl matchServiceImpl;
+
+    @Autowired
+    private MatchRepository matchRepository;
+
+    @Autowired
+    private TeamRepository teamRepository;
+
+    @Autowired
+    private MatchMapper matchMapper;
 
     @PostMapping("/create")
     public ResponseEntity<Match> createMatch(@RequestBody MatchRequestDTO matchDOT) throws TeamNotFoundException {
@@ -28,9 +46,8 @@ public class MatchController {
     }
 
     @PostMapping("/score/{matchId}")
-    public ResponseEntity<Match> setScoreOfMatch(@RequestBody Score score,
-                                                 @PathVariable Long matchId) throws MatchNotFoundException {
-        Match match = matchServiceImpl.setScoreOfMatch(score,matchId);
+    public ResponseEntity<Match> setScoreOfMatch(@PathVariable Long matchId,int scoreTeam1,int scoreTeam2) throws MatchNotFoundException {
+        Match match = matchServiceImpl.setScoreOfMatch(matchId,scoreTeam1,scoreTeam2);
         return ResponseEntity.ok(match);
     }
 
@@ -40,17 +57,12 @@ public class MatchController {
         return ResponseEntity.ok(match);
     }
 
-    @GetMapping("/getAll")
-    public ResponseEntity<List<Match>> getAllMatches() {
-        List<Match> matches = matchServiceImpl.getAllMatches();
-        return ResponseEntity.ok(matches);
-    }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Match> getMatchById(@PathVariable Long id) {
+    public ResponseEntity<MatchResponseDto> getMatchById(@PathVariable Long id) {
         try {
-            Match match = matchServiceImpl.getMatchById(id);
-            return ResponseEntity.ok(match);
+            MatchResponseDto matchResponseDto = matchServiceImpl.getMatchById(id);
+            return ResponseEntity.ok(matchResponseDto);
         } catch (MatchNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND," Match not found with id " + id);
         }
@@ -74,4 +86,34 @@ public class MatchController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/in-progress")
+    public ResponseEntity<List<MatchResponseDtoInProgress>> getAllMatchesOfCurrentTournament() {
+        List<MatchResponseDtoInProgress> matches=matchRepository.getAllMatchesInCurrentTournament().stream().map(match->{
+            return matchMapper.convertToDto(match);
+        }).collect(Collectors.toList());
+        return new ResponseEntity<>(matches,HttpStatus.OK);
+    }
+    @GetMapping("/in-progress/latest")
+    public ResponseEntity<List<MatchResponseDtoInProgress>> getLatestMatches(){
+        List<MatchResponseDtoInProgress> matches=matchRepository.getAllLatestMatchesInCurrentTournament().stream().map(match->{
+            return matchMapper.convertToDto(match);
+        }).collect(Collectors.toList());
+        return new ResponseEntity<>(matches,HttpStatus.OK);
+    }
+
+    @PostMapping("/{id}/score")
+    public ResponseEntity<Match> saveMatchWithScore(@PathVariable Long id,
+                                                    @RequestBody MatchResponseDtoInProgress match){
+        Optional<Match> match1=matchRepository.findById(id);
+        Match realMatch=null;
+        if (match1.isPresent()){
+            realMatch=match1.get();
+            realMatch.setScoreTeam1(match.getScoreTeam1());
+            realMatch.setScoreTeam2(match.getScoreTeam2());
+            realMatch.setWinnerTeam(teamRepository.findById(match.getWinnerTeamId()).get());
+        }
+        return new ResponseEntity<>(matchRepository.save(realMatch),HttpStatus.OK);
+    }
+
 }

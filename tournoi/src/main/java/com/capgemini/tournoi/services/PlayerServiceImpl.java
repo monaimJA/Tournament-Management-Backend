@@ -1,14 +1,14 @@
 package com.capgemini.tournoi.services;
 
-import com.capgemini.tournoi.dtos.MatchRequestDTO;
-import com.capgemini.tournoi.dtos.PlayerDto;
-import com.capgemini.tournoi.dtos.TeamDto;
+import com.capgemini.tournoi.dtos.*;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
+import com.capgemini.tournoi.entity.Tournament;
 import com.capgemini.tournoi.enums.*;
 import com.capgemini.tournoi.error.PlayerNotFoundException;
 import com.capgemini.tournoi.globalExceptions.TeamNotFoundException;
+import com.capgemini.tournoi.globalExceptions.TournamentNotFoundException;
 import com.capgemini.tournoi.mappers.PlayerMapper;
 import com.capgemini.tournoi.mappers.TeamMapper;
 import com.capgemini.tournoi.repos.MatchRepository;
@@ -22,6 +22,7 @@ import org.thymeleaf.context.Context;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -156,10 +157,12 @@ public class PlayerServiceImpl implements PlayerService{
     }
 
     @Override
-    public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException {
+    public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException, TournamentNotFoundException {
 
         // notify players by email and planify the matches
-
+        Tournament tournament= tournamentRepository.findById(tournament_id).orElseThrow(()-> new TournamentNotFoundException(
+                "Tournament with id " + tournament_id +" does not exist"
+        ));
         List<Match> matches =getAllMatchesOfTournamentInThatPhase(tournament_id, statusTournamentAndMatch);
         List<Team> teams=new ArrayList<>();
         for (Match match:matches){
@@ -167,10 +170,10 @@ public class PlayerServiceImpl implements PlayerService{
         }
         List<List<Team>> lists;
         lists= tirageService.lancer(teams);
-        LocalDate date;
+        LocalDateTime date;
 
-        if(statusTournamentAndMatch==StatusTournamentAndMatch.QUART_FINAL){
-            date=tournamentRepository.findById(tournament_id).get().getStartDate().plusDays(3);
+        if(statusTournamentAndMatch==StatusTournamentAndMatch.EIGHT_FINAL){
+            date= tournamentRepository.findById(tournament_id).get().getStartDate().plusDays(3).atStartOfDay();
         }else {
             Match latestMatch = matches.get(0);
 //            LocalDate latestDate = latestMatch.getStartTime();
@@ -187,7 +190,7 @@ public class PlayerServiceImpl implements PlayerService{
         List<Match> result=new ArrayList<>();
         for (List<Team> list:lists){
                 MatchRequestDTO matchRequestDTO=new MatchRequestDTO();
-                matchRequestDTO.setStartTime(date);
+                matchRequestDTO.setStartTime(date.plusHours(Math.random() > 0.5? 17 : 20));
                 matchRequestDTO.setTeamId1(list.get(0).getId());
                 matchRequestDTO.setTeamId2(list.get(1).getId());
                 matchRequestDTO.setTournament(tournamentRepository.findById(tournament_id).get());
@@ -197,7 +200,10 @@ public class PlayerServiceImpl implements PlayerService{
 
         Context context = new Context();
         context.setVariable("matches", matches);
+        context.setVariable("upcomingMatches", result);
         context.setVariable("teams",lists);
+        context.setVariable("previousStatus", " ("+getPreviousStatus(tournament.getStatusTournament()).toString().replace("_", " de ").toLowerCase()+" )");
+        context.setVariable("status"," ("+tournament.getStatusTournament().toString().replace("_", " de ").toLowerCase()+" )");
         String subject = "list of matches in the next round and the result of previous round";
         List<PlayerDto> players=new ArrayList<>();
         for(Match match:matches){
@@ -211,16 +217,17 @@ public class PlayerServiceImpl implements PlayerService{
         for (PlayerDto playerDto : players) {
             emailService.sendEmailWithHtmlTemplate(playerDto.getEmail(), subject, "email-template", context);
         }
+        tournament.setStatusTournament(statusTournamentAndMatch);
+        tournamentRepository.save(tournament);
         return result;
     }
 
     @Override
     public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch) {
-
         List<Match> matches=new ArrayList<>();
         StatusTournamentAndMatch previousStatus=getPreviousStatus(statusTournamentAndMatch);
         if ( previousStatus!= null) {
-            matches=matchRepository.findAllByTournament_IdAndStatusMatch(tournamentId, previousStatus);
+            matches=matchRepository.findMatchesByTournamentAndMatchStatus(tournamentId, previousStatus.toString());
         } else {
             System.out.println("in that phase "+statusTournamentAndMatch+"there are no previous matches");
         }
@@ -236,5 +243,16 @@ public class PlayerServiceImpl implements PlayerService{
             previousStatus = StatusTournamentAndMatch.values()[currentStatusOrdinal - 1];
         }
         return previousStatus;
+    }
+
+    @Override
+    public List<ScorersResponseDto> getTopScorers() {
+        Tournament tournament=tournamentRepository.findByInProgressTrue();
+        return playerRepository.getTopScorers(tournament.getId());
+    }
+
+    @Override
+    public List<PlayersCardsDto> getPlayersWithCardsNuber() {
+        return playerRepository.getPlayersCardsInfo();
     }
 }

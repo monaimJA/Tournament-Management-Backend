@@ -1,83 +1,99 @@
-<!--<!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Liste des matches</title>
-    <style>
-        .match {
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-            padding: 10px;
-            text-align: center;
-        }
-        .team {
-            font-weight: bold;
-        }
-        .vs {
-            margin: 0 10px;
-        }
-    </style>
-</head>
-<body>
-<h1>Liste des matches </h1>
-<div th:each="match:${matches}" class="match">
-        <span class="team" th:each="team,teamIndex:${match}">
-            <span th:text="${team.name}"></span>
-            <span class="vs" th:unless="${teamIndex.last}"> vs </span>
-        </span>
-</div>
-</body>
-</html>-->
-
-
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Rapport des matches</title>
     <style>
-        .match {
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-            padding: 10px;
-            text-align: center;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #333;
         }
+
+        h1, h2 {
+            text-align: center;
+            color: #555;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .previous-matches {
+            background-color: #f2dede; /* light red */
+            color: #a94442; /* dark red */
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .upcoming-matches {
+            background-color: #d9edf7; /* light blue */
+            color: #31708f; /* dark blue */
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .match {
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .match:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .start-time {
+            font-style: italic; /* Ajoute un style italique */
+            color: #888; /* Couleur de texte grise */
+        }
+
         .team {
             font-weight: bold;
         }
-        .vs {
-            margin: 0 10px;
+
+        .winner {
+            color: #5cb85c; /* green */
+        }
+
+        .loser {
+            color: #d9534f; /* red */
+        }
+
+        .score {
+            font-weight: bold;
+            color: #333;
         }
     </style>
 </head>
 <body>
-<h1>Rapport des matches</h1>
+<div class="container">
+    <h1>Rapport des matches</h1>
 
-<!-- Matches précédents -->
-<h2>Matches précédents</h2>
-<div th:each="match:${matches}" class="match">
-        <span th:text="${match.team1.name}"></span>
-        <span th:text="${match.team2.name}"></span>
-        <span>Winner team is <span th:text="${match.winnerTeam.name}"></span></span>
-<!--        <span class="vs" th:unless="${teamIndex.last}"> vs </span>-->
-<!--    <span th:if="${match.gagnant != null}" th:text="${' - Gagnant: ' + match.gagnant.name}"></span>-->
-<!--    <span th:if="${match.elimine != null}" th:text="${' - Éliminé: ' + match.elimine.name}"></span>-->
+    <!-- Matches précédents -->
+    <h2>Matches précédents<span class="previous-matches" th:text="${previousStatus}"></span></h2>
+    <div th:each="match:${matches}" class="match">
+        <span class="team" th:class="${match.winnerTeam == match.team1 ? 'winner' : 'loser'}" th:text="${match.team1.name}"></span> <span class="score" th:text="${match.scoreTeam1}"></span>
+        <span class="vs">vs</span>
+        <span class="team" th:class="${match.winnerTeam == match.team2 ? 'winner' : 'loser'}" th:text="${match.team2.name}"></span> <span class="score" th:text="${match.scoreTeam2}"></span>
+    </div>
+
+    <!-- Matches à venir -->
+    <h2>Matches à venir<span class="upcoming-matches" th:text="${status}"></span></h2>
+    <div th:each="match:${upcomingMatches}" class="match">
+        <span class="team" th:text="${match.team1.name}"></span>
+        <span class="vs">vs</span>
+        <span class="team" th:text="${match.team2.name}"></span>
+            <span class="start-time" th:text="${match.startTime}"></span>
+    </div>
 </div>
-<h1>Matches à venir</h1>
-<div th:each="match:${teams}">
-        <span class="team" th:each="team,teamIndex:${match}">
-            <span th:text="${team.name}"></span>
-            <span class="vs" th:unless="${teamIndex.last}"> vs </span>
-        </span>
-</div>
-
-<!--&lt;!&ndash; Matches à venir &ndash;&gt;-->
-<!--<h2>Matches à venir</h2>-->
-<!--<div th:each="match:${matchesAVenir}" class="match">-->
-<!--    <span class="team" th:each="team,teamIndex:${match}">-->
-<!--        <span th:text="${team.name}"></span>-->
-<!--        <span class="vs" th:unless="${teamIndex.last}"> vs </span>-->
-<!--    </span>-->
-<!--</div>-->
-
 </body>
 </html>

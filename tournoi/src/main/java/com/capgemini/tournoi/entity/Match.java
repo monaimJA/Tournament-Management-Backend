@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -21,8 +22,8 @@ public class Match {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private LocalDate startTime;
-    private LocalDate overTime;
+    private LocalDateTime startTime;
+    private LocalDateTime overTime;
     @Enumerated(value = EnumType.STRING)
     private StatusTournamentAndMatch statusMatch;
 
@@ -39,13 +40,9 @@ public class Match {
     @OneToOne(cascade = CascadeType.ALL)
     private Score score;
 
-//    @ManyToMany
-//    @JoinTable(name = "match_scorers",
-//            joinColumns = @JoinColumn(name = "match_id",
-//                    referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "player_id",
-//                    referencedColumnName = "id"))
-//    private List<Player> scorers;
+    private int scoreTeam1;
+
+    private int scoreTeam2;
 
     @OneToOne
     private Team winnerTeam;

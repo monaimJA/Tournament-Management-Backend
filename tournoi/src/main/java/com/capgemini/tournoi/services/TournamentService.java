@@ -21,4 +21,5 @@ public interface TournamentService {
     TournamentResponseDto deleteTeamFromTournament(Long tournamentId, Long teamId) throws TeamNotFoundException, TournamentNotFoundException;
     TournamentResponseDto modifyTournament(Long tournamentId, ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException;
     Tournament getCurrentTournament();
+    void deleteTournament(Long tournamentId) throws TournamentNotFoundException;
 }

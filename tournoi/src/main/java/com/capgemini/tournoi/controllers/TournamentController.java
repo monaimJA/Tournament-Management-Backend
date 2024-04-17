@@ -51,6 +51,10 @@ public class TournamentController {
     public TournamentResponseDto modifyTournament(@PathVariable Long id, @RequestBody ModifyTournamentRequestDto updatedTournament) throws TournamentNotFoundException {
         return tournamentService.modifyTournament(id, updatedTournament);
     }
+    @DeleteMapping("/{id}")
+    public void deleteCustomer(@PathVariable Long id) throws TournamentNotFoundException {
+        tournamentService.deleteTournament(id);
+    }
 
     @GetMapping("/current")
     public Tournament getCurrentTournament() {

@@ -2,10 +2,7 @@ package com.capgemini.tournoi.entity;
 
 import com.capgemini.tournoi.enums.PlayerStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = "team")
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,5 +27,6 @@ public class Player {
     private List<Card> cards;
     @ManyToOne
     @JoinColumn(name = "team_id",referencedColumnName = "id")
+    @JsonIgnore
     private Team team;
 }
