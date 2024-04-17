@@ -2,6 +2,7 @@ package com.capgemini.tournoi.services;
 
 import com.capgemini.tournoi.dtos.MatchRequestDTO;
 import com.capgemini.tournoi.dtos.PlayerDto;
+import com.capgemini.tournoi.dtos.ScorersResponseDto;
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
@@ -226,7 +227,6 @@ public class PlayerServiceImpl implements PlayerService{
 
     @Override
     public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch) {
-
         List<Match> matches=new ArrayList<>();
         StatusTournamentAndMatch previousStatus=getPreviousStatus(statusTournamentAndMatch);
         if ( previousStatus!= null) {
@@ -246,5 +246,11 @@ public class PlayerServiceImpl implements PlayerService{
             previousStatus = StatusTournamentAndMatch.values()[currentStatusOrdinal - 1];
         }
         return previousStatus;
+    }
+
+    @Override
+    public List<ScorersResponseDto> getTopScorers() {
+        Tournament tournament=tournamentRepository.findByInProgressTrue();
+        return playerRepository.getTopScorers(tournament.getId());
     }
 }

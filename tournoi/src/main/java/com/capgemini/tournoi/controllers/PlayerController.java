@@ -1,6 +1,7 @@
 package com.capgemini.tournoi.controllers;
 
 import com.capgemini.tournoi.dtos.PlayerDto;
+import com.capgemini.tournoi.dtos.ScorersResponseDto;
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
@@ -72,5 +73,10 @@ public class PlayerController {
                                                 @RequestParam("statusTournamentAndMatch") StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException, TournamentNotFoundException {
         List<Match> matches=playerService.notifyPlayers(tournament_id, statusTournamentAndMatch);
         return new ResponseEntity<>(matches,HttpStatus.OK);
+    }
+    @GetMapping("/scorers")
+    public ResponseEntity<List<ScorersResponseDto>> getTopScorers(){
+        List<ScorersResponseDto> scorersResponseDtos=playerService.getTopScorers();
+       return new ResponseEntity<>(scorersResponseDtos,HttpStatus.OK);
     }
 }
