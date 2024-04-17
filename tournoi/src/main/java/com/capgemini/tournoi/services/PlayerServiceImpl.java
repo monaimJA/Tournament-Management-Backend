@@ -1,9 +1,6 @@
 package com.capgemini.tournoi.services;
 
-import com.capgemini.tournoi.dtos.MatchRequestDTO;
-import com.capgemini.tournoi.dtos.PlayerDto;
-import com.capgemini.tournoi.dtos.ScorersResponseDto;
-import com.capgemini.tournoi.dtos.TeamDto;
+import com.capgemini.tournoi.dtos.*;
 import com.capgemini.tournoi.entity.Match;
 import com.capgemini.tournoi.entity.Player;
 import com.capgemini.tournoi.entity.Team;
@@ -252,5 +249,10 @@ public class PlayerServiceImpl implements PlayerService{
     public List<ScorersResponseDto> getTopScorers() {
         Tournament tournament=tournamentRepository.findByInProgressTrue();
         return playerRepository.getTopScorers(tournament.getId());
+    }
+
+    @Override
+    public List<PlayersCardsDto> getPlayersWithCardsNuber() {
+        return playerRepository.getPlayersCardsInfo();
     }
 }

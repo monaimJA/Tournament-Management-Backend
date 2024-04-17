@@ -1,6 +1,7 @@
 package com.capgemini.tournoi.services;
 
 import com.capgemini.tournoi.dtos.PlayerDto;
+import com.capgemini.tournoi.dtos.PlayersCardsDto;
 import com.capgemini.tournoi.dtos.ScorersResponseDto;
 import com.capgemini.tournoi.dtos.TeamDto;
 import com.capgemini.tournoi.entity.Match;
@@ -29,4 +30,6 @@ public interface PlayerService {
     public List<Match> notifyPlayers(long tournament_id, StatusTournamentAndMatch statusTournamentAndMatch) throws TeamNotFoundException, TournamentNotFoundException;
     public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch);
     public List<ScorersResponseDto> getTopScorers();
+
+    public List<PlayersCardsDto> getPlayersWithCardsNuber();
 }
