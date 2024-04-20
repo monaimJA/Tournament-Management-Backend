@@ -44,6 +44,11 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
             "ORDER BY COUNT(g) DESC")
     List<ScorersResponseDto> getTopScorers(long tournamentId);
 
+//    @Query("SELECT new com.capgemini.tournoi.dtos.PlayersCardsDto(p, " +
+//            "SUM(CASE WHEN c.cardType = 'RED_CARD' THEN 1 ELSE 0 END), " +
+//            "SUM(CASE WHEN c.cardType = 'YELLOW_CARD' THEN 1 ELSE 0 END)) " +
+//            "FROM Card c JOIN c.player p WHERE p.team.tournament.id = :tournamentId " +
+//            "GROUP BY p")
     @Query("SELECT new com.capgemini.tournoi.dtos.PlayersCardsDto(p, " +
             "SUM(CASE WHEN c.cardType = 'RED_CARD' THEN 1 ELSE 0 END), " +
             "SUM(CASE WHEN c.cardType = 'YELLOW_CARD' THEN 1 ELSE 0 END)) " +

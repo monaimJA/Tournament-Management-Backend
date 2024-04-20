@@ -47,6 +47,7 @@ public class TournamentServiceImpl implements TournamentService{
                 throw new TournamentDateException("Tournament start date should not come after the end date");
             }
             Tournament tournament = TournamentMapper.fromTournamentDtoRequest(tournamentDto);
+            tournament.setStatusTournament(StatusTournamentAndMatch.INSCRIPTION);
             return tournamentRepository.save(tournament);
         }else {
             throw new TournamentAlreadyInProgressException("you can't create a tournament " +

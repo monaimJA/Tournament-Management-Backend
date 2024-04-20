@@ -163,10 +163,16 @@ public class PlayerServiceImpl implements PlayerService{
         Tournament tournament= tournamentRepository.findById(tournament_id).orElseThrow(()-> new TournamentNotFoundException(
                 "Tournament with id " + tournament_id +" does not exist"
         ));
+
         List<Match> matches =getAllMatchesOfTournamentInThatPhase(tournament_id, statusTournamentAndMatch);
+
         List<Team> teams=new ArrayList<>();
-        for (Match match:matches){
-            teams.add(match.getWinnerTeam());
+        if(matches!=null){
+            for (Match match:matches){
+                teams.add(match.getWinnerTeam());
+            }
+        }else {
+            teams=teamRepository.findByTournamentId(tournament_id);
         }
         List<List<Team>> lists;
         lists= tirageService.lancer(teams);
@@ -206,14 +212,14 @@ public class PlayerServiceImpl implements PlayerService{
         context.setVariable("status"," ("+tournament.getStatusTournament().toString().replace("_", " de ").toLowerCase()+" )");
         String subject = "list of matches in the next round and the result of previous round";
         List<PlayerDto> players=new ArrayList<>();
-        for(Match match:matches){
-            for (Player player:match.getTeam1().getPlayers()){
-                players.add(playerMapper.convertPlayerToPlayerDTO(player));
+            for(Match match:matches){
+                for (Player player:match.getTeam1().getPlayers()){
+                    players.add(playerMapper.convertPlayerToPlayerDTO(player));
+                }
+                for (Player player:match.getTeam2().getPlayers()){
+                    players.add(playerMapper.convertPlayerToPlayerDTO(player));
+                }
             }
-            for (Player player:match.getTeam2().getPlayers()){
-                players.add(playerMapper.convertPlayerToPlayerDTO(player));
-            }
-        }
         for (PlayerDto playerDto : players) {
             emailService.sendEmailWithHtmlTemplate(playerDto.getEmail(), subject, "email-template", context);
         }
@@ -224,12 +230,12 @@ public class PlayerServiceImpl implements PlayerService{
 
     @Override
     public List<Match> getAllMatchesOfTournamentInThatPhase(Long tournamentId, StatusTournamentAndMatch statusTournamentAndMatch) {
-        List<Match> matches=new ArrayList<>();
+        List<Match> matches;
         StatusTournamentAndMatch previousStatus=getPreviousStatus(statusTournamentAndMatch);
-        if ( previousStatus!= null) {
+        if ( previousStatus!= null && previousStatus!=StatusTournamentAndMatch.INSCRIPTION) {
             matches=matchRepository.findMatchesByTournamentAndMatchStatus(tournamentId, previousStatus.toString());
         } else {
-            System.out.println("in that phase "+statusTournamentAndMatch+"there are no previous matches");
+            matches=null;
         }
         return matches;
     }
@@ -239,21 +245,19 @@ public class PlayerServiceImpl implements PlayerService{
         int currentStatusOrdinal = currentStatus.ordinal();
 
         StatusTournamentAndMatch previousStatus = null;
-        if (currentStatusOrdinal > 1) {
-            previousStatus = StatusTournamentAndMatch.values()[currentStatusOrdinal - 1];
-        }
+        previousStatus = StatusTournamentAndMatch.values()[currentStatusOrdinal - 1];
         return previousStatus;
     }
 
     @Override
     public List<ScorersResponseDto> getTopScorers() {
-        Tournament tournament=tournamentRepository.findByInProgressTrue();
-        return playerRepository.getTopScorers(tournament.getId());
+//        Tournament tournament=tournamentRepository.findByInProgressTrue();
+        return playerRepository.getTopScorers(1L);
     }
 
     @Override
     public List<PlayersCardsDto> getPlayersWithCardsNumber() {
-        Tournament tournament=tournamentRepository.findByInProgressTrue();
-        return playerRepository.getPlayersCardsInfo(tournament.getId());
+//        Tournament tournament=tournamentRepository.findByInProgressTrue();
+        return playerRepository.getPlayersCardsInfo(1L);
     }
 }

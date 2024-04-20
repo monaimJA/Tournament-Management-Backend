@@ -79,11 +79,13 @@
     <h1>Rapport des matches</h1>
 
     <!-- Matches précédents -->
-    <h2>Matches précédents<span class="previous-matches" th:text="${previousStatus}"></span></h2>
-    <div th:each="match:${matches}" class="match">
-        <span class="team" th:class="${match.winnerTeam == match.team1 ? 'winner' : 'loser'}" th:text="${match.team1.name}"></span> <span class="score" th:text="${match.scoreTeam1}"></span>
-        <span class="vs">vs</span>
-        <span class="team" th:class="${match.winnerTeam == match.team2 ? 'winner' : 'loser'}" th:text="${match.team2.name}"></span> <span class="score" th:text="${match.scoreTeam2}"></span>
+    <h2 th:if="${matches != null}">Matches précédents<span class="previous-matches" th:text="${previousStatus}"></span></h2>
+    <div th:if="${matches != null}">
+        <div th:each="match : ${matches}" class="match">
+            <span class="team" th:class="${match.winnerTeam == match.team1 ? 'winner' : 'loser'}" th:text="${match.team1.name}"></span> <span class="score" th:text="${match.scoreTeam1}"></span>
+            <span class="vs">vs</span>
+            <span class="team" th:class="${match.winnerTeam == match.team2 ? 'winner' : 'loser'}" th:text="${match.team2.name}"></span> <span class="score" th:text="${match.scoreTeam2}"></span>
+        </div>
     </div>
 
     <!-- Matches à venir -->
